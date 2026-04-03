@@ -1,0 +1,61 @@
+{
+  "code_name": "csv_quality_check",
+  "tool_type": "single",
+  "comment": "通用 CSV 质量检查：分析指定列的异常并追加标记列。输出包含统计数据的扁平 JSON。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "输入的 CSV 文件"
+    },
+    {
+      "name": "target_col",
+      "type": "str",
+      "comment": "要检查的列名"
+    },
+    {
+      "name": "threshold_jump",
+      "type": "optional_str",
+      "comment": "一阶跳变阈值 (默认 0.1)"
+    },
+    {
+      "name": "threshold_noise",
+      "type": "optional_str",
+      "comment": "二阶噪声阈值 (默认 0.05)"
+    },
+    {
+      "name": "mark_invalid",
+      "type": "optional_str",
+      "comment": "无效值的标记字符串 (默认 Invalid)"
+    },
+    {
+      "name": "mark_jump",
+      "type": "optional_str",
+      "comment": "跳变点的标记字符串 (默认 Jump)"
+    },
+    {
+      "name": "mark_noise",
+      "type": "optional_str",
+      "comment": "噪声点的标记字符串 (默认 Noise)"
+    },
+    {
+      "name": "mark_ok",
+      "type": "optional_str",
+      "comment": "正常点的标记字符串 (默认空)"
+    },
+    {
+      "name": "output_col_name",
+      "type": "str",
+      "comment": "追加的列名 (默认 Quality_Note)"
+    }
+  ],
+  "output_file_label": {
+    "comment": "带标记的 CSV 文件标签"
+  },
+  "output_pattern": {
+    "comment": "{stem}_checked.csv"
+  },
+  "result_col": {
+    "comment": "保存统计 JSON 的前缀"
+  }
+}

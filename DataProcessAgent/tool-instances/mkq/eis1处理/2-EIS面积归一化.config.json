@@ -1,0 +1,77 @@
+{
+  "2-EIS面积归一化": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "EIS1-CSV",
+        "EIS1-TMP1",
+        "EIS1-TMP2",
+        "EIS1-TMP3",
+        "EIS1-TMP4",
+        "EIS1-TMP5"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": [
+          "Z'/ohm@Z1",
+          "Z\"/ohm@Z2",
+          "Z/ohm@Z0",
+          "|Z| (Ω·cm²)@Z0",
+          "Freq/Hz@f",
+          "Phase/deg@P"
+        ],
+        "comment": [
+          "面积比电阻实部(Real Impedance)",
+          "面积比电阻虚部(Imaginary Impedance)",
+          "面积比阻抗模量(Impedance Magnitude)",
+          "比阻抗模量(归一化后)",
+          "激励信号频率",
+          "相角"
+        ]
+      },
+      "column": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "new_col_name": [
+        "Z' (Ω·cm²)",
+        "-Z'' (Ω·cm²)",
+        "|Z| (Ω·cm²)",
+        "lg(|Z| / Ω·cm²)",
+        "lg(f / Hz)",
+        "-Phase/deg"
+      ],
+      "expression": [
+        "Z1*{电化学活性面积(cm2)}",
+        "-Z2*{电化学活性面积(cm2)}",
+        "Z0*{电化学活性面积(cm2)}",
+        "lg(Z0)",
+        "lg(f)",
+        "-P"
+      ]
+    },
+    "output_file_label": [
+      "EIS1-TMP1",
+      "EIS1-TMP2",
+      "EIS1-TMP3",
+      "EIS1-TMP4",
+      "EIS1-TMP5",
+      "EIS1-NORM-CSV"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_areaNorm.csv"
+    ],
+    "tool_type": "single",
+    "comment": "### ⚖️ EIS 数据面积归一化\n\n将原始阻抗数据从绝对电阻 ($\\\\Omega$) 转换为面积比电阻 ($\\\\Omega \\\\cdot cm^2$)，以便在不同尺寸的电极间进行横向对比。\n\n#### 🧪 变换逻辑\n\n根据电化学定义，面积比阻抗 $Z_{norm}$ 与绝对阻抗 $Z_{abs}$ 的关系为： $ Z_{norm} = Z_{abs} \\\\times\nArea $\n\n本实例同时执行了以下操作：\n\n1.  **实部/虚部归一化**：$Z', Z''$ 均乘以活性面积。\n2.  **符号修正**：将虚部取负值 ($-Z''$)，符合 Nyquist 图习惯。\n3.  **对数转换**：计算 $\\\\log_{10}(f)$ 和 $\\\\log_{10}(|Z|)$，为生成 Bode 图做准备。\n\n> **📝 变量说明**：这里的 `{电化学活性面积(cm2)}` 会自动引用您在参数锚点中设置的数值。"
+  }
+}

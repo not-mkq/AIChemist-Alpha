@@ -1,0 +1,80 @@
+{
+  "code_name": "single_full_demo",
+  "tool_type": "single",
+  "comment": "示例：多输入标签 + 必填/可选运行参数 + 输出文件/结果列 + 上下文获取。",
+  "params": [
+    {
+      "name": "source_primary",
+      "type": "file_label",
+      "comment": "主输入文件"
+    },
+    {
+      "name": "source_secondary",
+      "type": "file_label",
+      "comment": "次输入文件"
+    },
+    {
+      "name": "alpha",
+      "type": "int",
+      "comment": "必填整数参数"
+    },
+    {
+      "name": "temperature",
+      "type": "float",
+      "comment": "必填浮点参数"
+    },
+    {
+      "name": "note",
+      "type": "str",
+      "comment": "必填字符串"
+    },
+    {
+      "name": "dry_run",
+      "type": "bool",
+      "comment": "必填布尔开关"
+    },
+    {
+      "name": "extra_comment",
+      "type": "optional_str",
+      "comment": "可选备注"
+    },
+    {
+      "name": "ir_method",
+      "type": "str_enum",
+      "choices": ["mean_high_freq", "mean_low_Z"],
+      "comment": "枚举字符串参数（必填）"
+    },
+    {
+      "name": "retry_times",
+      "type": "optional_int_enum",
+      "choices": [1, 2, 3],
+      "comment": "可选枚举整数"
+    },
+    {
+      "name": "ratio",
+      "type": "float_enum",
+      "choices": [0.5, 1.0, 2.0],
+      "comment": "枚举浮点参数（必填）"
+    },
+    {
+      "name": "prev_report_col",
+      "type": "optional_from_result",
+      "comment": "（旧式）从结果表中读取上一工具结果列。注意：现在更推荐在参数中直接使用 {result_name} 语法。"
+    },
+    {
+      "name": "db_val",
+      "type": "optional_from_result",
+      "comment": "（旧式）演示从 item_results 表中读取数值。"
+    }
+  ],
+  	"output_file_label": {
+  		"comment": "报告文件标签"
+  	},
+  	"output_pattern": {
+  		"comment": "输出文件名模板。支持 {stem}, {batch}, {item}, {prj} 及结果列字段。"
+  	},
+  	"result_col": {
+  
+    "comment": "报告文本写入的结果列名"
+  }
+}

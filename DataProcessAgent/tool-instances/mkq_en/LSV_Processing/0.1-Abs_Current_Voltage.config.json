@@ -1,0 +1,35 @@
+{
+  "0.1-Abs_Current_Voltage": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "LSV1-CSV",
+        "LSV1-TMP2"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": [
+        "Potential/V@E",
+        "Current/A@I"
+      ],
+      "column": [
+        "Potential/V",
+        "Current/A"
+      ],
+      "expression": [
+        "abs(E)",
+        "abs(I)"
+      ]
+    },
+    "output_file_label": [
+      "LSV1-TMP2",
+      "LSV1-ABS-CSV"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}abs.csv"
+    ],
+    "tool_type": "single",
+    "comment": "### 🔄 Absolute Value Processing\n\nIn electrochemistry, current direction represents reaction type (positive for oxidation, negative for reduction). This tool unifies signs for analysis.\n\n#### 🧪 Scenarios\n1. **HER**: Reduction current is negative. Absolute value allows plotting in positive quadrant.\n2. **Tafel Prep**: Tafel formula $\\\\eta = b \\\\log|j|$ requires positive current.\n\n> **🛠️ Logic**:\n> - `Potential/V` and `Current/A` converted to positive values.\n> - Note: Only for plotting/Tafel. Be aware of physical meaning for energy efficiency calculations."
+  }
+}

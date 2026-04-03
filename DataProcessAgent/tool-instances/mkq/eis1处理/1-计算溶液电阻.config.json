@@ -1,0 +1,23 @@
+{
+  "1-计算溶液电阻": {
+    "code_name": "ir_from_eis_csv",
+    "input_label_map": {
+      "source_eis": "EIS1-CSV"
+    },
+    "run_params": {
+      "ir_method": {
+        "value": "mean_high_freq",
+        "comment": "估计方法"
+      },
+      "z_imag_max_abs": {
+        "value": 5.0,
+        "comment": "|Z_imag|允许最大值(Ω)"
+      }
+    },
+    "output_file_label": "IR-QUALITY",
+    "output_pattern": "{stem}_ir_quality.json",
+    "result_col": "溶液电阻(Ω)",
+    "tool_type": "single",
+    "comment": "### 🍵 EIS 溶液电阻提取 ($R_s$)\n\n本步骤是 IR 补偿的先决条件。通过分析阻抗谱高频区（Nyquist 图左侧）的实轴截距，提取系统的欧姆电阻。\n\n#### 💡 物理背景\n在交流阻抗谱中，高频极限下的阻抗主要由电解液电导率、电极活性材料本征电阻及接触电阻组成。我们将此实部数值定义为溶液电阻 $R_s$。\n\n#### ⚙️ 算法选择指南 (`ir_method`)\n1.  **高频平均法 (`mean_high_freq`)**\n    - **逻辑**：直接选取频率最高的 $N$ 个点取平均。\n    - **适用**：数据干净，高频区平直。\n    - **缺点**：如果高频区存在感抗（电缆电感效应），Nyquist 图可能落入第四象限（$Z'' < 0$），导致 $Z'$ 虚高。\n\n2.  **最小模长法 (`mean_low_Z`)**\n    - **逻辑**：寻找阻抗模长 $|Z|$ 最小的点（最接近原点的点），即 Nyquist 半圆与实轴的交点附近。\n    - **适用**：**推荐用于存在高频感抗干扰的数据**。\n    - **参数配合**：需设置 `z_imag_max_abs` 阈值（如 $5\\\\Omega$），以防止算法错误地选中低频区的点。\n\n> **💡 建议**：默认配置采用了 `mean_high_freq`。如果您发现提取结果明显偏大或受到感抗干扰，请切换至 `mean_low_Z` 模式尝试。"
+  }
+}

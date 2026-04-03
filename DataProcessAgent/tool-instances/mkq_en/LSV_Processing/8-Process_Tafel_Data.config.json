@@ -1,0 +1,61 @@
+{
+  "8-Process_Tafel_Data": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "LSV1-TAFEL-TMP",
+        "LSV1-TAFEL-TMP2",
+        "LSV1-TAFEL-TMP3"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": [
+          "Current(mA/cm2)@j",
+          "Overpotential (V)@OP",
+          "Potential (V vs. RHE)@P"
+        ],
+        "comment": [
+          "Source Column",
+          "Source Column",
+          "Source Column"
+        ]
+      },
+      "new_col_name": {
+        "value": [
+          "log10_j",
+          "Overpotential (mV)",
+          "Potential (mV vs. RHE)"
+        ],
+        "comment": [
+          "New Column",
+          "New Column",
+          "New Column"
+        ]
+      },
+      "expression": {
+        "value": [
+          "lg(j)",
+          "OP*1000",
+          "P*1000"
+        ],
+        "comment": [
+          "Formula",
+          "Conversion Formula",
+          "Conversion Formula"
+        ]
+      }
+    },
+    "output_file_label": [
+      "LSV1-TAFEL-TMP2",
+      "LSV1-TAFEL-TMP3",
+      "LSV1-TAFEL"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}tafel.csv"
+    ],
+    "tool_type": "single"
+  }
+}

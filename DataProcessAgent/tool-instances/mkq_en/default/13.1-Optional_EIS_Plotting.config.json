@@ -1,0 +1,10 @@
+{
+  "13.1-Optional_EIS_Plotting": {
+    "code_name": "alt",
+    "tool_alternatives": [
+      "13.1-EIS_Plotting_No_Norm",
+      "0-Do_Nothing"
+    ],
+    "tool_type": "meta"
+  }
+}

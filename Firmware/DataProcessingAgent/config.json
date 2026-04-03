@@ -1,0 +1,12 @@
+{
+  "process_endpoint": "http://127.0.0.1:33231/api/v1/agent/messages",
+  "provider": "deepseek",
+  "message_template": "请分析压缩包并输出质量报告（数据集：{dirname}）",
+  "files_root": "files",
+  "default_params_path": "para_default.json",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5009,
+    "debug": true
+  }
+}

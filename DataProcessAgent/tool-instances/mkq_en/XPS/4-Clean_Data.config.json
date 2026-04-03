@@ -1,0 +1,41 @@
+{
+  "4-Clean_Data": {
+    "code_name": "csv_column_header_cleanup",
+    "input_label_map": {
+      "source_csv": [
+        "XPS0h-CSV",
+        "XPS12h-CSV",
+        "XPS24h-CSV"
+      ]
+    },
+    "run_params": {
+      "match_mode": "regex",
+      "float_threshold": 20,
+      "col0_match": "^Binding Energy \\(E\\)$",
+      "col0_out": "BE",
+      "col1_match": "^[a-zA-Z]+(\\d[a-z]\\d?)\\s([A-D])$",
+      "col1_out": "Main_{group2} ({group1})",
+      "col2_match": "^Not\\sSpecified.*?\\s([A-D])$",
+      "col2_out": "Sat_{group1}",
+      "col3_match": "^Backgnd\\.$",
+      "col3_out": "BG",
+      "col4_match": "^Envelope$",
+      "col4_out": "Fit_Total",
+      "col5_match": "^Elements=$",
+      "col5_out": "Raw_Data",
+      "col6_match": "^Residuals$",
+      "col6_out": "Residuals",
+      "col7_match": "^Sat.*$",
+      "col7_out": "Sat_A"
+    },
+    "output_file_label": [
+      "XPS0h-CLEAN",
+      "XPS12h-CLEAN",
+      "XPS24h-CLEAN"
+    ],
+    "output_pattern": "{stem}_clean.csv",
+    "result_col": "xxx",
+    "tool_type": "single",
+    "comment": "### 🧹 Smart Column Cleaner & Extractor\n\nHandles non-standard instrument files. Uses \"Data Detection + Header Rename\" logic.\n\n#### 🎯 Workflow\n1. **Detect**: Count floats per column. Valid if count >= `float_threshold`.\n2. **Header Locate**: Search upwards from valid data for renaming rules.\n3. **Extract**: Keep only numbers, discard text/units.\n\n#### ⚙️ Matching\n- **Wildcard**: `*` matches any, use `{matched}`.\n- **Regex**: `()` captures, use `{group1}`."
+  }
+}

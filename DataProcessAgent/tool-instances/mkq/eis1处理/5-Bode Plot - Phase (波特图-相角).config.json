@@ -1,0 +1,51 @@
+{
+  "5-Bode Plot - Phase (波特图-相角)": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "lg(f / Hz)",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "-Phase/deg",
+        "comment": "y轴"
+      },
+      "xlabel": {
+        "value": "$\\log_{10}(f \\text{ / Hz})$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$-\\phi \\text{ / }( ^\\circ)$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Phase Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "fontsize": 12.0,
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "风格"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodePhase",
+    "output_pattern": {
+      "value": "{stem}-BodePhase.png",
+      "comment": "输出文件"
+    },
+    "tool_type": "single",
+    "comment": "### 📐 Bode 相角图分析 (Phase Angle)\n\nBode 相角图描述了阻抗的**相位差 ($\\\\phi$)** 随**频率 ($f$)** 的变化关系。\n\n#### 🧪 物理意义与读图：\n\n1.  **时间常数识别**：相角图中的每一个“峰”通常对应一个驰豫过程（RC\n    并联电路）。如果图中出现两个峰，说明系统中存在两个主要的时间常数（例如电荷转移过程和表面膜层过程）。\n2.  **理想电容特性**：对于理想电容器，相角应接近 $-90^\\\\circ$。在实际体系中，相角峰值越接近\n    $90^\\\\circ$（注意图中取了负值，即峰值接近 90），说明界面的电容特性越显著。\n3.  **高频响应**：在高频极限下，相角趋于 $0^\\\\circ$，此时系统表现为纯电阻性（即 $R_s$）。\n\n> **💡 专家提示**：\n> \n> - 观察相角峰对应的频率 ($f_{max}$)，可以估算界面的等效电容：$C = 1 / (2\\\\pi f_{max} R_{ct})$。\n>"
+  }
+}

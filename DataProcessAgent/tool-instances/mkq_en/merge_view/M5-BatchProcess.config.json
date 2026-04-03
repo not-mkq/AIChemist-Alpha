@@ -1,0 +1,13 @@
+{
+  "M5-BatchProcess": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "17-Process_All_Data_and_Summary",
+      "M1.1-plot_results",
+      "M3-Batch_Report",
+      "M4-Batch_Quality"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "X3-XPS_Workflow": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-XLS_to_CSV",
+      "2-Extract_Element_Names",
+      "4-Clean_Data",
+      "X0-Extract_Extremes",
+      "X1-Extract_Data_Series",
+      "X1.1-Extract_XPS_0h_Series",
+      "X1.2-Extract_XPS_24h_Series",
+      "X1.3-Merge_Data_Series",
+      "X2-Data_Plotting",
+      "X3-Vertical_Merge_Plotting"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

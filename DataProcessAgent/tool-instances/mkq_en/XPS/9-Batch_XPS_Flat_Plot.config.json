@@ -1,0 +1,8 @@
+{
+  "9-Batch_XPS_Flat_Plot": {
+    "code_name": "map",
+    "tool": "8-XPS_Flat_Plot",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

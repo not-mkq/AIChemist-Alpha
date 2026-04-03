@@ -1,0 +1,6 @@
+{
+  "code_name": "alt",
+  "tool_type": "meta",
+  "comment": "# Alt 模式 Meta Tool\n\n按顺序尝试候选工具：遇到首个可执行的工具即运行；所有候选不可用时返回错误。",
+  "params": []
+}

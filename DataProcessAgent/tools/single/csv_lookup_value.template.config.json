@@ -1,0 +1,36 @@
+{
+	"code_name": "csv_lookup_value",
+	"tool_type": "single",
+		"comment": "### 🔍 物理点查询工具 (Lookup & Interpolate)\n\n在复杂的电化学曲线上寻找特定的物理响应点。\n\n#### 🧪 核心应用：\n1.  **半波电位 ($E_{1/2}$)**：在 ORR 极化曲线中，寻找电流达到极限扩散电流一半时的电位。\n2.  **定电位析氢活性**：寻找 $j = 10 mA/cm^2$ 时对应的过电位值。\n3.  **比活性对比**：查询特定电位（如 1.45V vs. RHE）下的电流密度。\n\n> **💡 插值算法**：\n> - 默认开启**线性插值 (`interpolate`)**。即使实验点没有恰好落在目标值上，也能通过相邻点拟合出高精度的物理量，避免步长误差。",
+		"params": [
+	
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入 CSV 文件"
+	},
+	{
+		"name": "x_col",
+		"type": "str",
+		"comment": "查找列名（模糊匹配，大小写不敏感）"
+	},
+	{
+		"name": "y_col",
+		"type": "str",
+		"comment": "返回列名（模糊匹配）"
+	},
+	{
+		"name": "x_value",
+		"type": "float",
+		"comment": "目标自变量的数值"
+	},
+	{
+		"name": "interpolate",
+		"type": "optional_bool",
+		"comment": "是否启用线性插值（默认 True）"
+	}
+	],
+	"result_col": {
+		"comment": "根据x得到的y值"
+	}
+}

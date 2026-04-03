@@ -1,0 +1,10 @@
+{
+  "13.1-可选EIS绘图": {
+    "code_name": "alt",
+    "tool_alternatives": [
+      "13.1-EIS绘图（不归一化）",
+      "0-啥也不做"
+    ],
+    "tool_type": "meta"
+  }
+}

@@ -1,0 +1,66 @@
+{
+	"code_name": "ai_report_from_image",
+	"tool_type": "single",
+	"comment": "### 🤖 AI 图像智能分析报告 (Visual AI)\n\n利用视觉大模型（Vision LLM，如 GPT-4o, Claude-3.5-Sonnet）对电化学图表进行实时自动化诊断。\n\n#### 🧪 推荐 Prompt 结构：\n1.  **角色设定**：“你是一位拥有 20 年经验的资深电化学家。”\n2.  **任务描述**：“请分析这张 LSV 曲线的起始电位、Tafel 斜率区间以及高电位下的传质限制表现。”\n3.  **输出要求**：“请列出 3 个关键发现，并以 Markdown 列表形式输出。”\n\n#### ⚙️ 技术细节\n- **图像预处理**：工具会自动将图像转为 Base64 编码，并适配 API 的分辨率要求。\n- **上下文保持**：支持 `system_prompt` 注入，即使在多轮对话中也能保持专家人设。\n\n> **💡 应用场景**：\n> - 快速筛选海量测试图片，标记出“异常”或“高性能”的样本。",
+	"params": [
+	{
+		"name": "source_image",
+		"type": "file_label",
+		"comment": "输入图像文件（PNG/JPG/WEBP 等），通常是质量诊断图、LSV 波形图、EIS Nyquist 图等。"
+	},
+	{
+		"name": "prompt",
+		"type": "str",
+		"comment": "发送给模型的用户指令，例如“请用中文解读这张电化学曲线图，给出总体评价与改进建议”。"
+	},
+	{
+		"name": "api_url",
+		"type": "str",
+		"comment": "OpenAI 兼容 /chat/completions HTTP 接口地址，例如 https://api.openai.com/v1/chat/completions 或本地代理地址。"
+	},
+	{
+		"name": "api_key",
+		"type": "str",
+		"comment": "接口的 API key，仅在运行时使用，不建议写入公共配置文件。"
+	},
+	{
+		"name": "model",
+		"type": "optional_str",
+		"comment": "模型名称，例如 gpt-4.1, gpt-4o-mini, 或本地支持 vision 的 openai 兼容模型。留空则由服务端默认模型决定。"
+	},
+	{
+		"name": "system_prompt",
+		"type": "optional_str",
+		"comment": "可选 system 提示词，例如“你是电化学专家，擅长解读 LSV / CV / EIS 图像”。"
+	},
+	{
+		"name": "temperature",
+		"type": "optional_float",
+		"comment": "采样温度，默认 0.2。数值越大回答越发散。"
+	},
+	{
+		"name": "max_output_tokens",
+		"type": "optional_int",
+		"comment": "模型输出 token 上限，默认 1024。对于长篇报告可以适当调大。"
+	},
+	{
+		"name": "output_suffix",
+		"type": "optional_str",
+		"comment": "输出文件名后缀，默认 \"_ai_image_report\"，最终生成 <stem><suffix>.md。"
+	},
+	{
+		"name": "prompt2",
+		"type": "optional_str",
+		"comment": "(可选) 第二轮追问 Prompt。如果设置此项，需同时在下方配置“结果列名(Result Column)”，以便保存 AI 的回答。"
+	}
+	],
+	"output_file_label": {
+		"comment": "AI 生成的图像分析 Markdown 报告文件（<stem>_ai_image_report.md 或自定义后缀）。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_ai_image_rpt.md"
+	},
+	"result_col": {
+		"comment": "保存 AI 第二轮回答的结果列名。仅在设置了 prompt2 时有效。"
+	}
+}

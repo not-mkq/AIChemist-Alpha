@@ -1,0 +1,77 @@
+{
+  "2-EIS_Area_Normalization": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "EIS1-CSV",
+        "EIS1-TMP1",
+        "EIS1-TMP2",
+        "EIS1-TMP3",
+        "EIS1-TMP4",
+        "EIS1-TMP5"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": [
+          "Z'/ohm@Z1",
+          "Z\"/ohm@Z2",
+          "Z/ohm@Z0",
+          "|Z| (Ω·cm²)@Z0",
+          "Freq/Hz@f",
+          "Phase/deg@P"
+        ],
+        "comment": [
+          "Area-Specific Real Impedance",
+          "Area-Specific Imaginary Impedance",
+          "Area-Specific Impedance Magnitude",
+          "Specific Impedance Magnitude (Normalized)",
+          "Excitation Frequency",
+          "Phase Angle"
+        ]
+      },
+      "column": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "new_col_name": [
+        "Z' (Ω·cm²)",
+        "-Z'' (Ω·cm²)",
+        "|Z| (Ω·cm²)",
+        "lg(|Z| / Ω·cm²)",
+        "lg(f / Hz)",
+        "-Phase/deg"
+      ],
+      "expression": [
+        "Z1*{Active_Area(cm2)}",
+        "-Z2*{Active_Area(cm2)}",
+        "Z0*{Active_Area(cm2)}",
+        "lg(Z0)",
+        "lg(f)",
+        "-P"
+      ]
+    },
+    "output_file_label": [
+      "EIS1-TMP1",
+      "EIS1-TMP2",
+      "EIS1-TMP3",
+      "EIS1-TMP4",
+      "EIS1-TMP5",
+      "EIS1-NORM-CSV"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_areaNorm.csv"
+    ],
+    "tool_type": "single",
+    "comment": "Converts raw impedance (Ω) to area-specific impedance (Ω·cm²) for comparison.\n\n> **Variables**: `{Active_Area(cm2)}` is automatically used."
+  }
+}

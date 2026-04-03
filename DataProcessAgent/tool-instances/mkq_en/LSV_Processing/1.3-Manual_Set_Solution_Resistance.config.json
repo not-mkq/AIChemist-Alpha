@@ -1,0 +1,24 @@
+{
+  "1.3-Manual_Set_Solution_Resistance": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": {
+        "value": [
+          "2.0",
+          "null"
+        ],
+        "comment": [
+          "Manual Solution Resistance(Ω)",
+          null
+        ]
+      },
+      "value_type": "float"
+    },
+    "result_col": [
+      "Manual_Solution_Resistance(Ohm)",
+      "Solution_Resistance(Ohm)"
+    ],
+    "tool_type": "single",
+    "comment": "### 🧪 Manual Solution Resistance Setting ($R_s$)\n\nUse this if no EIS test was performed or to use literature/empirical values.\n\n#### 💡 Scenarios\n- **Empirical**: Known resistance (e.g., 0.1M KOH ~ $40 \\sim 50 \\Omega$).\n- **Verification**: Compare effect of different resistance values.\n\n> **⚠️ Note**:\n> - Unit: **$\\Omega$**.\n> - Manual value overrides `ir_from_eis_csv`."
+  }
+}

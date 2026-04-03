@@ -1,0 +1,12 @@
+{
+  "2.2-LSV归一化（不R补偿）": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-从TXT提取LSV1-CSV",
+      "0.1-对电流电压取绝对值",
+      "2.1-LSV归一化（不R补偿）"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

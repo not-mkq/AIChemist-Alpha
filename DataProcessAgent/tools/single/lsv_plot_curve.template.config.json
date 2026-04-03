@@ -1,0 +1,118 @@
+{
+	"code_name": "lsv_plot_curve",
+	"tool_type": "single",
+	"comment": "### 🎨 专业 LSV 曲线绘图 (Plotting)\n\n生成符合学术期刊发表标准的电化学极化曲线图。\n\n#### 📏 绘图规范\n- **X 轴**：通常为电位 $E$ (V vs. RHE)。\n- **Y 轴**：通常为电流密度 $j$ (mA/cm²)。\n- **关键点标注**：自动寻找并标记 $10 mA/cm^2$ 等性能基准点（Benchmark）。\n\n#### 🛠️ 高级功能\n1.  **IR 补偿对比**：通过切换 `curve_type`，你可以直观观察 IR 降对曲线斜率的影响。\n2.  **Tafel 叠加**：勾选 `tafel_enabled` 可在主图上以虚线形式叠加 Tafel 拟合区间，方便确认线性区的选取是否合理。\n\n> **💡 提示**：\n> - 标题支持 `{item}` 占位符，可自动根据样本名命名图片。\n> - DPI 默认为 300，满足高清打印需求。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV 数据 CSV，一般为 `lsv_normalize_csv` 或 `lsv_ir_compensate_csv` 的输出。"
+	},
+	{
+		"name": "curve_type",
+		"type": "str_enum",
+		"choices": ["raw", "ir"],
+		"comment": "选择绘制哪条曲线：`raw` 为补偿前电位，`ir` 为 IR 补偿后电位（需要 CSV 中存在 `potential_ir_V` 或 `potential_ir` 列）。"
+	},
+	{
+		"name": "tafel_enabled",
+		"type": "optional_bool",
+		"comment": "是否在主图上叠加 Tafel 拟合线及使用点，仅在 curve_type=`raw` 时生效。"
+	},
+	{
+		"name": "tafel_range",
+		"type": "optional_str",
+		"comment": "Tafel 拟合使用的电流密度区间（单位 mA/cm²），例如 `1-10`。"
+	},
+	{
+		"name": "xlabel",
+		"type": "optional_str",
+		"comment": "X 轴标签，默认 `Potential (V)`。"
+	},
+	{
+		"name": "ylabel",
+		"type": "optional_str",
+		"comment": "Y 轴标签，默认 `Current Density (mA/cm²)`。"
+	},
+	{
+		"name": "title",
+		"type": "optional_str",
+		"comment": "图像标题模板，支持占位符：`{batch}`、`{item}`、`{file}`、`{stem}`、`{sample}`。例如：`LSV of {batch} {item}`。"
+	},
+	{
+		"name": "font",
+		"type": "optional_str_enum",
+		"choices": [
+			"Microsoft YaHei",
+			"SimHei",
+			"SimSun",
+			"KaiTi",
+			"FangSong",
+			"Arial",
+			"Times New Roman"
+		],
+		"comment": "字体名称。注意：若输入不在列表中，工具将默认使用微软雅黑。"
+	},
+	{
+		"name": "fig_width",
+		"type": "optional_float",
+		"comment": "图像宽度（英寸），默认 5.0"
+	},
+	{
+		"name": "fig_height",
+		"type": "optional_float",
+		"comment": "图像高度（英寸），默认 4.0"
+	},
+	{
+		"name": "dpi",
+		"type": "optional_int",
+		"comment": "输出 PNG 的 DPI，默认 300"
+	},
+	{
+		"name": "fontsize",
+		"type": "optional_float",
+		"comment": "字体大小，默认 12。"
+	},
+	{
+		"name": "line_color",
+		"type": "optional_str",
+		"comment": "曲线颜色（matplotlib 颜色字符串），默认 `blue`。"
+	},
+	{
+		"name": "line_width",
+		"type": "optional_float",
+		"comment": "曲线线宽，默认 2.0。"
+	},
+	{
+		"name": "target_current",
+		"type": "optional_str",
+		"comment": "需要标记的电流密度（mA/cm²），例如 `10` 或 `5,10`。只在 `mark_targets=true` 时生效。"
+	},
+	{
+		"name": "mark_targets",
+		"type": "optional_bool",
+		"comment": "是否在图中标记 target 电流点，默认 true。"
+	},
+	{
+		"name": "use_abs_current",
+		"type": "optional_bool",
+		"comment": "寻找 target 点时是否使用电流绝对值匹配（|I|≈target），默认 true。"
+	},
+	{
+		"name": "plot_grid",
+		"type": "optional_bool",
+		"comment": "是否绘制网格线，默认 true。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "CSV 文件编码，默认 `utf-8`。如遇乱码可指定为 `gbk` 等。"
+	}
+	],
+	"output_file_label": {
+		"comment": "LSV 曲线图像 PNG 对应的文件标签：raw 模式生成 `{stem}_LSV.png`，ir 模式生成 `{stem}_LSV_IR_compensated.png`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_LSV.png"
+	}
+}

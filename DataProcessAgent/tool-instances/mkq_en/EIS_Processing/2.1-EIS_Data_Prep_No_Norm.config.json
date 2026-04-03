@@ -1,0 +1,77 @@
+{
+  "2.1-EIS_Data_Prep_No_Norm": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "EIS1-CSV",
+        "EIS1-TMP1",
+        "EIS1-TMP2",
+        "EIS1-TMP3",
+        "EIS1-TMP4",
+        "EIS1-TMP5"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": [
+          "Z'/ohm@Z1",
+          "Z\"/ohm@Z2",
+          "Z/ohm@Z0",
+          "|Z| (Ω)@Z0",
+          "Freq/Hz@f",
+          "Phase/deg@P"
+        ],
+        "comment": [
+          "Real Impedance",
+          "Imaginary Impedance",
+          "Impedance Magnitude",
+          "Impedance Magnitude (Normalized)",
+          "Excitation Frequency",
+          "Phase Angle"
+        ]
+      },
+      "column": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "new_col_name": [
+        "Z' (Ω)",
+        "-Z'' (Ω)",
+        "|Z| (Ω)",
+        "lg(|Z| / Ω)",
+        "lg(f / Hz)",
+        "-Phase/deg"
+      ],
+      "expression": [
+        "Z1",
+        "-Z2",
+        "Z0",
+        "lg(Z0)",
+        "lg(f)",
+        "-P"
+      ]
+    },
+    "output_file_label": [
+      "EIS1-TMP1",
+      "EIS1-TMP2",
+      "EIS1-TMP3",
+      "EIS1-TMP4",
+      "EIS1-TMP5",
+      "EIS1-NORM-CSV"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_areaNorm.csv"
+    ],
+    "tool_type": "single",
+    "comment": "### 🧮 Generic Column Expression Tool (Expression)\n\nApplies custom mathematical formulas to every row in the CSV. This is the 'Swiss Army Knife' for non-standard electrochemical transformations.\n\n#### 🧪 Electrochemical Formula Templates:\n\n1. **Manual IR Compensation**: Correct potential using measured solution resistance $R_s$.\n  - Expression: `i - j * {r_solution} / 1000`\n  - Binding: `current_density@j`\n  - Reference: `{r_solution}`\n2. **Overpotential Conversion (E -> η)**: Generate overpotential axis in mV.\n  - Expression: `(i - {equilibrium_potential}) * 1000`\n3. **Logarithmic Coordinates**: Generate $\\log|j|$ axis for Tafel analysis.\n  - Expression: `lg(abs(i))`\n\n> **📝 Syntax**:\n> \n> - `i`: Value of current column.\n> - `{result_name}`: Reference scalar result from previous steps.\n> - **Column Binding**: `<ColName>@<var>` (e.g., `potential_V@E`), then use `E` in expression.\n> - **Write Back**: If `column` is specified, it overwrites; otherwise appends a new column."
+  }
+}

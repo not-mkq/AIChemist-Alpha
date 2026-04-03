@@ -1,0 +1,25 @@
+{
+  "3-Calc_Onset_Potential_at_1mA": {
+    "code_name": "csv_lookup_value",
+    "input_label_map": {
+      "source_csv": "LSV1-NORM"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "Lookup Col"
+      },
+      "y_col": {
+        "value": "Potential (V vs. RHE)",
+        "comment": "Result Col"
+      },
+      "x_value": {
+        "value": 1.0,
+        "comment": "Threshold Current Density(mA/cm2)"
+      },
+      "interpolate": true
+    },
+    "result_col": "Onset_Potential(V)@1mA/cm2",
+    "tool_type": "single"
+  }
+}

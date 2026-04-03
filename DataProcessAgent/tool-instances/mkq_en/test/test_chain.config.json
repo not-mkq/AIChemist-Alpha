@@ -1,0 +1,10 @@
+{
+  "test_chain": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": "{fit.a} * 2"
+    },
+    "result_col": "final_score",
+    "tool_type": "single"
+  }
+}

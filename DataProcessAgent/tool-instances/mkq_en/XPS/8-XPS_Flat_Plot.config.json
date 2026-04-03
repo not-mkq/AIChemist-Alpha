@@ -1,0 +1,144 @@
+{
+  "8-XPS_Flat_Plot": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": [
+        "XPS0h-CLEAN",
+        "XPS12h-CLEAN",
+        "XPS24h-CLEAN"
+      ]
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X-Axis"
+      },
+      "y0_col": {
+        "value": "Raw_Data",
+        "comment": "Experimental Spectrum"
+      },
+      "y1_col": {
+        "value": "BG@BG!=0",
+        "comment": "Background"
+      },
+      "y3_col": {
+        "value": "Fit_Total@BG!=0",
+        "comment": "Envelope"
+      },
+      "y0_style": {
+        "value": "black,1,--",
+        "comment": "Experimental Data Style"
+      },
+      "y4_col": {
+        "value": "Main_A (*)@BG!=0",
+        "comment": "Main_A"
+      },
+      "y5_col": {
+        "value": "Main_B (*)@BG!=0",
+        "comment": "Main_B"
+      },
+      "y6_col": {
+        "value": "Main_C (*)@BG!=0",
+        "comment": "Main_C"
+      },
+      "y7_col": {
+        "value": "Main_D (*)@BG!=0",
+        "comment": "Main_D"
+      },
+      "y8_col": {
+        "value": "Main_E (*)@BG!=0",
+        "comment": "Main_E"
+      },
+      "y9_col": {
+        "value": "Sat_A@BG!=0",
+        "comment": "Sat_A"
+      },
+      "y10_col": {
+        "value": "Sat_B@BG!=0",
+        "comment": "Sat_B"
+      },
+      "y11_col": {
+        "value": "Sat_C@BG!=0",
+        "comment": "Sat_C"
+      },
+      "y12_col": {
+        "value": "Sat_D@BG!=0",
+        "comment": "Sat_D"
+      },
+      "y13_col": {
+        "value": "Sat_E@BG!=0",
+        "comment": "Sat_E"
+      },
+      "font_name": "Source Han Sans CN",
+      "y4_style": {
+        "value": "orange,2,-,fill!!!!(BG)@",
+        "comment": "Main_A_Style"
+      },
+      "y5_style": {
+        "value": "cyan,2,-,fill!!!!!(BG)@",
+        "comment": "Main_B_Style"
+      },
+      "y6_style": {
+        "value": "green,2,-,fill!!!!!(BG)@",
+        "comment": "Main_C_Style"
+      },
+      "y7_style": {
+        "value": "yellow,2,-,fill!!!!!(BG)@",
+        "comment": "Main_D_Style"
+      },
+      "y8_style": {
+        "value": "gray,2,-,fill!!!!!(BG)@",
+        "comment": "Main_E_Style"
+      },
+      "y9_style": {
+        "value": "orange,2,-,fill!(BG)@",
+        "comment": "Sat_A_Style"
+      },
+      "y10_style": {
+        "value": "cyan,2,-,fill!(BG)@",
+        "comment": "Sat_B_Style"
+      },
+      "y11_style": {
+        "value": "green,2,-,fill!(BG)@",
+        "comment": "Sat_C_Style"
+      },
+      "y12_style": {
+        "value": "yellow,2,-,fill!(BG)@",
+        "comment": "Sat_D_Style"
+      },
+      "y13_style": {
+        "value": "gray,2,-,fill!(BG)@",
+        "comment": "Sat_E_Style"
+      },
+      "y1_style": {
+        "value": "black,0.5,:",
+        "comment": "BG_Style"
+      },
+      "y3_style": {
+        "value": "red,3,-",
+        "comment": "Fit_Total_Style"
+      },
+      "legend_loc": "upper right",
+      "plot_grid": false,
+      "fig_width": 6.0,
+      "fig_height": 2.0,
+      "title_template": {
+        "comment": "Title"
+      },
+      "ylabel": {
+        "comment": "ylabel"
+      },
+      "xlabel": {
+        "comment": "xlabel"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-PNG2",
+      "XPS12h-PNG2",
+      "XPS24h-PNG2"
+    ],
+    "output_pattern": "{stem}2.png",
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by specifying column names.\n\n【Features】\n\n1. Comparison: Plot up to 5 curves (y0 to y4).\n2. Auto-Marking: Automatically find points on curves at specified X positions.\n3. Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

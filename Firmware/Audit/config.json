@@ -1,0 +1,49 @@
+{
+	"openai": {
+		"model": "gpt-4o",
+		"base_url": "https://api.openai.com/v1",
+		"temperature": 1.0
+	},
+ "server": {
+		"host": "127.0.0.1",
+		"port": 5011,
+		"debug": false
+	},
+ "policy": {
+		"files_root": "files"
+	},
+	"debug": {
+		"echo_payload": true,
+		"max_examples": 3,
+		"max_preview_chars": 1200
+	},
+	"auditor": {
+		"audit_url": "http://127.0.0.1:5011/task",
+		"use_task_api": true,
+		"user_rules": {
+			"synthesis_robot": [
+				"未获明确确认不得操作物理硬件",
+				"温度超过300C需要二次确认",
+				"密闭加热必须有排气说明"
+			],
+			"ratio_generator": [
+				"单一试剂体积不应超过20 mL",
+				"如添加碱液需提示防腐蚀措施"
+			],
+			"merge_csv_files": [
+				"只允许合并工作区内CSV",
+				"禁止覆盖已有正式产出文件"
+			],
+			"ml_training_agent": [
+				"必须保证理论计算结果就绪才可以运行，否则应提示用户上传"
+			],
+			"shell_exec": [
+				"严禁读取系统的运行信息",
+				"所有命令都必须请求用户批准"
+			],
+			"file_service": [
+				"写入已存在的文件需要注意文件覆盖"
+			]
+		}
+	}
+}

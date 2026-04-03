@@ -1,0 +1,19 @@
+{
+  "code_name": "suicide_tool",
+  "tool_type": "single",
+  "input_label_map": {},
+  "run_params": {},
+  "output_file_label": {
+    "value": "NONE",
+    "comment": "Output label"
+  },
+  "output_pattern": {
+    "value": "{stem}_suicide.txt",
+    "comment": "Output file pattern"
+  },
+  "result_col": {
+    "value": "suicide_status",
+    "comment": "Result column"
+  },
+  "params": []
+}

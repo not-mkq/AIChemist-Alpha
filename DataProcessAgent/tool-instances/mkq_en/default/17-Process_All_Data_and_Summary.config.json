@@ -1,0 +1,14 @@
+{
+  "17-Process_All_Data_and_Summary": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0.2-Set_Current_Batch_Name",
+      "16-Process_All_Data",
+      "17-Summary_Results",
+      "17.5-Find_Optimal_Point",
+      "18-Summary_Results_Plotting"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

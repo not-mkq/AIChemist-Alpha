@@ -1,0 +1,22 @@
+{
+	"code_name": "primitive_pass_value",
+	"tool_type": "single",
+	"comment": "### ⚓ 项目参数锚点 (Constants & Expressions)\n\n该工具用于定义电化学测试中的**核心常数**，或进行跨工具的**结果二次运算**。它是构建自动化流程的“参数中心”。\n\n#### ⚡️ 语法特性 (Direct Binding)\n无需复杂的变量映射，直接在表达式中使用 `{result_name}` 引用之前步骤的计算结果。\n\n#### 🧪 电化学实战示例：\n1.  **本征活性 (Specific Activity)**：将归一化后的电流密度再次除以测得的 ECSA。\n    - 表达式：`{current_density} / {ECSA_cm2}` \n    - 前置条件：已有工具输出了 `current_density` 和 `ECSA_cm2`。\n2.  **RHE 动态校准**：根据测得的 pH 计算电位偏移。\n    - 表达式：`0.197 + 0.059 * {pH_value}` \n3.  **过电位偏差计算**：\n    - 表达式：`abs({onset_potential} - 1.23)`\n\n#### 🛠️ 基础用途\n- **定义常量**：直接输入数值（如 `1.23`）作为平衡电位基准。\n- **单位换算**：`{loading_mass_ug} / 1000` (转换为 mg)。\n\n> **💡 支持函数**：\n> `lg(x)`, `ln(x)`, `exp(x)`, `sqrt(x)`, `abs(x)`, `sin`, `cos`, `pi`, `e` 等。",
+	"params": [
+		{
+			"name": "value",
+			"type": "str",
+			"comment": "数值、数学表达式或占位符文本。支持直接引用变量，如 \"{item}\", \"{onset_v} + 0.059 * {pH}\"。"
+		},
+		{
+			"name": "value_type",
+			"type": "str_enum",
+			"choices": ["float", "int", "str"],
+			"default": "float",
+			"comment": "值的存储类型。如果是 str，则不进行 eval 数学计算，直接保存字符串字面量（如 item 的名字）。"
+		}
+	],
+	"result_col": {
+		"comment": "计算结果，可被后续工具引用。"
+	}
+}

@@ -1,0 +1,32 @@
+{
+  "X1.3-合并数据系列": {
+    "code_name": "json_aggregate_series",
+    "input_label_map": {
+      "source_jsons": [
+        "XPS0h-A,XPS0h-B,XPS0h-C,XPS0h-D,XPS0h-E,XPS0h-BG,XPS0h-FIT,XPS0h-RAW,",
+        "XPS12h-A,XPS12h-B,XPS12h-C,XPS12h-D,XPS12h-E,XPS12h-BG,XPS12h-FIT,XPS12h-RAW,",
+        "XPS24h-A,XPS24h-B,XPS24h-C,XPS24h-D,XPS24h-E,XPS24h-BG,XPS24h-FIT,XPS24h-RAW,"
+      ]
+    },
+    "run_params": {
+      "add_key": "attr",
+      "add_value": [
+        "{label_name}-0h",
+        "{label_name}-12h",
+        "{label_name}-24h"
+      ]
+    },
+    "output_file_label": [
+      "XPS0h-JSON",
+      "XPS12h-JSON",
+      "XPS24h-JSON"
+    ],
+    "output_pattern": [
+      "{label_name}-0h.json",
+      "{label_name}-12h.json",
+      "{label_name}-24h.json"
+    ],
+    "tool_type": "single",
+    "comment": "### 📦 数据序列聚合器 (Series Aggregator)\n\n将多个分散的 JSON 数据序列文件合并为一个文件，便于统一绘图或处理。支持批量添加自定义属性。\n\n#### 💡 用法示例：\n\n1.  **合并实验数据**: 输入选 `Exp1, Exp2, Exp3`，输出 `All_Exp`。\n2.  **分组标记**: 设置 `add_key='group'`, `add_value='Control'`，合并后的每个序列都会带上 `group:\n    Control` 属性。"
+  }
+}

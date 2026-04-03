@@ -1,0 +1,8 @@
+{
+  "16-Process_All_Data": {
+    "code_name": "map",
+    "tool": "15.1-EIS_CV_LSV_ECSA",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

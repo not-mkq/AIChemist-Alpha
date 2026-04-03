@@ -1,0 +1,22 @@
+{
+	"code_name": "lsv_halfwave_from_curve",
+	"tool_type": "single",
+	"comment": "从 LSV 曲线 CSV 中计算半波电位（half-wave potential）。\\n\\n- 主结果：`half_wave_potential_v` 作为数值返回；\\n- 额外信息（极限电流、窗口、参数等）写入 `{stem}-lsv-halfwave.json` 报告文件。",
+	"params": [
+		{ "name": "source_csv", "type": "file_label", "comment": "输入的 LSV 曲线 CSV 文件，一般为 `lsv_normalize_csv` 或 IR 补偿工具的输出。" },
+		{ "name": "use_abs_current", "type": "optional_bool", "comment": "是否使用电流绝对值定义极限电流 i_lim，默认 true。" },
+		{ "name": "use_ir_potential", "type": "optional_bool", "comment": "若存在 `potential_ir_V` 列，是否优先使用该列作为电位列，默认 true。" },
+		{ "name": "window_min_potential", "type": "optional_float", "comment": "电位窗口下限（V），不填则使用整段曲线的最小电位。" },
+		{ "name": "window_max_potential", "type": "optional_float", "comment": "电位窗口上限（V），不填则使用整段曲线的最大电位。" },
+		{ "name": "encoding", "type": "optional_str", "comment": "输入 CSV 的编码，默认 `utf-8`。" }
+	],
+	"result_col": {
+		"comment": "half_wave_potential_v 半波电位（V）。"
+	},
+	"output_file_label": {
+		"comment": "半波电位计算的详细 JSON 报告（例如 `{stem}-lsv-halfwave.json`）。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_halfwave.json"
+	}
+}

@@ -1,0 +1,44 @@
+{
+  "X2-Data_Plotting": {
+    "code_name": "json_plot_points",
+    "input_label_map": {
+      "source_json": [
+        "XPS0h-JSON",
+        "XPS12h-JSON",
+        "XPS24h-JSON"
+      ]
+    },
+    "run_params": {
+      "plot_grid": true,
+      "fig_width": {
+        "value": 6.0,
+        "comment": "Fig Width"
+      },
+      "fig_height": {
+        "value": 4.0,
+        "comment": "Fig Height"
+      },
+      "xlabel": {
+        "comment": "xlabel"
+      },
+      "title": {
+        "comment": "title"
+      },
+      "ylabel": {
+        "comment": "ylabel"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-PNG3",
+      "XPS12h-PNG3",
+      "XPS24h-PNG3"
+    ],
+    "output_pattern": [
+      "{stem}.png",
+      "{stem}.png",
+      "{stem}.png"
+    ],
+    "tool_type": "single",
+    "comment": "Point Renderer: Reads JSON with coordinates/styles (single or multiple files) and plots them. Often used with csv_find_points."
+  }
+}

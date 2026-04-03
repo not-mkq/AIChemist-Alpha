@@ -1,0 +1,299 @@
+{
+  "code_name": "csv_generic_plot",
+  "tool_type": "single",
+  "comment": "通用绘图工具：只需指定列名，即可快速绘制精美的多曲线对比图。\n\n【主要功能】\n1. 支持对比：可以同时画出最多 15 条曲线（y0 到 y14）。\n2. 自动标点：指定 X 轴位置，工具会自动在曲线上找到对应的点并画圈。\n3. 动态标签：可以在标点处显示数值，且支持自定义文字格式。\n\n【常见用途】\n- 绘制 LSV 极化曲线并在 10mA/cm² 处标注电位。\n- 对比不同扫描速率下的曲线。\n- 在图中标注特定电压下的电流值。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "要绘图的 CSV 数据文件。工具会读取其中的列数据进行绘制。"
+    },
+    {
+      "name": "x_col",
+      "type": "str",
+      "comment": "横坐标（X轴）对应的列名。请填写 CSV 表头中的完整名称，如：Potential (V) 或 E_V。"
+    },
+    {
+      "name": "y0_col",
+      "type": "str",
+      "comment": "第一条纵坐标（Y轴）对应的列名。支持通配符 * (如 Current_*)。仅填写列名，不再支持 @Legend 语法（请在 y0_style 中配置图例）。"
+    },
+    {
+      "name": "y1_col",
+      "type": "optional_str",
+      "comment": "可选：第二条线的列名。"
+    },
+    {
+      "name": "y2_col",
+      "type": "optional_str",
+      "comment": "可选：第三条线的列名。"
+    },
+    {
+      "name": "y3_col",
+      "type": "optional_str",
+      "comment": "可选：第四条线的列名。"
+    },
+    {
+      "name": "y4_col",
+      "type": "optional_str",
+      "comment": "可选：第五条线的列名。"
+    },
+    {
+      "name": "y5_col",
+      "type": "optional_str",
+      "comment": "可选：第六条线的列名。"
+    },
+    {
+      "name": "y6_col",
+      "type": "optional_str",
+      "comment": "可选：第七条线的列名。"
+    },
+    {
+      "name": "y7_col",
+      "type": "optional_str",
+      "comment": "可选：第八条线的列名。"
+    },
+    {
+      "name": "y8_col",
+      "type": "optional_str",
+      "comment": "可选：第九条线的列名。"
+    },
+    {
+      "name": "y9_col",
+      "type": "optional_str",
+      "comment": "可选：第十条线的列名。"
+    },
+    {
+      "name": "y10_col",
+      "type": "optional_str",
+      "comment": "可选：第十一条线的列名。"
+    },
+    {
+      "name": "y11_col",
+      "type": "optional_str",
+      "comment": "可选：第十二条线的列名。"
+    },
+    {
+      "name": "y12_col",
+      "type": "optional_str",
+      "comment": "可选：第十三条线的列名。"
+    },
+    {
+      "name": "y13_col",
+      "type": "optional_str",
+      "comment": "可选：第十四条线的列名。"
+    },
+    {
+      "name": "y14_col",
+      "type": "optional_str",
+      "comment": "可选：第十五条线的列名。"
+    },
+    {
+      "name": "split_by_col",
+      "type": "optional_str",
+      "comment": "【核心功能】拆分列名。如果指定（如 `ScanRate`），工具会自动根据该列的唯一值将 `y0_col` 的数据拆分为多条线，并自动生成图例。"
+    },
+    {
+      "name": "split_by_legend_template",
+      "type": "optional_str",
+      "comment": "拆分后的图例模板。支持 `{val}` (当前拆分值) 和 `{stem}`。默认 `{val}`。"
+    },
+    {
+      "name": "fig_width",
+      "type": "optional_float",
+      "comment": "图片宽度（英寸）。建议范围 4 到 10，默认 6.0。"
+    },
+    {
+      "name": "fig_height",
+      "type": "optional_float",
+      "comment": "图片高度（英寸）。建议范围 3 到 8，默认 4.5。"
+    },
+    {
+      "name": "dpi",
+      "type": "optional_int",
+      "comment": "图片清晰度。默认 300（印刷级清晰），如果觉得保存太慢可以改为 100。"
+    },
+    {
+      "name": "xlabel",
+      "type": "optional_str",
+      "comment": "横轴标题。支持公式（用$包裹）和自动替换：\n- {stem}：文件名\n- {batch}：批次名\n- {item}：项目序号\n示例：\"$E_{RHE}$ of {stem} (V)\""
+    },
+    {
+      "name": "ylabel",
+      "type": "optional_str",
+      "comment": "纵轴标题。同样支持公式和自动替换变量（同横轴）。\n示例：\"$j$ / $mA \\cdot cm^{-2}$\""
+    },
+    {
+      "name": "title_template",
+      "type": "optional_str",
+      "comment": "图表顶部的总标题。可用变量：\n- {stem}：文件名（不带后缀）\n- {batch}：当前批次名称\n- {item}：当前数据序号\n示例：\"{batch} - {stem} 测试曲线\""
+    },
+    {
+      "name": "font_name",
+      "type": "optional_str_enum",
+      "choices": [
+        "Arial",
+        "Source Sans 3",
+        "Source Han Sans CN",
+        "WenQuanYi Micro Hei",
+        "WenQuanYi Zen Hei",
+        "DejaVu Sans",
+        "Liberation Sans"
+      ],
+      "comment": "图表文字字体。Linux 中文推荐使用 Source Han Sans CN 或 WenQuanYi Micro Hei。"
+    },
+    {
+      "name": "fontsize",
+      "type": "optional_float",
+      "comment": "基础字体大小。默认 12，如果觉得标题太小可以调大到 14。"
+    },
+    {
+      "name": "y0_style",
+      "type": "str",
+      "comment": "主 Y 轴样式: color,width,linestyle,marker,stride@LegendText。\n- color: 支持标准名、Hex，或动态颜色列 col(MyColorCol)。\n- linestyle: -, --, :, none 等。\n- marker: o, s, ^, x, . 等表示点；bar 表示柱状图；fill 表示面积图；后缀 ! 可增加透明度（fill为10%，fill!为20%，以此类推）。\n- stride: 间隔画点，0表示不间隔。"
+    },
+    {
+      "name": "marker_style",
+      "type": "optional_str",
+      "comment": "标注点（Marker Points）的样式与图例。\n格式：`shape,color,size@LegendText`\n- 仅当配置了 marker_x_values 或 marker_y_values 时生效。\n- 示例：`o,red,5@Onset Point`（红点，图例显示 Onset Point）\n- 默认：`o,red,5`（仅画点，不进图例）"
+    },
+    {
+      "name": "legend_extra_text",
+      "type": "optional_str",
+      "comment": "图例额外文本（支持模板变量）。"
+    },
+    {
+      "name": "legend_loc",
+      "type": "optional_str_enum",
+      "choices": ["best", "upper left", "upper right", "lower left", "lower right", "center left", "center right", "lower center", "upper center", "center"],
+      "comment": "图例位置。默认 best。"
+    },
+    {
+      "name": "y1_style",
+      "type": "optional_str",
+      "comment": "第二条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y2_style",
+      "type": "optional_str",
+      "comment": "第三条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y3_style",
+      "type": "optional_str",
+      "comment": "第四条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y4_style",
+      "type": "optional_str",
+      "comment": "第五条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y5_style",
+      "type": "optional_str",
+      "comment": "第六条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y6_style",
+      "type": "optional_str",
+      "comment": "第七条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y7_style",
+      "type": "optional_str",
+      "comment": "第八条线的样式。格式同 y0_style。"
+    },
+    {
+      "name": "y8_style",
+      "type": "optional_str",
+      "comment": "第九条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y9_style",
+      "type": "optional_str",
+      "comment": "第十条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y10_style",
+      "type": "optional_str",
+      "comment": "第十一条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y11_style",
+      "type": "optional_str",
+      "comment": "第十二条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y12_style",
+      "type": "optional_str",
+      "comment": "第十三条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y13_style",
+      "type": "optional_str",
+      "comment": "第十四条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "y14_style",
+      "type": "optional_str",
+      "comment": "第十五条线的样式. 格式同 y0_style。"
+    },
+    {
+      "name": "marker_x_values",
+      "type": "optional_str",
+      "comment": "要在图中自动标出的 X 轴位置（逗号分隔）。\n- 若仅填 X：自动在 y0 曲线上找最近点。\n- 若 X, Y 同时填写：直接标注对应坐标点。"
+    },
+    {
+      "name": "marker_y_values",
+      "type": "optional_str",
+      "comment": "要在图中自动标出的 Y 轴位置（逗号分隔）。"
+    },
+    {
+      "name": "label_anchor",
+      "type": "optional_str_enum",
+      "choices": ["auto", "north", "south", "east", "west", "north east", "north west", "south east", "south west"],
+      "comment": "标注文本相对于点的方位（TikZ 风格）。默认 north west。"
+    },
+    {
+      "name": "label_template",
+      "type": "optional_str",
+      "comment": "标点说明文字。支持数值占位符：\n- {x}：当前点的横坐标\n- {y}：当前点的纵坐标\n- {y0}, {y1}...{y14}：各曲线在对应 X 轴位置的纵坐标值\n示例1：\"{y:.1f} mA\" (显示当前点纵坐标)\n示例2：\"E={x:.3f}V, j={y:.1f}\" (显示横纵坐标)"
+    },
+    {
+      "name": "x_log",
+      "type": "optional_bool",
+      "comment": "X 轴是否使用对数坐标（适合展示量级跨度大的数据）。"
+    },
+    {
+      "name": "y_log",
+      "type": "optional_bool",
+      "comment": "Y 轴是否使用对数坐标。"
+    },
+    {
+      "name": "y_axis_from_zero",
+      "type": "optional_bool",
+      "comment": "Y 轴起始点是否从 0 开始. 默认自动选择。如果为 True，则 Y 轴下限（或上限，视数据正负而定）将包含 0。"
+    },
+    {
+      "name": "equal_aspect",
+      "type": "optional_bool",
+      "comment": "是否开启 1:1 等比例作图（如 Nyquist 图）。开启后将自动计算高度以匹配 X/Y 轴跨度。"
+    },
+    {
+      "name": "plot_grid",
+      "type": "optional_bool",
+      "comment": "是否在图中显示虚线网格，方便对齐数值。"
+    },
+    {
+      "name": "encoding",
+      "type": "optional_str",
+      "comment": "输入 CSV 文件编码。默认为 utf-8。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "生成的图片文件 (PNG)"
+  },
+  "output_pattern": {
+    "comment": "输出文件名模板. 示例：{stem}_plot.png"
+  }
+}

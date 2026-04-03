@@ -1,0 +1,30 @@
+{
+  "18-汇总结果绘图": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "x_col": "Item",
+      "y0_col": "过电位@10mA/cm2",
+      "y1_col": "过电位@10mA/cm2@LSV图片得分 < 85",
+      "xlabel": "Item",
+      "ylabel": "过电位@10mA/cm2",
+      "title_template": "Results of {batch}",
+      "font_name": "Source Han Sans CN",
+      "y0_style": "blue,2,none,bar,0@数据质量正常",
+      "y1_style": "red,2,none,bar,0@数据质量异常",
+      "y_axis_from_zero": false,
+      "marker_style": "o,green,5@Best: {result.y:.2f} mV @ Item {result.x:.0f}",
+      "marker_x_values": "{result.x}",
+      "marker_y_values": "{result.y}",
+      "label_anchor": "north",
+      "legend_loc": "upper left",
+      "label_template": "Best: {result.x:.0f}"
+    },
+    "output_file_label": "RESULT-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "通用绘图工具：只需指定列名，即可快速绘制精美的多曲线对比图。\n\n【主要功能】\n\n1.  支持对比：可以同时画出最多 5 条曲线（y0 到 y4）。\n2.  自动标点：指定 X 轴位置，工具会自动在曲线上找到对应的点并画圈。\n3.  动态标签：可以在标点处显示数值，且支持自定义文字格式。\n\n【常见用途】\n\n- 绘制 LSV 极化曲线并在 10mA/cm² 处标注电位。\n- 对比不同扫描速率下的曲线。\n- 在图中标注特定电压下的电流值。"
+  }
+}

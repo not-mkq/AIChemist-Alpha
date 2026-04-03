@@ -1,0 +1,45 @@
+{
+  "17-Summary_Results": {
+    "code_name": "result_aggregator",
+    "input_cols": {
+      "col0_data": {
+        "value": "Project",
+        "comment": "Column 1"
+      },
+      "col1_data": {
+        "value": "Overpotential@10mA/cm2",
+        "comment": "Column2"
+      },
+      "col2_data": {
+        "value": "Onset_Potential(V)@10mA/cm2",
+        "comment": "Column3"
+      },
+      "col3_data": {
+        "value": "LSV_Image_Score",
+        "comment": "Column4"
+      }
+    },
+    "run_params": {
+      "col0_name": {
+        "value": "Item",
+        "comment": "Column1_Name"
+      },
+      "col1_name": {
+        "value": "Overpotential@10mA/cm2",
+        "comment": "Column2_Name"
+      },
+      "col2_name": {
+        "value": "Potential(V)@10mA/cm2",
+        "comment": "Column3_Name"
+      },
+      "col3_name": {
+        "value": "LSV_Image_Score",
+        "comment": "Column4_Name"
+      }
+    },
+    "output_file_label": "RESULT",
+    "output_pattern": "result.csv",
+    "tool_type": "merge",
+    "comment": "Result Aggregation Tool: Collects and aligns specified result columns\n(Item/Batch level) into a summary CSV."
+  }
+}

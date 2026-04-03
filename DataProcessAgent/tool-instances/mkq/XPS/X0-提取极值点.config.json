@@ -1,0 +1,46 @@
+{
+  "X0-提取极值点": {
+    "code_name": "csv_find_points",
+    "input_label_map": {
+      "source_csv": "XPS0h-CLEAN"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X轴"
+      },
+      "y_col": {
+        "value": "Sat_*,Main_*",
+        "comment": "Y轴匹配"
+      },
+      "find_type": {
+        "value": "peak",
+        "comment": "寻找点"
+      },
+      "find_param": {
+        "value": "20",
+        "comment": "查找参数（阈值）"
+      },
+      "label_text": {
+        "value": "{label_name}{match}",
+        "comment": "标签"
+      },
+      "label_anchor": {
+        "value": "north",
+        "comment": "label方位"
+      },
+      "marker_style": {
+        "value": "none",
+        "comment": "marker风格"
+      },
+      "arrow_style": {
+        "value": "->",
+        "comment": "箭头风格"
+      }
+    },
+    "output_file_label": "XPS0h_Peak",
+    "output_pattern": "{stem}_peak.json",
+    "tool_type": "single",
+    "comment": "从 CSV 中提取特征点（最大值、峰值等）并生成包含坐标和样式信息的 JSON。支持通配符列匹配和基于 Python 表达式的动态样式。"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "0-从TXT提取EIS1-CSV": {
+    "code_name": "extract_csv",
+    "input_label_map": {
+      "source_txt": "EIS-1"
+    },
+    "run_params": {},
+        "output_file_label": "EIS1-CSV",
+        "output_pattern": "{stem}.csv",
+        "tool_type": "single",
+        "comment": "### 📂 原始阻抗数据提取 (EIS-1)\n\n将电化学工作站导出的原始 EIS 文本清洗为标准 CSV。\n\n#### 🛠️ 提取约定\n- **列顺序**：自动重排为 `Freq/Hz`, `Z'/ohm`, `Z''/ohm`。\n- **标准化**：确保虚部阻抗符号正确（通常仪器导出为绝对值，本工具会自动处理）。\n\n> **💡 建议**：\n> - 生成的标签为 `EIS1-CSV`，是后续 Nyquist 绘图和 $R_s$ 提取的唯一数据源。"
+      }
+    }
+    

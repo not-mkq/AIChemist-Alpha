@@ -1,0 +1,30 @@
+{
+  "1-Set_Active_Area_Potential_Offset": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": {
+        "value": [
+          "298.15",
+          "1.0",
+          "0.197",
+          "13.5926"
+        ],
+        "comment": [
+          "Room Temp(K)",
+          "ECSA(cm2)",
+          "Ref Electrode Potential(V)",
+          "pH"
+        ]
+      },
+      "value_type": "float"
+    },
+    "result_col": [
+      "Room_Temp(K)",
+      "Active_Area(cm2)",
+      "Ref_Electrode_Potential(V)",
+      "pH"
+    ],
+    "tool_type": "single",
+    "comment": "### ⚓ Project Metadata Anchor\n\nCommand center for recording and distributing key environmental parameters.\n\n#### 🧪 Parameters\n1. **Room Temp ($T$)**: Default `298.15K`. For Nernst equation.\n2. **Geometric Area ($A_{geo}$)**: Electrode size (cm²). For current density $j$.\n3. **Ref Potential ($E_{Ref}^0$)**:\n   - Common: Ag/AgCl `0.197V`, SCE `0.244V`.\n4. **pH**: Electrolyte pH. ~`59mV` RHE offset per unit.\n\n> **💡 Tip**:\n> - Stored as result columns, referenced via `{variable_name}`."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "6-Bode 模量图 (Bode Magnitude Plot) v2": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Freq/Hz",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "|Z| (Ω·cm²)",
+        "comment": "y轴"
+      },
+      "xlabel": {
+        "value": "$f \\text{ / Hz}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$|Z| \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Magnitude Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "风格"
+      },
+      "x_log": true,
+      "y_log": true,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodeMagnitude2",
+    "output_pattern": {
+      "value": "{stem}_BodeMagnitude_v2.png",
+      "comment": "输出文件"
+    },
+    "tool_type": "single",
+    "comment": "### 📊 Bode 阻抗模量分析 (v2 - Log Scale)\n\nBode 图的增强版展示，采用**硬件对数坐标轴**而非预处理对数数据。\n\n#### 🔍 v2 版本的优势\n\n- **原始数据展示**：直接展示 $|Z|$ ($\\\\Omega \\\\cdot cm^2$)，刻度尺采用     0^n$ 形式，符合主流商业软件（如\n  ZView, Nova）的显示习惯。\n- **更强的交互性**：方便直接读取特定频率下的物理电阻值。\n\n> **读图技巧**：\n\n- 在极低频区，曲线的平台值代表了极化电阻 $R_p$（即 $R_s + R_{ct}$）。"
+  }
+}

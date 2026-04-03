@@ -1,0 +1,14 @@
+{
+  "lsv_enabled": true,
+  "cv_enabled": true,
+  "eis_enabled": false,
+  "ecsa_enabled": false,
+  "lsv_prefix": "LSV",
+  "eis_prefix": "EIS",
+  "auto_detect_start": true,
+  "lsv_target_current": "10",
+  "plot_grid": true,
+  "potential_offset": 0.0,
+  "area": 1.0,
+  "csv_filename": "LSV_results.csv"
+}

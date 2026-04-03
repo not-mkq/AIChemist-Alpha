@@ -1,0 +1,48 @@
+{
+  "4-Bode_Magnitude_Plot": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "lg(f / Hz)",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "lg(|Z| / Ω·cm²)",
+        "comment": "y-axis"
+      },
+      "xlabel": {
+        "value": "$\\log_{10}(f \\text{ / Hz})$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$\\log_{10}(|Z| \\text{ / } \\Omega \\cdot \\text{cm}^2)$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Magnitude Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "fontsize": 12.0,
+      "y0_style": {
+        "value": "blue,2.0,-",
+        "comment": "Style"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodeMagnitude",
+    "output_pattern": "{stem}_BodeMagnitude.png",
+    "tool_type": "single",
+    "comment": "### 📊 Bode Magnitude Analysis\n\nPlots Impedance Modulus $|Z|$ vs Frequency $f$.\n\n#### 🔍 Advantages vs Nyquist:\n1. **Freq Intuitive**: X-axis is frequency.\n2. **Full Range**: Log-Log scale ($\\log |Z|$ vs $\\log f$) shows both high and low impedance details.\n\n#### 🧪 Reading Tips\n- **High Freq**: Flat curve intercept is $R_s$.\n- **Mid/Low Freq**: Slope -1 line implies pure capacitance.\n\n> **Units**: Normalized Y-axis $\\Omega \\cdot cm^2$."
+  }
+}

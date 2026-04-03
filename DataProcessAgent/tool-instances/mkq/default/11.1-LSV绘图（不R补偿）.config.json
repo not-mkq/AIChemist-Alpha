@@ -1,0 +1,16 @@
+{
+  "11.1-LSV绘图（不R补偿）": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "3-计算起始电位(at 10mA)",
+      "3-计算起始电位(at 1mA)",
+      "4-计算过电位(at 10mA)",
+      "5.1-LSV绘图（不R补偿）",
+      "5.2-LSV质检",
+      "5.3-LSV质检绘图",
+      "11-LSV图像AI检测"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "0.3-合并ECSA数据": {
+    "code_name": "csv_merge_with_metadata",
+    "input_label_map": {
+      "source_csvs": "ECSA20-CYCLE,ECSA40-CYCLE,ECSA60-CYCLE,ECSA80-CYCLE,ECSA100-CYCLE,ECSA120-CYCLE,ECSA140-CYCLE,ECSA160-CYCLE,ECSA180-CYCLE,ECSA200-CYCLE"
+    },
+    "run_params": {
+      "metadata_list": {
+        "value": "blue, red",
+        "comment": "颜色区间"
+      },
+      "new_col_name": {
+        "value": "Color",
+        "comment": "新的列名"
+      },
+      "filter_query": {
+        "value": "Cycle == 10",
+        "comment": "筛选圈数"
+      },
+      "additional_columns": {
+        "value": "扫速(mV/s):20,40,60,80,100,120,140,160,180,200",
+        "comment": "新增列"
+      }
+    },
+    "output_file_label": "ECSA-MERGED-CSV",
+    "output_pattern": "ECSA_merged_data.csv",
+    "result_col": "ecsa_merge_status",
+    "tool_type": "single",
+    "comment": "### 🔗 CSV 多文件合并与标注工具\n\n该工具可以将多个 CSV 文件纵向合并（Append），并为每个文件的数据行打上特定的标记或颜色。\n\n#### 🌈 颜色插值模式\n\n如果 `metadata_list` 中全部是颜色代码（如 `red, blue`），且文件数量较多，工具会自动生成渐变色。例如：\n\n- 输入 10 个文件，`metadata_list` 为 `red, blue`，则第一个文件为红色，最后一个为蓝色，中间 8 个为过渡色。\n\n#### 🏷️ 标签模式\n\n如果包含非颜色字符（如 `SampleA, SampleB`），则列表长度必须与文件数量**严格一致**。\n\n#### 📝 注意事项\n\n- `source_csvs` 参数支持使用逗号分隔的多个标签，例如：`LABEL1,LABEL2,LABEL3`。\n- 工具会以第一个文件的表头作为基准进行合并。"
+  }
+}

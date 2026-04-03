@@ -1,0 +1,15 @@
+{
+  "14-CV_Plotting": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-Extract_CV_CSV_from_TXT",
+      "2.1-CV_Normalization_No_R_Comp",
+      "2.3-CV_Cycle_Detection",
+      "2.6-CV_Color_by_Cycle",
+      "3-CV_Plotting",
+      "3.1-CV_Rainbow"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "17-处理全部数据并汇总": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0.2-设置当前batch名",
+      "16-处理全部数据",
+      "17-汇总结果",
+      "17.5-找到最优点",
+      "18-汇总结果绘图"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

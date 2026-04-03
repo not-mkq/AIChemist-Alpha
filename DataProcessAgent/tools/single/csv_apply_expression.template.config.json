@@ -1,0 +1,63 @@
+{
+	"code_name": "csv_apply_expression",
+	"tool_type": "single",
+	"comment": "### 🧮 通用数据列运算工具 (Expression)\n\n对 CSV 中的每一行数据应用自定义数学公式。这是实现非标准电化学变换的\"瑞士军刀\".\n\n#### 🧪 电化学公式模板：\n1.  **手动 IR 补偿**：利用测得的溶液电阻 $R_s$ 修正电位列。\n    - 表达式：`i - j * {r_solution} / 1000` \n    - 绑定：`current_density@j` (列绑定)\n    - 引用：`{r_solution}` (引用之前步骤算出的电阻值)\n2.  **过电位曲线转换 (E -> η)**：直接生成以 mV 为单位的过电位轴。\n    - 表达式：`(i - {equilibrium_potential}) * 1000` \n3.  **坐标对数化**：生成用于 Tafel 分析的 $\\log|j|$ 轴。\n    - 表达式：`lg(abs(i))`\n\n> **📝 语法说明**：\n> - `i`：当前处理列的数值。\n> - `{result_name}`：引用之前步骤计算出的标量结果。\n> - **列绑定**：格式 `<列名>@<var>`（如 `potential_V@E`），之后可在表达式中使用 `E`。\n> - **列写回**：指定 `column` 则覆盖；留空则追加新列。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入数据 CSV 文件。"
+	},
+	{
+		"name": "col_bind_1",
+		"type": "optional_str",
+		"comment": "列绑定 1：\"<列名>@<var>\"（如 \"potential_V@E\"）"
+	},
+	{
+		"name": "col_bind_2",
+		"type": "optional_str",
+		"comment": "列绑定 2：\"<列名>@<var>\""
+	},
+	{
+		"name": "col_bind_3",
+		"type": "optional_str",
+		"comment": "列绑定 3：\"<列名>@<var>\""
+	},
+	{
+		"name": "col_bind_4",
+		"type": "optional_str",
+		"comment": "列绑定 4：\"<列名>@<var>\""
+	},
+	{
+		"name": "col_bind_5",
+		"type": "optional_str",
+		"comment": "列绑定 5：\"<列名>@<var>\""
+	},
+	{
+		"name": "column",
+		"type": "optional_str",
+		"comment": "要处理的列名。为空则在 CSV 末尾追加新列。"
+	},
+	{
+		"name": "new_col_name",
+		"type": "optional_str",
+		"comment": "输出列名。追加模式下必填。"
+	},
+	{
+		"name": "expression",
+		"type": "str",
+		"comment": "数学表达式。支持 `i`, `{result}` 引用及列绑定变量。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入文件编码（默认 utf-8）"
+	}
+	],
+	"output_file_label": {
+		"comment": "计算后的 CSV 文件标签。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_calculated.csv"
+	}
+}

@@ -1,0 +1,12 @@
+{
+  "code_name": "primitive_sleep",
+  "tool_type": "single",
+  "comment": "标准的休眠工具，用于测试进度显示。",
+  "params": [
+    {
+      "name": "seconds",
+      "type": "float",
+      "comment": "休眠秒数"
+    }
+  ]
+}

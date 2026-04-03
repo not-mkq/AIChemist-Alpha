@@ -1,0 +1,19 @@
+{
+  "X3-XPS全流程": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-XLS转CSV",
+      "2-提取元素名称",
+      "4-清洗数据",
+      "X0-提取极值点",
+      "X1-提取数据系列",
+      "X1.1-XPS0h提取数据序列",
+      "X1.2-XPS24h提取数据系列",
+      "X1.3-合并数据系列",
+      "X2-数据绘图",
+      "X3-纵向合并绘图"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

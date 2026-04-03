@@ -1,0 +1,15 @@
+{
+  "2-Extract_Element_Names": {
+    "code_name": "extract_from_filename",
+    "input_label_map": {
+      "source_file": "XPS0h"
+    },
+    "run_params": {
+      "regex_pattern": "* *_0h.xls",
+      "mode": "wildcard"
+    },
+    "result_col": "label_name",
+    "tool_type": "single",
+    "comment": "### 🔍 Filename Info Extractor\n\nExtracts key info from filenames using regex and stores in DB result table.\n\n#### 💡 Regex Tips\n1. **Named Groups**: `(?P<name>pattern)` creates column `result_col.name`.\n2. **Groups**: `(\\d+)` extracts content of first group.\n3. **Simple**: Matches entire text if no groups.\n\n#### 🧪 Example\n- File: `2024-05-01_OER_Test_01.csv`\n- Regex: `Test_(?P<no>\\d+)`\n- Result: `no = 01`"
+  }
+}

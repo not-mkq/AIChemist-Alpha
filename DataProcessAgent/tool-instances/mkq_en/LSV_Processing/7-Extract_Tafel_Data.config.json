@@ -1,0 +1,26 @@
+{
+  "7-Extract_Tafel_Data": {
+    "code_name": "csv_filter_rows",
+    "input_label_map": {
+      "input_file": "LSV1-OP-CSV"
+    },
+    "run_params": {
+      "column": {
+        "value": "Current(mA/cm2)",
+        "comment": "Filter Column"
+      },
+      "min_val": {
+        "value": 1.0,
+        "comment": "Min Value"
+      },
+      "max_val": {
+        "value": 10.0,
+        "comment": "Max Value"
+      },
+      "expression": ""
+    },
+    "output_file_label": "LSV1-TAFEL-TMP",
+    "output_pattern": "{stem}_.csv",
+    "tool_type": "single"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "5-LSV_Plotting": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "LSV1-NORM"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential (V vs. RHE)",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "y-axis"
+      },
+      "xlabel": {
+        "value": "$E - iR_s \\text{ (V vs. RHE)}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$j \\text{ (mA cm}^{-2}\\text{)}$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "LSV of {batch}-{item} under $R=$ {采纳溶液电阻(Ω):.3f} $\\,\\Omega$",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,2,-@IR compensated LSV",
+        "comment": "Style"
+      },
+      "marker_y_values": {
+        "value": "10",
+        "comment": "Marker Y Value"
+      },
+      "marker_style": {
+        "value": "o,red,5@10$\\text{ mA cm}^{-2} $`@`{Onset_Potential(V)@10mA/cm2:.3f} V",
+        "comment": "Marker Style"
+      },
+      "label_template": {
+        "value": "E={x:.3f}$V$@{y:.0f}$\\text{ mA cm}^{-2}$",
+        "comment": "Label Template"
+      },
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true,
+      "label_anchor": {
+        "value": "auto",
+        "comment": "Label Anchor"
+      }
+    },
+    "output_file_label": "LSV1-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "### 🎨 Professional LSV Polarization Plotting\n\nGenerates publication-standard curves.\n\n#### 📏 Axes\n- **X ($E$)**: Potential (RHE). Note $E - iR_s$ if compensated.\n- **Y ($j$)**: Current Density.\n\n#### 🎯 Benchmarking\nAutomatically marks **10 mA/cm²** point.\n\n> **💡 Tip**: DPI default 300."
+  }
+}

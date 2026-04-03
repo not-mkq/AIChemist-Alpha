@@ -1,0 +1,46 @@
+{
+	"code_name": "csv_curve_fit",
+	"tool_type": "single",
+	"comment": "### 🚀 专业非线性拟合工具 (Curve Fitting)\n\n通过非线性回归（基于 **Scipy** 的 **Levenberg-Marquardt** 算法）自动提取复杂的电化学动力学参数。\n\n#### 🧪 电化学拟合模板：\n1.  **ECSA 分析 (双电层电容)**：利用扫描速率 ($v$) 对充电电流 ($i_c$) 拟合线性关系。\n    - 公式：`a * x + b` (其中 $a$ 即为 $C_{dl}$)。\n2.  **Butler-Volmer 分析**：\n    - 公式：`j0 * (exp(alpha * n * f * x / (r * t)) - exp(-(1-alpha) * n * f * x / (r * t)))`\n3.  **计时电流衰减 (Cottrell)**：\n    - 公式：`k * x**(-0.5) + b`\n\n#### ⚙️ 技术实现细节\n- **引擎核心**：使用 `scipy.optimize.curve_fit` 进行最小二乘法拟合。\n- **符号解析**：内置 `SymPy` 引擎，支持任意复杂的数学表达式解析（不仅限于预设函数）。\n- **初值策略**：默认所有参数初值为 1.0。**强烈建议**对于非线性极强的公式（如指数、BV 方程）手动提供 `initial_guesses`，以避免算法陷入局部最优或发散。\n\n> **📝 结果解读**：\n> - 工具返回 `r2` (拟合优度)。对于电化学线性区，理想值应 $> 0.99$。\n> - 自动生成 `{stem}_fitted.csv`，包含原始数据与拟合曲线，可直接用于对比绘图。",
+	"params": [
+		{
+			"name": "input_file",
+			"type": "file_label",
+			"comment": "输入 CSV 文件路径。"
+		},
+		{
+			"name": "x_column",
+			"type": "str",
+			"comment": "自变量 X 所在的列名。"
+		},
+		{
+			"name": "y_column",
+			"type": "str",
+			"comment": "因变量 Y 所在的列名。"
+		},
+		{
+			"name": "formula",
+			"type": "str",
+			"comment": "拟合公式字符串。示例：`a * x + b` 或 `y0 + A * exp(-x/t)`。"
+		},
+		{
+			"name": "output_y_column",
+			"type": "str",
+			"comment": "保存拟合曲线的列名。默认为 `fitted_y`。"
+		},
+		{
+			"name": "initial_guesses",
+			"type": "optional_str",
+			"comment": "参数初值（可选）。格式：`a=100, b=0.01`。不填则默认为 1.0。"
+		}
+	],
+	"output_file_label": {
+		"comment": "保存有拟合曲线的新数据文件 (CSV)"
+	},
+	"output_pattern": {
+		"comment": "{stem}_fitted.csv"
+	},
+	"result_col": {
+		"comment": "拟合评价指标和参数结果 (JSON)。"
+	}
+}

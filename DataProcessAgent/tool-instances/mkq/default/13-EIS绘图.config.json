@@ -1,0 +1,17 @@
+{
+  "13-EIS绘图": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-从TXT提取EIS1-CSV",
+      "1-计算溶液电阻",
+      "2-EIS面积归一化",
+      "3-Nyquist 图 (奈奎斯特图)",
+      "4-Bode 模量图 (Bode Magnitude Plot)",
+      "5-Bode Plot - Phase (波特图-相角)",
+      "6-Bode 模量图 (Bode Magnitude Plot) v2",
+      "7-Bode Plot - Phase (波特图-相角) v2"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

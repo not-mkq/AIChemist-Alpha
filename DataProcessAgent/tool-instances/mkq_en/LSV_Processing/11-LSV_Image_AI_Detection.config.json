@@ -1,0 +1,34 @@
+{
+  "11-LSV_Image_AI_Detection": {
+    "code_name": "ai_report_from_image",
+    "input_label_map": {
+      "source_image": "LSV1-PNG-QUALITY"
+    },
+    "run_params": {
+      "prompt": {
+        "value": "Evaluate the LSV figure from a data quality perspective only.\n\nThe detected data issues are:\n- Invalid points: {lsv_quality.count_invalid}\n- Noisy points: {lsv_quality.count_noise}\n- Jump/discontinuity points: {lsv_quality.count_jump}\n\nProvide a concise assessment of the overall data quality and its potential impact on reliability.\nRespond in English only.\nLimit the response to at most 3 sentences.",
+        "comment": "Prompt"
+      },
+      "api_url": {
+        "value": "https://api.openai.com/v1/chat/completions",
+        "comment": "API URL"
+      },
+      "api_key": {
+        "value": "***REDACTED**",
+        "comment": "API Key"
+      },
+      "model": {
+        "value": "gpt-4o",
+        "comment": "Model"
+      },
+      "prompt2": {
+        "value": "Based solely on data quality, assign a single numeric score to this figure.\n\nScoring rules:\n- The score must be an integer between 0 and 100 (inclusive).\n- 100 represents the highest data quality.\n- A score of 85 or above is considered excellent.\n- A score below 60 is considered failing.\n\nRespond with one number only.\nDo not include any words, symbols, or explanations.",
+        "comment": "Prompt V2"
+      }
+    },
+    "output_file_label": "LSV1-PNG-RPT",
+    "output_pattern": "{stem}.md",
+    "result_col": "LSV_Image_Score",
+    "tool_type": "single"
+  }
+}

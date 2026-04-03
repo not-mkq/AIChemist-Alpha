@@ -1,0 +1,50 @@
+{
+  "code_name": "merge_full_demo",
+  "tool_type": "merge",
+  "comment": "示例 Merge：多输入标签、结果映射、必填/可选运行参数、输出文件/结果列。",
+  "input_cols": {
+	  "summary_text": {
+		  "comment": "报告文本列名"
+	  }
+  },
+  "params": [
+    {
+      "name": "inputs_a",
+      "type": "file_label",
+      "comment": "第一类输入文件"
+    },
+    {
+      "name": "inputs_b",
+      "type": "file_label",
+      "comment": "第二类输入文件"
+    },
+    {
+      "name": "weight",
+      "type": "float",
+      "comment": "必填浮点权重"
+    },
+    {
+      "name": "description",
+      "type": "str",
+      "comment": "必填描述"
+    },
+    {
+      "name": "flag",
+      "type": "bool",
+      "comment": "必填布尔"
+    },
+    {
+      "name": "extra",
+      "type": "optional_str",
+      "comment": "可选备注"
+    },
+    {
+      "name": "prev_batch_score",
+      "type": "optional_from_result",
+      "comment": "可选：引用当前 scope 的结果列（batch/project）作为阈值，缺值则使用默认逻辑"
+    }
+  ],
+  "output_file_label": {
+    "comment": "汇总报告标签"
+  }
+}

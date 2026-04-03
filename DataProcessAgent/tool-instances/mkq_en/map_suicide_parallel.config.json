@@ -1,0 +1,8 @@
+{
+  "map_suicide_parallel": {
+    "code_name": "map",
+    "tool": "suicide_instance",
+    "tool_type": "meta",
+    "comment": "### 💀 Suicide Map Test\n\nRuns a suicide tool in parallel to test crash handling."
+  }
+}

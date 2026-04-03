@@ -1,0 +1,9 @@
+{
+  "suicide_instance": {
+    "code_name": "suicide_tool",
+    "tool_type": "single",
+    "input_label_map": {},
+    "run_params": {},
+    "comment": "### ⚠️ Suicide Tool Instance\n\nKills the current process."
+  }
+}

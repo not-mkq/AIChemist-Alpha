@@ -1,0 +1,45 @@
+{
+  "2-LSV_Normalization": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "LSV1-IR",
+        "LSV1-TMP1"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": [
+        "Potential_IR/V@E",
+        "Current/A@I"
+      ],
+      "column": [
+        "Potential_IR/V",
+        "Current/A"
+      ],
+      "new_col_name": [
+        "Potential (V vs. RHE)",
+        "Current(mA/cm2)"
+      ],
+      "expression": {
+        "value": [
+          "E+{Ref_Electrode_Potential(V)}+2.303*8.314*{Room_Temp(K)}/96485*{pH}",
+          "I*1000/{Active_Area(cm2)}"
+        ],
+        "comment": [
+          "Potential Function",
+          "Current Function"
+        ]
+      }
+    },
+    "output_file_label": [
+      "LSV1-TMP1",
+      "LSV1-NORM"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_normal.csv"
+    ],
+    "tool_type": "single",
+    "comment": "### ⚖️ LSV Data Normalization\n\nStandardize raw electrochemical data.\n\n#### 🧪 Logic\n1. **Potential Calib ($E_{RHE}$)**: Nernst Equation.\n   $ E_{RHE} = E_{meas} + E_{Ag/AgCl}^0 + 0.059 \\times pH $\n2. **Current Norm ($j$)**: Absolute current to current density ($mA/cm^2$).\n   $ j = I \\times 1000 / A_{geo} $\n\n> **📝 Variables**: `{...}` placeholders reference global parameters."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "7-Bode Plot - Phase (波特图-相角) v2": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Freq/Hz",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "-Phase/deg",
+        "comment": "y轴"
+      },
+      "xlabel": {
+        "value": "$f \\text{ / Hz}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$-\\phi \\text{ / } (^\\circ)$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Phase Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "风格"
+      },
+      "x_log": true,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodePhase2",
+    "output_pattern": {
+      "value": "{stem}-BodePhase_v2.png",
+      "comment": "输出文件"
+    },
+    "tool_type": "single",
+    "comment": "### 📐 Bode 相角图分析 (v2 - Log Scale)\n\n采用硬件对数 X 轴展示阻抗相位随频率的变化。\n\n#### 🔍 相比 v1 的改进\n\n- **视觉一致性**：横轴频率刻度按     0^n$ 递增，方便与国际主流电化学分析软件进行数据比对。\n- **动态范围**：能更清晰地展示高频区 (    0^5 \\\\sim 10^6 Hz$) 和低频区 ($< 1 Hz$) 的相位微小变化。\n\n> **读图技巧**：\n\n- 观察相角达到最大值对应的频率，可以用于判断界面的电感/电容转变点。"
+  }
+}

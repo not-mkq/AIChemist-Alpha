@@ -1,0 +1,8 @@
+{
+  "code_name": "always_fail",
+  "tool_type": "single",
+  "input_label_map": {},
+  "run_params": {},
+  "output_file_label": null,
+  "result_col": null
+}

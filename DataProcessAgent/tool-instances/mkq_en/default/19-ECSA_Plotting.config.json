@@ -1,0 +1,13 @@
+{
+  "19-ECSA_Plotting": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-Process_ECSA_All",
+      "0.2-ECSA_Cycle_Detection",
+      "0.3-Merge_ECSA_Data",
+      "1-ECSA_Plotting"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

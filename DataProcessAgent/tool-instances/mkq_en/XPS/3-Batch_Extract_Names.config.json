@@ -1,0 +1,8 @@
+{
+  "3-Batch_Extract_Names": {
+    "code_name": "map",
+    "tool": "2-Extract_Element_Names",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

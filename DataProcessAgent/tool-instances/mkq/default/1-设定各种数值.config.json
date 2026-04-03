@@ -1,0 +1,12 @@
+{
+  "1-设定各种数值": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "1-设置活性面积、电位偏移",
+      "1.2-设置平衡电位",
+      "1.3-手动设置溶液电阻"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

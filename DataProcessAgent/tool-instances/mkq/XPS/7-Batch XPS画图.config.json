@@ -1,0 +1,8 @@
+{
+  "7-Batch XPS画图": {
+    "code_name": "map",
+    "tool": "6-XPS绘图",
+    "tool_type": "meta",
+    "comment": "# Map 模式 Meta Tool\n\n对某个范围内的所有项目执行指定的工具。\n\n支持的 scope: item->batch, batch->project, item->project"
+  }
+}

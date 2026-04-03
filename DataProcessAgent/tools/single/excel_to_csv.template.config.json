@@ -1,0 +1,33 @@
+{
+  "code_name": "excel_to_csv",
+  "tool_type": "single",
+  "comment": "### 📄 Excel 转 CSV 工具 (Converter)\n\n将 Excel 文件（.xls, .xlsx）中的特定工作表（Sheet）转换为标准的 CSV 格式，并进行基础数据清洗。\n\n#### ⚙️ 功能特性\n\n1.  **智能选择 Sheet**：支持按名称精确匹配，或按**内容关键词**自动嗅探。\n2.  **内容嗅探**：只需填入内容中的某个唯一字符串（如 'Binding Energy'），工具将自动锁定该 Sheet。\n3.  **自动去空**：自动识别并删除文件中的**全空行**。\n4.  **格式嗅探**：通过文件特征自动识别 XLS/XLSX 格式，无需担心后缀大小写。\n\n#### 📝 参数说明\n- `source_excel`: 输入的 Excel 文件。\n- `sheet_name`: (可选) 工作表名称。\n- `sheet_keyword`: (可选) 搜索内容中的关键词。若设置此项，将搜索所有 Sheet 内容。\n- `encoding`: 输出 CSV 的编码。",
+  "params": [
+    {
+      "name": "source_excel",
+      "type": "file_label",
+      "comment": "输入的 Excel 原始文件。"
+    },
+    {
+      "name": "sheet_name",
+      "type": "optional_str",
+      "comment": "工作表 (Sheet) 的名称。若留空则尝试关键词搜索。"
+    },
+    {
+      "name": "sheet_keyword",
+      "type": "optional_str",
+      "comment": "按内容搜索：填入该 Sheet 包含的唯一字符串（如表头名）。"
+    },
+    {
+      "name": "encoding",
+      "type": "optional_str",
+      "comment": "输出 CSV 文件的编码，默认为 utf-8。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "生成的 CSV 文件标签。"
+  },
+  "output_pattern": {
+    "comment": "输出文件名模板。示例：{stem}_{sheet_name}.csv"
+  }
+}

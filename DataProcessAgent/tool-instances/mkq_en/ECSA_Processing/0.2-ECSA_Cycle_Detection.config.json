@@ -1,0 +1,41 @@
+{
+  "0.2-ECSA_Cycle_Detection": {
+    "code_name": "cv_cycle_detect",
+    "input_label_map": {
+      "source_csv": [
+        "ECSA10-CSV",
+        "ECSA20-CSV",
+        "ECSA40-CSV",
+        "ECSA60-CSV",
+        "ECSA80-CSV",
+        "ECSA100-CSV",
+        "ECSA120-CSV",
+        "ECSA140-CSV",
+        "ECSA160-CSV",
+        "ECSA180-CSV",
+        "ECSA200-CSV"
+      ]
+    },
+    "run_params": {
+      "potential_col": "Potential/V",
+      "cycle_col": "Cycle"
+    },
+    "output_file_label": [
+      "ECSA10-CYCLE",
+      "ECSA20-CYCLE",
+      "ECSA40-CYCLE",
+      "ECSA60-CYCLE",
+      "ECSA80-CYCLE",
+      "ECSA100-CYCLE",
+      "ECSA120-CYCLE",
+      "ECSA140-CYCLE",
+      "ECSA160-CYCLE",
+      "ECSA180-CYCLE",
+      "ECSA200-CYCLE"
+    ],
+    "output_pattern": "{stem}_cycle.csv",
+    "result_col": "CV_cycles",
+    "tool_type": "single",
+    "comment": "CV Cycle Detection Tool:\n\n1. Identifies potential reversal points to automatically assign Cycle numbers.\n2. Outputs a new CSV containing the Cycle column."
+  }
+}

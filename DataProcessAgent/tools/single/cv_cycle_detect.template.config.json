@@ -1,0 +1,37 @@
+{
+  "code_name": "cv_cycle_detect",
+  "tool_type": "single",
+  "python_path": "tools/single/cv_cycle_detect.py",
+  "comment": "CV 曲线圈数自动检测工具：\n1. 识别电位翻转点，自动划分 Cycle 序号。\n2. 输出包含 Cycle 列的新 CSV 文件。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "待处理的原始 CV CSV 文件标签。"
+    },
+    {
+      "name": "potential_col",
+      "type": "str",
+      "comment": "用于检测圈数的电位列名（支持正则匹配）。"
+    },
+    {
+      "name": "cycle_col",
+      "type": "optional_str",
+      "comment": "输出 CSV 中新增的圈数序号列名。默认 Cycle。"
+    },
+    {
+      "name": "noise_threshold",
+      "type": "optional_float",
+      "comment": "电位方向检测的噪声阈值。默认 0.0005。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "标记了圈数的新 CSV 文件标签。"
+  },
+  "output_pattern": {
+    "comment": "{stem}_cycled.csv"
+  },
+  "result_col": {
+    "comment": "最大圈数（Max Cycle）。"
+  }
+}

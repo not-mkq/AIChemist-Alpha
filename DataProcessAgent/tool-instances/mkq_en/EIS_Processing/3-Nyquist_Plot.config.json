@@ -1,0 +1,49 @@
+{
+  "3-Nyquist_Plot": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Z' (Ω·cm²)",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "-Z'' (Ω·cm²)",
+        "comment": "y-axis"
+      },
+      "fig_width": 6.0,
+      "fig_height": 4.5,
+      "xlabel": {
+        "value": "$Z' \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$-Z'' \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Nyquist Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,2.0,-",
+        "comment": "Style"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": true,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-Nyquist",
+    "output_pattern": "{stem}_Nyquist.png",
+    "tool_type": "single",
+    "comment": "### 📈 EIS Nyquist Plot Analysis (Normalized)\n\nStandard EIS display, plotting $-Z''$ vs $Z'$.\n\n#### 🧪 Expert Interpretation\n\n1. **Real Axis Start**: Corresponds to $R_s$.\n2. **Semicircle Diameter**: In mid-freq, width corresponds to Charge Transfer Resistance $R_{ct}$, key for kinetics.\n3. **Low Freq**: Slope reflects ion diffusion (Warburg).\n\n#### ⚙️ Plotting Standards (Academic Standard)\n\n- **Equal Aspect (`equal_aspect=true`)**: **The Soul of EIS Plotting**. Forces 1:1 physical length scale for X and Y. Only then are semicircles truly circular.\n- **Units**: Normalized to $\\Omega \\cdot cm^2$. "
+  }
+}

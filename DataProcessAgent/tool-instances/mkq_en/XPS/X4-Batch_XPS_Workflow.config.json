@@ -1,0 +1,8 @@
+{
+  "X4-Batch_XPS_Workflow": {
+    "code_name": "map",
+    "tool": "X3-XPS_Workflow",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

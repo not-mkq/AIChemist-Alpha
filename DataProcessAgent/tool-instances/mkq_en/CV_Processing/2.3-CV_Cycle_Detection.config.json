@@ -1,0 +1,17 @@
+{
+  "2.3-CV_Cycle_Detection": {
+    "code_name": "cv_cycle_detect",
+    "input_label_map": {
+      "source_csv": "CV-NORM"
+    },
+    "run_params": {
+      "potential_col": "Potential (V vs. RHE)",
+      "cycle_col": "Cycle"
+    },
+    "output_file_label": "CV-NORM-CYCLE",
+    "output_pattern": "{stem}_cycle.csv",
+    "result_col": "CV_cycles",
+    "tool_type": "single",
+    "comment": "CV Cycle Detection Tool:\n\n1. Identifies potential reversal points to automatically assign Cycle numbers.\n2. Outputs a new CSV containing the Cycle column."
+  }
+}

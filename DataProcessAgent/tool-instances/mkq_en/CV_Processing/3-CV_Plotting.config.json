@@ -1,0 +1,54 @@
+{
+  "3-CV_Plotting": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "CV-NORM-CYCLE"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential (V vs. RHE)",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "Current(mA/cm2)@Cycle == 20",
+        "comment": "Highlight Cycle"
+      },
+      "xlabel": {
+        "value": "$E\\,\\text{ (V vs. RHE)}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$j \\text{ (mA cm}^{-2}\\text{)}$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "CV of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,3,-@{CV_cycles}th-cycle CV",
+        "comment": "Highlight Cycle Style"
+      },
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true,
+      "y1_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "y-axis"
+      },
+      "y1_style": {
+        "value": "0.7,2,-@CVs",
+        "comment": "Style"
+      }
+    },
+    "output_file_label": "CV-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by\nspecifying column names.\n\n【Features】\n\n1.  Comparison: Plot up to 5 curves (y0 to y4).\n2.  Auto-Marking: Automatically find points on curves at specified X positions.\n3.  Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

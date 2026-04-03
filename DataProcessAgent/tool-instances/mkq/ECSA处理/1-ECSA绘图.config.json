@@ -1,0 +1,47 @@
+{
+  "1-ECSA绘图": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "ECSA-MERGED-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential/V",
+        "comment": "横坐标"
+      },
+      "y0_col": {
+        "value": "Current/A",
+        "comment": "纵坐标"
+      },
+      "xlabel": {
+        "value": "Current/A",
+        "comment": "x label"
+      },
+      "ylabel": {
+        "value": "Potential/V",
+        "comment": "y label"
+      },
+      "title_template": {
+        "value": "ECSA of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "y0_style": "blue,2,-",
+      "split_by_col": {
+        "value": "扫速(mV/s)",
+        "comment": "分割列"
+      },
+      "split_by_legend_template": {
+        "value": "扫速: {val} (mV/s)",
+        "comment": "legand"
+      }
+    },
+    "output_file_label": "ECSA-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "通用绘图工具：只需指定列名，即可快速绘制精美的多曲线对比图。\n\n【主要功能】\n\n1.  支持对比：可以同时画出最多 5 条曲线（y0 到 y4）。\n2.  自动标点：指定 X 轴位置，工具会自动在曲线上找到对应的点并画圈。\n3.  动态标签：可以在标点处显示数值，且支持自定义文字格式。\n\n【常见用途】\n\n- 绘制 LSV 极化曲线并在 10mA/cm² 处标注电位。\n- 对比不同扫描速率下的曲线。\n- 在图中标注特定电压下的电流值。"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "1-CV_IR_Compensation": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": "CV-CSV"
+    },
+    "run_params": {
+      "col_bind_1": "Potential/V@E",
+      "col_bind_2": "Current/A@I",
+      "column": "Potential/V",
+      "new_col_name": "Potential_IR/V",
+      "expression": {
+        "value": "E-I*{Adopted_Solution_Resistance(Ohm)}",
+        "comment": "IR Compensation Function"
+      }
+    },
+    "output_file_label": "CV-IR",
+    "output_pattern": "{stem}_ir.csv",
+    "tool_type": "single",
+    "comment": "### 🧮 Generic Column Expression Tool (Expression)\n\nApplies custom mathematical formulas to every row in the CSV. This is the 'Swiss Army Knife' for non-standard electrochemical transformations.\n\n#### 🧪 Electrochemical Formula Templates:\n\n1. **Manual IR Compensation**: Correct potential using measured solution resistance $R_s$.\n  - Expression: `i - j * {r_solution} / 1000`\n  - Binding: `current_density@j`\n  - Reference: `{r_solution}`\n2. **Overpotential Conversion (E -> η)**: Generate overpotential axis in mV.\n  - Expression: `(i - {equilibrium_potential}) * 1000`\n3. **Logarithmic Coordinates**: Generate $\\\\log|j|$ axis for Tafel analysis.\n  - Expression: `lg(abs(i))`\n\n> **📝 Syntax**:\n> \n> - `i`: Value of current column.\n> - `{result_name}`: Reference scalar result from previous steps.\n> - **Column Binding**: `<ColName>@<var>` (e.g., `potential_V@E`), then use `E` in expression.\n> - **Write Back**: If `column` is specified, it overwrites; otherwise appends a new column."
+  }
+}

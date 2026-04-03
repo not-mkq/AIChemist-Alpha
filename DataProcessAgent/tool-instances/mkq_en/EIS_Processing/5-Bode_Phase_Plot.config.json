@@ -1,0 +1,51 @@
+{
+  "5-Bode_Phase_Plot": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "lg(f / Hz)",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "-Phase/deg",
+        "comment": "y-axis"
+      },
+      "xlabel": {
+        "value": "$\\log_{10}(f \\text{ / Hz})$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$-\\phi \\text{ / }( ^\\circ)$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Phase Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "fontsize": 12.0,
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "Style"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodePhase",
+    "output_pattern": {
+      "value": "{stem}-BodePhase.png",
+      "comment": "Output File"
+    },
+    "tool_type": "single",
+    "comment": "### 📐 Bode Phase Angle Analysis\n\nPlots Phase Difference $\\phi$ vs Frequency $f$.\n\n#### 🧪 Physics & Reading:\n1. **Time Constants**: Each 'peak' is a relaxation process (RC). Two peaks = two time constants.\n2. **Ideal Cap**: Phase near $-90^\\circ$. Peak near 90 (negative) means significant capacitive character.\n3. **High Freq**: Phase tends to $0^\\circ$ (Resistive $R_s$).\n\n> **💡 Expert Tip**: Peak frequency $f_{max}$ estimates equivalent capacitance: $C = 1 / (2\\pi f_{max} R_{ct})$."
+  }
+}

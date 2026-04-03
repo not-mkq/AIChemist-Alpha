@@ -1,0 +1,41 @@
+{
+  "0.2-ECSA圈数检测": {
+    "code_name": "cv_cycle_detect",
+    "input_label_map": {
+      "source_csv": [
+      "ECSA10-CSV",
+	  "ECSA20-CSV",
+	  "ECSA40-CSV",
+	  "ECSA60-CSV",
+	  "ECSA80-CSV",
+	  "ECSA100-CSV",
+	  "ECSA120-CSV",
+	  "ECSA140-CSV",
+	  "ECSA160-CSV",
+	  "ECSA180-CSV",
+	  "ECSA200-CSV"
+      ]
+    },
+    "run_params": {
+      "potential_col": "Potential/V",
+      "cycle_col": "Cycle"
+    },
+    "output_file_label": [
+	"ECSA10-CYCLE",
+	"ECSA20-CYCLE",
+	"ECSA40-CYCLE",
+	"ECSA60-CYCLE",
+	"ECSA80-CYCLE",
+	"ECSA100-CYCLE",
+	"ECSA120-CYCLE",
+	"ECSA140-CYCLE",
+	"ECSA160-CYCLE",
+	"ECSA180-CYCLE",
+	"ECSA200-CYCLE"
+    ],
+    "output_pattern": "{stem}_cycle.csv",
+    "result_col": "CV_cycles",
+    "tool_type": "single",
+    "comment": "CV 曲线圈数自动检测工具：\n\n1.  识别电位翻转点，自动划分 Cycle 序号。\n2.  输出包含 Cycle 列的新 CSV 文件。"
+  }
+}

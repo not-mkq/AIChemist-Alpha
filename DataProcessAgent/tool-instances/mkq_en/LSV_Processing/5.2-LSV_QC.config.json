@@ -1,0 +1,47 @@
+{
+  "5.2-LSV_QC": {
+    "code_name": "csv_quality_check",
+    "input_label_map": {
+      "source_csv": "LSV1-NORM"
+    },
+    "run_params": {
+      "target_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "Target Column"
+      },
+      "mark_invalid": {
+        "value": "Invalid",
+        "comment": "Invalid Flag"
+      },
+      "mark_jump": {
+        "value": "Jump",
+        "comment": "Jump Flag"
+      },
+      "mark_noise": {
+        "value": "Noise",
+        "comment": "Noise Flag"
+      },
+      "mark_ok": {
+        "value": "OK",
+        "comment": "OK Flag"
+      },
+      "output_col_name": {
+        "value": "Current_Quality",
+        "comment": "Output Column"
+      },
+      "threshold_jump": {
+        "value": "0.002",
+        "comment": "1st Order Threshold"
+      },
+      "threshold_noise": {
+        "value": "0.002",
+        "comment": "2nd Order Threshold"
+      }
+    },
+    "output_file_label": "LSV1-QUALITY",
+    "output_pattern": "{stem}_quality.csv",
+    "result_col": "lsv_quality",
+    "tool_type": "single",
+    "comment": "Generic CSV Quality Check: Analyzes column for anomalies and appends flag\ncolumn. Outputs flat JSON with stats."
+  }
+}

@@ -1,0 +1,8 @@
+{
+	"base_url": "http://10.7.0.5:3000/api",
+	"api_key": "sk-***",
+	"embedding_model": "qwen3-embedding:8b",
+	"db_path": "./chroma_db",
+	"collection_name": "aichemist",
+	"docs_dir": "./notes"
+}

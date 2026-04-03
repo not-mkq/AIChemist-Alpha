@@ -1,0 +1,26 @@
+{
+  "0-XLS_to_CSV": {
+    "code_name": "excel_to_csv",
+    "input_label_map": {
+      "source_excel": [
+        "XPS0h",
+        "XPS12h",
+        "XPS24h"
+      ]
+    },
+    "run_params": {
+      "sheet_keyword": {
+        "value": "Binding Energy (E)",
+        "comment": "Keyword"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-CSV",
+      "XPS12h-CSV",
+      "XPS24h-CSV"
+    ],
+    "output_pattern": "{stem}.csv",
+    "tool_type": "single",
+    "comment": "### 📄 Excel to CSV Converter\n\nConverts specific sheet in Excel (.xls, .xlsx) to standard CSV with cleaning.\n\n#### ⚙️ Features\n1. **Sheet Select**: Extracts only specified sheet.\n2. **Auto-Trim**: Removes empty lines.\n3. **Compat**: Supports .xls and .xlsx.\n\n#### 📝 Params\n- `source_excel`: Input file.\n- `sheet_name`: Sheet name (case sensitive).\n- `encoding`: Output encoding (utf-8 rec.)."
+  }
+}

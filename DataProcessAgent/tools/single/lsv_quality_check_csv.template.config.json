@@ -1,0 +1,73 @@
+{
+	"code_name": "lsv_quality_check_csv",
+	"tool_type": "single",
+	"comment": "对 LSV CSV 进行数据质量分析，输出质量诊断 JSON 并返回质量等级（good/fair/poor）。",
+
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV CSV 文件（通常由 extract_csv / lsv_normalize_csv 生成）。"
+	},
+
+	{
+		"name": "potential_col",
+		"type": "optional_str",
+		"comment": "可选：电位列名。如果留空则自动识别（按 potential_V/potential/E 等关键字匹配）。"
+	},
+	{
+		"name": "current_col",
+		"type": "optional_str",
+		"comment": "可选：电流列名。如果留空则自动识别（按 current_density/current/I 等关键字匹配）。"
+	},
+
+	{
+		"name": "min_points_warn",
+		"type": "int",
+		"comment": "低于该点数则触发警告（fair）。默认 50。"
+	},
+	{
+		"name": "min_points_bad",
+		"type": "int",
+		"comment": "低于该点数直接判为 poor。默认 20。"
+	},
+
+	{
+		"name": "noise_warn",
+		"type": "float",
+		"comment": "相对噪声警告阈值。超过该值 → fair。默认 0.02。"
+	},
+	{
+		"name": "noise_bad",
+		"type": "float",
+		"comment": "相对噪声严重阈值。超过该值 → poor。默认 0.05。"
+	},
+
+	{
+		"name": "jump_warn",
+		"type": "float",
+		"comment": "最大跳变比例警告阈值。超过该值 → fair。默认 0.10。"
+	},
+	{
+		"name": "jump_bad",
+		"type": "float",
+		"comment": "最大跳变比例严重阈值。超过该值 → poor。默认 0.20。"
+	},
+
+	{
+		"name": "output_json",
+		"type": "optional_str",
+		"comment": "输出 JSON 文件名。留空则自动生成 <basename>_quality.json。"
+	}
+	],
+
+	"output_file_label": {
+		"comment": "质量报告 json 文件标签"
+	},
+	"output_pattern": {
+		"comment": "{stem}_quality.json"
+	},
+	"result_col": {
+		"comment": "质量等级 分为good/fair/poor三档"
+	}
+}

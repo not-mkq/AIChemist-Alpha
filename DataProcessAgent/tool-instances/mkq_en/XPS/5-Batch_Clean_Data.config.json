@@ -1,0 +1,8 @@
+{
+  "5-Batch_Clean_Data": {
+    "code_name": "map",
+    "tool": "4-Clean_Data",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

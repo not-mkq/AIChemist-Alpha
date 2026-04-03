@@ -1,0 +1,11 @@
+{
+  "20-Optional_ECSA_Plotting": {
+    "code_name": "alt",
+    "tool_alternatives": [
+      "19-ECSA_Plotting",
+      "0-Do_Nothing"
+    ],
+    "tool_type": "meta",
+    "comment": "# Alt Mode Meta Tool\n\nAttempts candidate tools in order: runs the first executable tool; returns error if all fail."
+  }
+}

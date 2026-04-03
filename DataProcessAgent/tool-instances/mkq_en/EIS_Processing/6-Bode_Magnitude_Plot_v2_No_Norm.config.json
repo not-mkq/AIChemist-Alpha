@@ -1,0 +1,49 @@
+{
+  "6-Bode_Magnitude_Plot_v2_No_Norm": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Freq/Hz",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "|Z| (Ω)",
+        "comment": "y-axis"
+      },
+      "xlabel": {
+        "value": "$f \\text{ / Hz}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$|Z| \\text{ / } \\\\Omega$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Magnitude Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "Style"
+      },
+      "x_log": true,
+      "y_log": true,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodeMagnitude2",
+    "output_pattern": {
+      "value": "{stem}_BodeMagnitude_v2.png",
+      "comment": "Output File"
+    },
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by specifying column names.\n\n【Features】\n\n1. Comparison: Plot up to 5 curves (y0 to y4).\n2. Auto-Marking: Automatically find points on curves at specified X positions.\n3. Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

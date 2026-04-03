@@ -1,0 +1,16 @@
+{
+  "15-EIS+CV+LSV": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0.1-设置当前项目名",
+      "1-设定各种数值",
+      "13.1-可选EIS绘图",
+      "1.35-采纳溶液电阻",
+      "14.1-可选CV绘图",
+      "2.2-LSV归一化（不R补偿）",
+      "11.1-LSV绘图（不R补偿）"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

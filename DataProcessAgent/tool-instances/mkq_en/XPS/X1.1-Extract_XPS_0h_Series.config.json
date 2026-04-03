@@ -1,0 +1,162 @@
+{
+  "X1.1-Extract_XPS_0h_Series": {
+    "code_name": "csv_extract_series",
+    "input_label_map": {
+      "source_csv": "XPS0h-CLEAN"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X-Axis"
+      },
+      "y_col": {
+        "value": [
+          "*_A*,!Residuals,!BE@BG!=0",
+          "*_B*,!Residuals,!BE@BG!=0",
+          "*_C*,!Residuals,!BE@BG!=0",
+          "*_D*,!Residuals,!Raw_Data,!BE@BG!=0",
+          "*_E*,!Residuals,!BE@BG!=0",
+          "BG@BG!=0",
+          "Fit_Total@BG!=0",
+          "Raw_Data@BG!=0"
+        ],
+        "comment": [
+          "Y-Axis Series A",
+          "Y-Axis Series B",
+          "Y-Axis Series C",
+          "Y-Axis Series D",
+          "Y-Axis Series E",
+          "Background",
+          "Total Fit",
+          "Raw Data"
+        ]
+      },
+      "plot_type": {
+        "value": "line",
+        "comment": "Plot Style"
+      },
+      "color": {
+        "value": [
+          "#F29395",
+          "#9388C4",
+          "#3CA4F0",
+          "orange",
+          "yellow",
+          "black",
+          "red",
+          "black"
+        ],
+        "comment": [
+          "Color A",
+          "Color B",
+          "Color C",
+          "Color D",
+          "Color E",
+          "Background Color",
+          "Fit Line Color",
+          "Raw Data Color"
+        ]
+      },
+      "linewidth": {
+        "value": [
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1",
+          "2",
+          "1"
+        ],
+        "comment": [
+          "Linewidth A",
+          "Linewidth B",
+          "Linewidth C",
+          "Linewidth D",
+          "Linewidth E",
+          "Background Linewidth",
+          "Fit Linewidth",
+          "Raw Data Linewidth"
+        ]
+      },
+      "linestyle": {
+        "value": [
+          "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          ":",
+          "-",
+          "-."
+        ],
+        "comment": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Background Linestyle",
+          "Fit Linestyle",
+          "Raw Data Linestyle"
+        ]
+      },
+      "zorder": {
+        "value": "5",
+        "comment": "Z-Order"
+      },
+      "fill_baseline": {
+        "value": "!!(BG)",
+        "comment": "Fill Baseline"
+      },
+      "fill_alpha": {
+        "value": [
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          null,
+          null,
+          null
+        ],
+        "comment": [
+          "Fill Alpha",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "fill_gradient_dir": {
+        "value": "up",
+        "comment": "Gradient Direction"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-A",
+      "XPS0h-B",
+      "XPS0h-C",
+      "XPS0h-D",
+      "XPS0h-E",
+      "XPS0h-BG",
+      "XPS0h-FIT",
+      "XPS0h-RAW"
+    ],
+    "output_pattern": [
+      "{stem}_A.json",
+      "{stem}_B.json",
+      "{stem}_C.json",
+      "{stem}_D.json",
+      "{stem}_E.json",
+      "{stem}_BG.json",
+      "{stem}_FIT.json",
+      "{stem}_RAW.json"
+    ],
+    "tool_type": "single",
+    "comment": "### 🚀 Advanced Series Extractor\n\nConverts CSV data to styled JSON series. Supports dynamic calc, logic, and auto-labeling.\n\n#### 💡 Core Syntax:\n1. **Template**: `{}` for vars. E.g., `Label: {col} (Area={area:.1f})`\n2. **Python Expr**: Start with `=`. E.g., `Color: = 'red' if area > 100 else 'blue'`\n\n#### 🧪 Variables:\n- `col`: Y column name.\n- `match`: Wildcard capture.\n- `index`: Series index.\n- `area`: Integration area (abs).\n- `max_y`, `min_y`, `mean_y`: Y stats.\n- `len`: Data count.\n- `file`, `stem`: Filenames.\n- `x`, `y`: Coordinates (for mark_text).\n\n#### 🛠️ Usage:\n- **Dynamic Fill**: `fill_alpha` `= 0.8 if 'Sat' in match else 0.6`.\n- **Hide**: `fill_alpha` `0` to disable fill.\n- **Auto ID**: `series_id_template` `{col}` for referencing."
+  }
+}

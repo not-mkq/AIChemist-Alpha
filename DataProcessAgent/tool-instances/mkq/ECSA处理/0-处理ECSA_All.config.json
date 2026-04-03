@@ -1,0 +1,37 @@
+{
+  "0-处理ECSA_All": {
+    "code_name": "extract_csv",
+    "input_label_map": {
+      "source_txt": [
+        "ECSA10",
+        "ECSA20",
+        "ECSA40",
+        "ECSA60",
+        "ECSA80",
+        "ECSA100",
+        "ECSA120",
+        "ECSA140",
+        "ECSA160",
+        "ECSA180",
+        "ECSA200"
+      ]
+    },
+    "run_params": {},
+    "output_file_label": [
+      "ECSA10-CSV",
+      "ECSA20-CSV",
+      "ECSA40-CSV",
+      "ECSA60-CSV",
+      "ECSA80-CSV",
+      "ECSA100-CSV",
+      "ECSA120-CSV",
+      "ECSA140-CSV",
+      "ECSA160-CSV",
+      "ECSA180-CSV",
+      "ECSA200-CSV"
+    ],
+    "output_pattern": "{stem}.csv",
+    "tool_type": "single",
+    "comment": "### 📂 原始数据提取工具 (Extract)\n\n这是所有数据处理的**入口**。它的作用是将电化学工作站（如 CHI, Autolab, Biologic）生成的各种格式杂乱的原始文本文件（`.txt`, `\n.csv`），清洗为标准的**纯数据 CSV**。\n\n#### 🛠️ 功能特性\n\n1.  **智能识别表头**：自动跳过文件头部的仪器参数、日期、备注等元数据，直接定位到数值区域。\n2.  **统一格式**：无论原始分隔符是逗号、分号还是制表符，输出文件统一转换为标准 CSV 格式。\n3.  **去噪**：剔除空行和非数值行。\n\n#### 📝 为什么需要这一步？\n\n电化学工作站导出的文件通常包含大量元数据（Header），直接导入绘图软件（如 Origin）或进行 Python 处理往往会报错。本工具相当于一个**通用适配器**\n，确保后续的归一化、IR 补偿等工具能接收到干净、统一的数据流。"
+  }
+}

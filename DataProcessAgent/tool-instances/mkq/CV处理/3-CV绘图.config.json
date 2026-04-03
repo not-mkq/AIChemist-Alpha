@@ -1,0 +1,54 @@
+{
+  "3-CV绘图": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "CV-NORM-CYCLE"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential (V vs. RHE)",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "y轴"
+      },
+      "xlabel": {
+        "value": "$E\\,\\text{ (V vs. RHE)}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$j \\text{ (mA cm}^{-2}\\text{)}$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "CV of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "y0_style": {
+        "value": "0.7,2,-@CVs",
+        "comment": "风格"
+      },
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true,
+      "y1_col": {
+        "value": "Current(mA/cm2)@Cycle == 20",
+        "comment": "高亮圈数"
+      },
+      "y1_style": {
+        "value": "blue,3,-@{CV_cycles}th-cycle CV",
+        "comment": "高亮圈数风格"
+      }
+    },
+    "output_file_label": "CV-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "通用绘图工具：只需指定列名，即可快速绘制精美的多曲线对比图。\n\n【主要功能】\n\n1.  支持对比：可以同时画出最多 5 条曲线（y0 到 y4）。\n2.  自动标点：指定 X 轴位置，工具会自动在曲线上找到对应的点并画圈。\n3.  动态标签：可以在标点处显示数值，且支持自定义文字格式。\n\n【常见用途】\n\n- 绘制 LSV 极化曲线并在 10mA/cm² 处标注电位。\n- 对比不同扫描速率下的曲线。\n- 在图中标注特定电压下的电流值。"
+  }
+}

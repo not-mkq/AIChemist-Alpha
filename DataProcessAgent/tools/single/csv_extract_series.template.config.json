@@ -1,0 +1,130 @@
+{
+  "code_name": "csv_extract_series",
+  "tool_type": "single",
+  "comment": "### 🚀 高级曲线提取器 (Series Extractor)\n\n将 CSV 数据转化为带样式的 JSON 序列。支持动态计算、逻辑判断和自动标注。\n\n#### 💡 核心语法：\n1. **字符串模板** (直接写): 使用 `{}` 引用变量。 示例: `Label: {col} (Area={area:.1f})` \n2. **Python 表达式** (以 `=` 开头): 执行逻辑判断。示例: `Color: = 'red' if area > 100 else 'blue'`\n\n#### 🧪 可用变量清单：\n- `col`: 当前 Y 轴列名。\n- `match`: 通配符 (*) 捕获到的内容。\n- `index`: 当前处理的序列索引 (0, 1, 2...)。\n- `area`: 曲线与 Y=0 之间的积分面积 (绝对值)。\n- `max_y`, `min_y`, `mean_y`: 纵轴的最值和平均值。\n- `len`: 数据点数量。\n- `file`, `stem`: 来源文件名和主文件名。\n- `x`, `y`: (仅限标注 mark_text) 标注点处的实际坐标。\n\n#### 🛠️ 典型用法：\n- **动态填充**: `fill_alpha` 设为 `= 0.8 if 'Sat' in match else 0.6`。\n- **条件隐藏**: `fill_alpha` 设为 `0` 可彻底禁用该线的填充区域。\n- **自动 ID**: `series_id_template` 设为 `{col}` 以便其他曲线引用。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "输入 CSV 文件。"
+    },
+    {
+      "name": "x_col",
+      "type": "str",
+      "comment": "X 轴列名（必须唯一）。"
+    },
+    {
+      "name": "y_col",
+      "type": "str",
+      "comment": "Y 轴列模式。支持通配符 (*) 和过滤 (@Col==Val)，如 'Main* @ Cycle==1'。"
+    },
+    {
+      "name": "series_id_template",
+      "type": "optional_str",
+      "comment": "ID 生成模板，默认 '{file}::{col}'。用于填充引用。"
+    },
+    {
+      "name": "plot_type",
+      "type": "optional_str",
+      "default": "line",
+      "comment": "绘图类型：line 或 bar。"
+    },
+    {
+      "name": "color",
+      "type": "optional_str",
+      "comment": "线条颜色。支持表达式，如 \"= 'red' if area > 100 else 'blue'\"。"
+    },
+    {
+      "name": "linewidth",
+      "type": "optional_str",
+      "comment": "线宽。"
+    },
+    {
+      "name": "linestyle",
+      "type": "optional_str",
+      "comment": "线型 (-, --, :, -.)。"
+    },
+    {
+      "name": "alpha",
+      "type": "optional_str",
+      "comment": "透明度 (0.0 - 1.0)。"
+    },
+    {
+      "name": "label_text",
+      "type": "optional_str",
+      "comment": "图例标签文本。支持变量 {col}, {match}, {area:.2f}。"
+    },
+    {
+      "name": "zorder",
+      "type": "optional_str",
+      "comment": "绘图层级。"
+    },
+    {
+      "name": "bar_width",
+      "type": "optional_str",
+      "comment": "柱状图宽度。"
+    },
+    {
+      "name": "fill_baseline",
+      "type": "optional_str",
+      "comment": "填充基准：min, zero, max 或 !!(ColName)。"
+    },
+    {
+      "name": "fill_color",
+      "type": "optional_str",
+      "comment": "填充颜色。"
+    },
+    {
+      "name": "fill_alpha",
+      "type": "optional_str",
+      "comment": "填充透明度 (None=不填充, 0=透明填充)。"
+    },
+    {
+      "name": "fill_gradient_dir",
+      "type": "optional_str_enum",
+      "choices": ["up", "down"],
+      "comment": "渐变方向 (起始透明度 -> 1.0)。"
+    },
+    {
+      "name": "mark_x_ratio",
+      "type": "optional_str",
+      "comment": "标注相对位置 (0.0~1.0)。"
+    },
+    {
+      "name": "mark_text",
+      "type": "optional_str",
+      "comment": "标注文本。"
+    },
+    {
+      "name": "mark_offset",
+      "type": "optional_str",
+      "comment": "标注偏移 (x,y)。"
+    },
+    {
+      "name": "mark_color",
+      "type": "optional_str",
+      "comment": "标注颜色。"
+    },
+    {
+      "name": "font_size",
+      "type": "optional_str",
+      "comment": "标注字体大小。"
+    },
+    {
+      "name": "bbox_style",
+      "type": "optional_str",
+      "comment": "标注框样式 (如 round, square)。"
+    },
+    {
+      "name": "arrow_style",
+      "type": "optional_str",
+      "comment": "箭头样式 (如 ->, -|>）。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "提取出的序列 JSON 文件。"
+  },
+  "output_pattern": {
+    "comment": "输出文件名模式，例如 {stem}_series.json"
+  }
+}

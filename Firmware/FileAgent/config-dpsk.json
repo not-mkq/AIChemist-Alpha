@@ -1,0 +1,30 @@
+{
+  "private_workspace": ".private_workspace",
+  "openai": {
+    "model": "deepseek-chat",
+    "base_url": "https://api.deepseek.com/v1",
+    "api_key": "sk-***"
+  },
+  "rules": [
+    {
+      "description": "notes, todo items, or markdown-style documentation",
+      "tag": "notes"
+    },
+    {
+      "description": "csv dataset or tabular experimental data",
+      "tag": "dataset"
+    },
+    {
+      "description": "image assets, figures, or plots",
+      "tag": "image"
+    },
+	{
+		"description": "zip file with CV-001.txt LSV-1.txt in it and with LSV_results.csv in it (note the content in summary.json)",
+		"tag": "EC-Results"
+	},
+	{
+		"description": "目录下有数字编号的子目录，每个子目录下有CV LSV等数据",
+		"tag": "EC-Rawdata"
+	}
+  ]
+}

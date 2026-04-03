@@ -1,0 +1,12 @@
+{
+  "2.2-LSV_Normalization_No_R_Comp": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-Extract_LSV1_CSV_from_TXT",
+      "0.1-Abs_Current_Voltage",
+      "2.1-LSV_Normalization_No_R_Comp"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

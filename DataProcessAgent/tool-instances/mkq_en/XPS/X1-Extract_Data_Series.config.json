@@ -1,0 +1,162 @@
+{
+  "X1-Extract_Data_Series": {
+    "code_name": "csv_extract_series",
+    "input_label_map": {
+      "source_csv": "XPS12h-CLEAN"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X-Axis"
+      },
+      "y_col": {
+        "value": [
+          "*_A*,!Residuals,!BE@BG!=0",
+          "*_B*,!Residuals,!BE@BG!=0",
+          "*_C*,!Residuals,!BE@BG!=0",
+          "*_D*,!Residuals,!Raw_Data,!BE@BG!=0",
+          "*_E*,!Residuals,!BE@BG!=0",
+          "BG@BG!=0",
+          "Fit_Total@BG!=0",
+          "Raw_Data@BG!=0"
+        ],
+        "comment": [
+          "Y-Axis Series A",
+          "Y-Axis Series B",
+          "Y-Axis Series C",
+          "Y-Axis Series D",
+          "Y-Axis Series E",
+          "Background",
+          "Total Fit",
+          "Raw Data"
+        ]
+      },
+      "plot_type": {
+        "value": "line",
+        "comment": "Plot Style"
+      },
+      "color": {
+        "value": [
+          "#F29395",
+          "#9388C4",
+          "#3CA4F0",
+          "orange",
+          "yellow",
+          "black",
+          "red",
+          "black"
+        ],
+        "comment": [
+          "Color A",
+          "Color B",
+          "Color C",
+          "Color D",
+          "Color E",
+          "Background Color",
+          "Fit Line Color",
+          "Raw Data Color"
+        ]
+      },
+      "linewidth": {
+        "value": [
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1",
+          "2",
+          "1"
+        ],
+        "comment": [
+          "Linewidth A",
+          "Linewidth B",
+          "Linewidth C",
+          "Linewidth D",
+          "Linewidth E",
+          "Background Linewidth",
+          "Fit Linewidth",
+          "Raw Data Linewidth"
+        ]
+      },
+      "linestyle": {
+        "value": [
+          "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          ":",
+          "-",
+          "-."
+        ],
+        "comment": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Background Linestyle",
+          "Fit Linestyle",
+          "Raw Data Linestyle"
+        ]
+      },
+      "zorder": {
+        "value": "5",
+        "comment": "Z-Order"
+      },
+      "fill_baseline": {
+        "value": "!!(BG)",
+        "comment": "Fill Baseline"
+      },
+      "fill_alpha": {
+        "value": [
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          null,
+          null,
+          null
+        ],
+        "comment": [
+          "Fill Alpha",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "fill_gradient_dir": {
+        "value": "up",
+        "comment": "Gradient Direction"
+      }
+    },
+    "output_file_label": [
+      "XPS12h-A",
+      "XPS12h-B",
+      "XPS12h-C",
+      "XPS12h-D",
+      "XPS12h-E",
+      "XPS12h-BG",
+      "XPS12h-FIT",
+      "XPS12h-RAW"
+    ],
+    "output_pattern": [
+      "{stem}_A.json",
+      "{stem}_B.json",
+      "{stem}_C.json",
+      "{stem}_D.json",
+      "{stem}_E.json",
+      "{stem}_BG.json",
+      "{stem}_FIT.json",
+      "{stem}_RAW.json"
+    ],
+    "tool_type": "single",
+    "comment": "Advanced Series Extractor: Extracts series to JSON with style and metadata. Supports Python expressions, integration, and relative positioning."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "tool_instance_tab": {
+    "directory": "default",
+    "selected_tool": "0.1-Set_Current_Project_Name"
+  },
+  "project_tab": {
+    "project": null,
+    "tool": "13.1-Optional_EIS_Plotting",
+    "scope": "item",
+    "batch": "",
+    "item": "",
+    "tool_directory": "default"
+  },
+  "current_tab_index": 2,
+  "language": "en"
+}

@@ -1,0 +1,49 @@
+{
+  "6-Bode_Magnitude_Plot_v2": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Freq/Hz",
+        "comment": "x-axis"
+      },
+      "y0_col": {
+        "value": "|Z| (Ω·cm²)",
+        "comment": "y-axis"
+      },
+      "xlabel": {
+        "value": "$f \\text{ / Hz}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$|Z| \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Magnitude Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,2,-",
+        "comment": "Style"
+      },
+      "x_log": true,
+      "y_log": true,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodeMagnitude2",
+    "output_pattern": {
+      "value": "{stem}_BodeMagnitude_v2.png",
+      "comment": "Output File"
+    },
+    "tool_type": "single",
+    "comment": "### 📊 Bode Magnitude Analysis (v2 - Log Scale)\n\nEnhanced display using **hardware log axes** instead of pre-logged data.\n\n#### 🔍 v2 Advantages\n- **Raw Data**: Displays $|Z|$ ($\\Omega \\cdot cm^2$) directly. Scales $10^n$, matching commercial software (ZView, Nova).\n- **Interaction**: Easier to read physical resistance values.\n\n> **Reading Tip**: Low freq plateau is Polarization Resistance $R_p$ ($R_s + R_{ct}$)."
+  }
+}

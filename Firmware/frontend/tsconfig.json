@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "types": ["svelte"],
+    "strict": true
+  },
+  "include": ["src/**/*", "src/node.d.ts"]
+}

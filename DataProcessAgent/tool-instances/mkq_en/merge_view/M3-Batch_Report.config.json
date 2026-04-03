@@ -1,0 +1,34 @@
+{
+  "M3-Batch_Report": {
+    "code_name": "file_merge_by_condition",
+    "input_label_map": {
+      "source_files": "LSV1-PNG-RPT"
+    },
+    "input_cols": {
+      "col0": {
+        "value": "LSV_Image_Score",
+        "comment": "column"
+      }
+    },
+    "run_params": {
+      "condition": {
+        "value": "val[0]<80",
+        "comment": "filter"
+      },
+      "file_header": {
+        "value": "\\n\\n\\n##AI Quality Report for: \\nBatch: {batch}\\nItem:{Item}\\nScore:{val_0}\\n\\n",
+        "comment": "header"
+      },
+      "separator": "\\n",
+      "output_name": "Batch_Report.md",
+      "encoding": "utf8",
+      "title": {
+        "value": "# Quality Report for Batch: {Batch} \\nThis report includes only items with a quality score below 80.\\n\nItems meeting or exceeding this threshold are omitted.\n\\n\\n\\n",
+        "comment": "title"
+      }
+    },
+    "output_file_label": "QUALITY_RPT",
+    "output_pattern": "Batch_Report.md",
+    "tool_type": "merge"
+  }
+}

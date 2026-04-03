@@ -1,0 +1,16 @@
+{
+  "11.1-LSV_Plotting_No_R_Comp": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "3-Calc_Onset_Potential_at_10mA",
+      "3-Calc_Onset_Potential_at_1mA",
+      "4-Calc_Overpotential_at_10mA",
+      "5.1-LSV_Plotting_No_R_Comp",
+      "5.2-LSV_QC",
+      "5.3-LSV_QC_Plotting",
+      "11-LSV_Image_AI_Detection"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "12-Tafel_Plotting": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "6-Get_OverPotential",
+      "7-Extract_Tafel_Data",
+      "8-Process_Tafel_Data",
+      "9-Tafel_Fitting",
+      "10-Tafel_Plotting"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

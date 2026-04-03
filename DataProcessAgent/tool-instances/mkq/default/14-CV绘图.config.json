@@ -1,0 +1,15 @@
+{
+  "14-CV绘图": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-从TXT提取CV-CSV",
+      "2.1-CV归一化（不R补偿）",
+      "2.3-CV圈数检测",
+      "2.6-CV根据圈数上色",
+      "3-CV绘图",
+      "3.1-CV彩虹！"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

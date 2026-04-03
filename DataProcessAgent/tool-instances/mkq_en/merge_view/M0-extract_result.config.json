@@ -1,0 +1,59 @@
+{
+  "M0-extract_result": {
+    "code_name": "csv_extract_series",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Item",
+        "comment": "X Axis"
+      },
+      "y_col": {
+        "value": [
+          "Potential*",
+          "Potential* @ LSV_Image_Score < 80"
+        ],
+        "comment": [
+          "Y Axes",
+          "Y Unstable"
+        ]
+      },
+      "plot_type": "bar",
+      "color": {
+        "value": [
+          "#4FBDFF",
+          "orange"
+        ],
+        "comment": [
+          "bar color",
+          "unstable color"
+        ]
+      },
+      "series_id_template": [
+        "normal",
+        "abnormal"
+      ],
+      "label_text": {
+        "value": [
+          "High Quality",
+          "Middle Quality"
+        ],
+        "comment": [
+          "Y legend",
+          "Unstable legend"
+        ]
+      }
+    },
+    "output_file_label": [
+      "RESULT-JSON1",
+      "RESULT-JSON2"
+    ],
+    "output_pattern": [
+      "{stem}_1.json",
+      "{stem}_2.json"
+    ],
+    "tool_type": "single",
+    "comment": "### 🚀 高级曲线提取器 (Series Extractor)\n\n将 CSV 数据转化为带样式的 JSON 序列。支持动态计算、逻辑判断和自动标注。\n\n#### 💡 核心语法：\n\n1.  **字符串模板** (直接写): 使用 `{}` 引用变量。 示例: `Label: {col} (Area={area:.1f})`\n2.  **Python 表达式** (以 `=` 开头): 执行逻辑判断。示例: `Color: = 'red' if area > 100 else\n    'blue'`\n\n#### 🧪 可用变量清单：\n\n- `col`: 当前 Y 轴列名。\n- `match`: 通配符 (*) 捕获到的内容。\n- `index`: 当前处理的序列索引 (0, 1, 2...)。\n- `area`: 曲线与 Y=0 之间的积分面积 (绝对值)。\n- `max_y`, `min_y`, `mean_y`: 纵轴的最值和平均值。\n- `len`: 数据点数量。\n- `file`, `stem`: 来源文件名和主文件名。\n- `x`, `y`: (仅限标注 mark_text) 标注点处的实际坐标。\n\n#### 🛠️ 典型用法：\n\n- **动态填充**: `fill_alpha` 设为 `= 0.8 if 'Sat' in match else 0.6`。\n- **条件隐藏**: `fill_alpha` 设为 `0` 可彻底禁用该线的填充区域。\n- **自动 ID**: `series_id_template` 设为 `{col}` 以便其他曲线引用。"
+  }
+}

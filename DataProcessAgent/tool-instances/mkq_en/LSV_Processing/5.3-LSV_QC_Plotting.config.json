@@ -1,0 +1,78 @@
+{
+  "5.3-LSV_QC_Plotting": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "LSV1-QUALITY"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential (V vs. RHE)",
+        "comment": "X"
+      },
+      "y0_col": {
+        "value": "Current(mA/cm2)",
+        "comment": "Y"
+      },
+      "xlabel": {
+        "value": "$E\\, \\text{ (V vs. RHE)}$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$j \\text{ (mA cm}^{-2}\\text{)}$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "LSV Quality of {batch}-{item}",
+        "comment": "Title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": {
+        "value": "blue,2,-@LSV Curve",
+        "comment": "Curve Style"
+      },
+      "marker_y_values": {
+        "value": "10",
+        "comment": "Marker Position"
+      },
+      "marker_style": {
+        "value": "o,red,5@10$\\text{ mA cm}^{-2} $`@`{Onset_Potential(V)@10mA/cm2:.3f} V",
+        "comment": "Marker Style"
+      },
+      "label_template": {
+        "value": "E={x:.3f}$V$@{y0:.0f}$\\text{ mA cm}^{-2}$",
+        "comment": "Label Content"
+      },
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true,
+      "label_anchor": {
+        "value": "auto",
+        "comment": "Label Position"
+      },
+      "y1_col": {
+        "value": "Current(mA/cm2)@Current_Quality == Noise",
+        "comment": "Noise Points"
+      },
+      "y2_col": {
+        "value": "Current(mA/cm2)@Current_Quality == Jump",
+        "comment": "Jump Points"
+      },
+      "y1_style": {
+        "value": "red,3,none,o!@Noise points",
+        "comment": "Noise Style"
+      },
+      "y2_style": {
+        "value": "red,3,none,x!@Jump points",
+        "comment": "Jump Style"
+      }
+    },
+    "output_file_label": "LSV1-PNG-QUALITY",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by specifying column names.\n\n【Features】\n\n1. Comparison: Plot up to 5 curves (y0 to y4).\n2. Auto-Marking: Automatically find points on curves at specified X positions.\n3. Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "6-Get_OverPotential": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": "LSV1-NORM"
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": "Potential (V vs. RHE)@P",
+        "comment": "RHE Column"
+      },
+      "new_col_name": {
+        "value": "Overpotential (V)",
+        "comment": "Output Column"
+      },
+      "expression": {
+        "value": "P-{Equilibrium_Potential(V)}",
+        "comment": "Formula"
+      }
+    },
+    "output_file_label": "LSV1-OP-CSV",
+    "output_pattern": "{stem}_OP.csv",
+    "tool_type": "single",
+    "comment": "Calculates overpotential based on measured potential and equilibrium potential."
+  }
+}

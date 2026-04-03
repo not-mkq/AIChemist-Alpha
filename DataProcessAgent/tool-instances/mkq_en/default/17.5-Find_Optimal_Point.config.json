@@ -1,0 +1,25 @@
+{
+  "17.5-Find_Optimal_Point": {
+    "code_name": "csv_stat",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "y_col": {
+        "value": "Potential(V)@10mA/cm2",
+        "comment": "Column Name"
+      },
+      "stat_type": {
+        "value": "min",
+        "comment": "Method"
+      },
+      "x_col": {
+        "value": "Item",
+        "comment": "X Column Name"
+      }
+    },
+    "result_col": "result",
+    "tool_type": "single",
+    "comment": "### 📊 CSV Statistics Tool (Statistics)\n\nCalculates statistics (max, min, mean, median) for a specified column in a CSV file.\n\n#### ⚙️ Features\n\n1. **Filtering**: Supports `Column@Filter == Value` syntax to count only rows matching the condition.\n   - Example: `Current(mA)@Cycle == 3` (Only stats for current in 3rd cycle)\n2. **Return Coordinates**:\n   - `max`/`min`: Returns X coordinate corresponding to extreme value (e.g., peak potential).\n   - `mean`/`median`: Returns mean/median of X column.\n3. **Result Storage**: Results returned via `return_json`, framework automatically splits into `<result_col>.x` and `<result_col>.y`.\n\n#### 📝 Parameters\n\n- `y_col`: Target column to stat. Supports `Col@Filter==Val` syntax.\n- `stat_type`: Type (`max`, `min`, `mean`, `median`).\n- `x_col`: Optional X-axis column name for returning associated X value."
+  }
+}

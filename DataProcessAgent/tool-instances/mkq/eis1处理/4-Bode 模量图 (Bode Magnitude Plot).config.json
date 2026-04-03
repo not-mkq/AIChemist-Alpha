@@ -1,0 +1,48 @@
+{
+  "4-Bode 模量图 (Bode Magnitude Plot)": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "lg(f / Hz)",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "lg(|Z| / Ω·cm²)",
+        "comment": "y轴"
+      },
+      "xlabel": {
+        "value": "$\\log_{10}(f \\text{ / Hz})$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$\\log_{10}(|Z| \\text{ / } \\Omega \\cdot \\text{cm}^2)$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Bode Magnitude Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "fontsize": 12.0,
+      "y0_style": {
+        "value": "blue,2.0,-",
+        "comment": "风格"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": false,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-BodeMagnitude",
+    "output_pattern": "{stem}_BodeMagnitude.png",
+    "tool_type": "single",
+    "comment": "### 📊 Bode 阻抗模量分析 (Magnitude)\n\nBode 图是 EIS 的另一种核心展示方式，它将阻抗的**模量 ($|Z|$)** 对**频率 ($f$)** 作图。\n\n#### 🔍 相比 Nyquist 的优势：\n\n1.  **频率直观**：横轴直接对应频率，方便识别不同时间常数的物理过程（如电荷转移 vs. 扩散）。\n2.  **全量级展示**：采用双对数坐标 ($\\\\log |Z|$ vs. $\\\\log f$)，可以同时观察到极高阻抗（如涂层）和极低阻抗（如电解液）的信息。\n\n#### 🧪 读图技巧\n\n- **高频区（右侧）**：曲线趋于平坦，其截距对应溶液电阻 $R_s$。\n- **中低频区**：斜率为 -1 的直线通常代表纯电容行为。\n\n> **单位说明**：本图已根据面积归一化，$Y$ 轴单位为 $\\\\Omega \\\\cdot cm^2$。"
+  }
+}

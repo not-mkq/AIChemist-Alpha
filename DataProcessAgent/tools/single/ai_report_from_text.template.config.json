@@ -1,0 +1,63 @@
+{
+	"code_name": "ai_report_from_text",
+	"tool_type": "single",
+	"comment": "### ✍️ AI 数据文本总结 (Textual AI)\n\n将分散的实验数据、拟合参数或报错日志汇总，生成结构化的研究简报。\n\n#### 🧪 典型工作流：\n1.  **数据聚合**：先运行 `lsv_tafel_fit_csv` 等工具生成 JSON 报告。\n2.  **文本生成**：使用本工具读取 JSON 内容，让 AI 提取关键指标（如 $b < 60 mV/dec$）。\n3.  **决策辅助**：让 AI 判断该催化剂是否值得进行下一步的长效测试。\n\n> **⚙️ 参数说明**：\n> - `source_txt` 支持任意纯文本格式（`.json`, `.txt`, `.log`, `.md`）。\n> - 输出文件自动添加 Markdown 后缀，方便直接渲染阅读。",
+	"params": [
+	{
+		"name": "source_txt",
+		"type": "file_label",
+		"comment": "输入文本文件（质量报告、日志、诊断结果、任意 txt/md 等）。"
+	},
+	{
+		"name": "prompt",
+		"type": "str",
+		"comment": "发送给模型的用户指令，将放在文件内容前面一起作为 user 消息。"
+	},
+	{
+		"name": "api_url",
+		"type": "str",
+		"comment": "OpenAI 兼容 /chat/completions HTTP 接口地址，例如 https://api.openai.com/v1/chat/completions。"
+	},
+	{
+		"name": "api_key",
+		"type": "str",
+		"comment": "接口的 API key，仅在运行时使用，不建议写入公共配置文件。"
+	},
+	{
+		"name": "model",
+		"type": "optional_str",
+		"comment": "模型名称，例如 gpt-4o-mini、gpt-4.1、或本地 openai 兼容模型。留空则由服务端默认模型决定。"
+	},
+	{
+		"name": "system_prompt",
+		"type": "optional_str",
+		"comment": "可选的 system 提示词（system role），例如“你是电化学专家，擅长分析 LSV / CV 曲线质量报告”。"
+	},
+	{
+		"name": "temperature",
+		"type": "optional_float",
+		"comment": "采样温度，默认 0.2。数值越大回答越发散。"
+	},
+	{
+		"name": "max_output_tokens",
+		"type": "optional_int",
+		"comment": "模型输出 token 上限，默认 1024。对于长报告可以适当调大。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "源文本文件编码，默认 utf-8。若读取出错会自动尝试 gbk / latin-1。"
+	},
+	{
+		"name": "output_suffix",
+		"type": "optional_str",
+		"comment": "输出文件名后缀，默认 \"_ai_report\"，最终生成 <stem><suffix>.md。"
+	}
+	],
+	"output_file_label": {
+		"comment": "AI 生成的 Markdown 报告文件（<stem>_ai_report.md）。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_ai_report.md"
+	}
+}

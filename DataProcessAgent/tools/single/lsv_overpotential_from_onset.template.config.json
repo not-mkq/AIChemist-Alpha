@@ -1,0 +1,20 @@
+{
+	"code_name": "lsv_overpotential_from_onset",
+	"tool_type": "single",
+	"comment": "### 🏔️ 过电位计算工具 (Overpotential)\n\n过电位 ($\\\\eta$) 是驱动电化学反应超过其热力学平衡状态所需的**额外能量**。它是衡量电催化剂活性最直观的指标。\n\n#### 💡 计算逻辑\n本工具将起始电位 ($E_{measured}$) 转换为相对于平衡电位 ($E_{eq}$) 的偏差值：\n\n$$ \\\\eta (mV) = (E_{measured} - E_{eq}) \\\\times 1000 $$\n\n- **$E_{measured}$**: 通常由 `lsv_onset_potential_csv` 计算得到的 Onset 电位。\n- **$E_{eq}$**: 反应的理论平衡电位（V vs. RHE）。\n\n> **⚠️ 注意**：\n> - 本工具保留正负号：对于氧化反应 (OER)，结果通常为正；对于还原反应 (HER)，结果通常为负。\n> - 平衡电位 $E_{eq}$ 的设置请参考 [1.2-设置平衡电位] 提供的标准表。",
+	"params": [
+	{
+		"name": "onset_potential_v",
+		"type": "from_result",
+		"comment": "onset 电位 (单位 V)。\n\n> **📝 语法提示**：\n> 虽然此处类型为 `from_result`（支持下拉框选择），但现在更推荐在任何 `str/float` 参数中使用 `{result_name}` 语法进行直连。"
+	},
+	{
+		"name": "eq_potential",
+		"type": "float",
+		"comment": "平衡电位 E_eq (单位 V)。"
+	}
+	],
+	"result_col": {
+		"comment": "overpotential_mV 过电位, 单位 mV。"
+	}
+}

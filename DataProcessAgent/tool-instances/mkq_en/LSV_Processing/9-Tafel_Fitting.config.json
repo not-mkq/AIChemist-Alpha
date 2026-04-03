@@ -1,0 +1,31 @@
+{
+  "9-Tafel_Fitting": {
+    "code_name": "csv_curve_fit",
+    "input_label_map": {
+      "input_file": "LSV1-TAFEL"
+    },
+    "run_params": {
+      "x_column": {
+        "value": "log10_j",
+        "comment": "X"
+      },
+      "y_column": {
+        "value": "Potential (mV vs. RHE)",
+        "comment": "Y"
+      },
+      "formula": {
+        "value": "k*x+b",
+        "comment": "Formula"
+      },
+      "output_y_column": {
+        "value": "Potential_fit (mV)",
+        "comment": "Fit Y"
+      }
+    },
+    "output_file_label": "LSV1-TAFEL-FIT",
+    "output_pattern": "{stem}.csv",
+    "result_col": "Tafel_Fitting",
+    "tool_type": "single",
+    "comment": "### 📉 Tafel Slope Fitting Analysis\n\nInfers Rate Determining Step (RDS) from slope.\n\n#### 💡 Theory (25°C)\n- **$b \\approx 120 mV/dec$**: Volmer step RDS.\n- **$b \\approx 40 mV/dec$**: Heyrovsky step RDS.\n- **$b \\approx 30 mV/dec$**: Tafel step RDS.\n\n#### ⚙️ Settings\n- **X**: `log10_j`.\n- **Y**: `Overpotential`.\n- **Formula**: `k*x+b`. $k$ is Tafel slope.\n\n> **Output**: `{stem}.csv` with fit line, slope in `result_col`."
+  }
+}

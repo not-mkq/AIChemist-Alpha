@@ -1,0 +1,46 @@
+{
+  "code_name": "csv_merge_with_metadata",
+  "tool_type": "single",
+  "comment": "### 🔗 CSV 多文件合并与标注工具\n\n该工具可以将多个 CSV 文件纵向合并（Append），并为每个文件的数据行打上特定的标记或颜色。\n\n#### 🌈 颜色插值模式\n如果 `metadata_list` 中全部是颜色代码（如 `red, blue`），且文件数量较多，工具会自动生成渐变色。例如：\n- 输入 10 个文件，`metadata_list` 为 `red, blue`，则第一个文件为红色，最后一个为蓝色，中间 8 个为过渡色。\n\n#### 🏷️ 标签模式\n如果包含非颜色字符（如 `SampleA, SampleB`），则列表长度必须与文件数量**严格一致**。\n\n#### 📝 注意事项\n- `source_csvs` 参数支持使用逗号分隔的多个标签，例如：`LABEL1,LABEL2,LABEL3`。\n- 工具会以第一个文件的表头作为基准进行合并。",
+  "params": [
+    {
+      "name": "source_csvs",
+      "type": "file_label",
+      "comment": "输入 CSV 文件标签。支持多个标签，用逗号分隔，如 `RAW1,RAW2,RAW3`。"
+    },
+    {
+      "name": "metadata_list",
+      "type": "str",
+      "comment": "逗号分隔的标签或颜色列表。如 `red, blue` 或 `S1, S2, S3`。"
+    },
+    {
+      "name": "filter_query",
+      "type": "optional_str",
+      "comment": "行筛选表达式（Pandas query）。例如：`column6 > 25` 或 `Potential > 0.5 and Current < 0.1`。为空则不进行筛选。"
+    },
+    {
+      "name": "additional_columns",
+      "type": "optional_str",
+      "comment": "额外的自定义列配置。支持两种格式：\n1. **文本格式**：`列名1:值1,值2;列名2:值3,值4`。注意值的数量必须等于文件数。\n2. **JSON格式**：`{\"扫速\": [10, 20, 40], \"批次\": [\"A\", \"A\", \"B\"]}`。"
+    },
+    {
+      "name": "new_col_name",
+      "type": "optional_str",
+      "comment": "主元数据列（metadata_list 对应的列）的名称，默认为 `Metadata`。"
+    },
+    {
+      "name": "encoding",
+      "type": "optional_str",
+      "comment": "输入文件编码，默认 `utf-8`。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "合并后的 CSV 文件标签。"
+  },
+  "output_pattern": {
+    "comment": "merged_data.csv"
+  },
+  "result_col": {
+    "comment": "合并操作的状态结果列（如 ok）。"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "0-Extract_LSV1_CSV_from_TXT": {
+    "code_name": "extract_csv",
+    "input_label_map": {
+      "source_txt": "LSV-1"
+    },
+    "run_params": {},
+    "output_pattern": "{stem}.csv",
+    "output_file_label": "LSV1-CSV",
+    "tool_type": "single",
+    "comment": "### 📂 Raw Data Extraction (LSV-1)\n\nThis is the **first step** of the LSV data processing pipeline. It cleans raw `.txt` or `.csv` files from instruments into standard pure data format.\n\n#### 🛠️ Automation Logic\n1. **Skip Header**: Automatically identifies instrument models (e.g., CHI, Autolab) and skips metadata lines.\n2. **Formatting**: Ensures first column is potential, second is current.\n3. **Standardization**: Provides clean data source for normalization and IR compensation.\n\n> **💡 Tip**:\n> - Extracted label is `LSV1-CSV`.\n> - If automatic recognition fails, manually specify `start_line`."
+  }
+}

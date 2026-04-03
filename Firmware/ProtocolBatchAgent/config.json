@@ -1,0 +1,10 @@
+{
+  "backend_url": "http://127.0.0.1:8001",
+  "project": "SZXr1",
+  "files_root": "files",
+  "counter_file": "batch_counter.txt",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5010
+  }
+}

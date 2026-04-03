@@ -1,0 +1,10 @@
+{
+  "14.1-可选CV绘图": {
+    "code_name": "alt",
+    "tool_alternatives": [
+      "14-CV绘图",
+      "0-啥也不做"
+    ],
+    "tool_type": "meta"
+  }
+}

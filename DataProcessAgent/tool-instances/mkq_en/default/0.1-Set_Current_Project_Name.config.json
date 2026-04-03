@@ -1,0 +1,12 @@
+{
+  "0.1-Set_Current_Project_Name": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": "{item}",
+      "value_type": "str"
+    },
+    "result_col": "Project",
+    "tool_type": "single",
+    "comment": "### ⚓ Project Parameter Anchor (Constants & Expressions)\n\nThis tool is used to define **core constants** in electrochemical testing or perform **secondary calculations** across tools. It is the 'parameter center' for building automation workflows.\n\n#### ⚡️ Syntax Features (Direct Binding)\n\nNo complex variable mapping needed. Use `{result_name}` directly in expressions to reference results from previous steps.\n\n#### 🧪 Electrochemical Practice Examples:\n\n1. **Specific Activity**: Divide normalized current density by measured ECSA.\n   - Expression: `{current_density} / {ECSA_cm2}`\n   - Prerequisite: Previous tools output `current_density` and `ECSA_cm2`.\n2. **RHE Dynamic Calibration**: Calculate potential offset based on measured pH.\n   - Expression: `0.197 + 0.059 * {pH_value}`\n3. **Overpotential Deviation Calculation**:\n   - Expression: `abs({onset_potential} - 1.23)`\n\n#### 🛠️ Basic Uses\n\n- **Define Constants**: Input values directly (e.g., `1.23`) as equilibrium potential baseline.\n- **Unit Conversion**: `{loading_mass_ug} / 1000` (convert to mg).\n\n> **💡 Supported Functions**: `lg(x)`, `ln(x)`, `exp(x)`, `sqrt(x)`, `abs(x)`, `sin`, `cos`, `pi`, `e`, etc."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "13-EIS_Plotting": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0-Extract_EIS1_CSV_from_TXT",
+      "1-Calculate_Solution_Resistance",
+      "2-EIS_Area_Normalization",
+      "3-Nyquist_Plot",
+      "4-Bode_Magnitude_Plot",
+      "5-Bode_Phase_Plot",
+      "6-Bode_Magnitude_Plot_v2",
+      "7-Bode_Phase_Plot_v2"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

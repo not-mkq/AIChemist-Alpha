@@ -1,0 +1,495 @@
+{
+	"szx_process_batch": {
+		"intro": "Execute the full SZX data processing pipeline: upload a dataset zip, run batch processing (M5), generate project-level plots (M2) and AI reports (M8). Returns combined MD reports and saves 'rendered_points.png' and a performance CSV named after the batch ID to the workspace.",
+		"examples": [
+			{
+				"type": "szx_process_batch",
+				"input": {
+					"dirname": "experiment_data_v1"
+				}
+			}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "szx_process_batch",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"dirname": {
+							"type": "string",
+							"description": "The directory name under 'files/' containing the raw data to be processed."
+						}
+					},
+					"required": ["dirname"]
+				}
+			}
+		}
+	},
+	"file_service": {
+		"intro": "Save, read, upload-and-validate, or list files under the shared workspace. Prefer the `method` field to choose behavior: `uploadAndValidate` → UI prompts upload then validates; `write` → create/overwrite with content; `read` → read file; `list` → list files. If `method` is omitted, behavior falls back to upload+validate>write>read>list inference.",
+		"examples": [
+		{
+			"type": "file_service",
+			"input": {
+				"method": "uploadAndValidate",
+				"validation": {
+					"allowed_extensions": ["csv"],
+					"csv_headers": ["id", "value", "label"],
+					"csv_min_rows": 10,
+					"csv_max_rows": 1000,
+					"csv_min_cols": 3,
+					"csv_max_cols": 3
+				}
+			}
+		},
+		{
+			"type": "file_service",
+			"input": {
+				"method": "read",
+				"filename": "notes/todo.txt"
+			}
+		},
+		{
+			"type": "file_service",
+			"input": {
+				"method": "write",
+				"filename": "plans/next_steps.md",
+				"content": "# Next steps\n- collect data\n- run baseline"
+			}
+		},
+		{
+			"type": "file_service",
+			"input": {
+				"method": "list"
+			}
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "file_service",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"method": {
+							"type": "string",
+							"enum": ["uploadAndValidate", "write", "read", "list"],
+							"description": "Explicit operation: uploadAndValidate (prompts user upload then validate), write (create/overwrite), read (preview text file), or list (list workspace files). Optional; defaults to inference if omitted."
+						},
+						"filename": {
+							"type": "string",
+							"description": "Optional desired save name under workspace; if omitted, the uploaded file name is used. For read/write, still required.",
+							"nullable": true
+						},
+						"content": {
+							"type": "string",
+							"description": "Content to write into the file; if omitted and filename is provided, the agent will try to read the file.",
+							"nullable": true
+						},
+						"validation": {
+							"type": "object",
+							"description": "Optional validation rules for an already-uploaded file (front-end saves file under the workspace before calling this). When provided, the agent validates instead of saving or reading.",
+							"properties": {
+								"allowed_extensions": {
+									"type": "array",
+									"items": { "type": "string" },
+									"description": "Allowed file extensions (e.g., ['csv', 'txt']). Dots are optional."
+								},
+								"csv_headers": {
+									"type": "array",
+									"items": { "type": "string" },
+									"description": "Expected CSV header row; must match exactly if provided."
+								},
+								"csv_min_rows": { "type": "integer", "minimum": 0, "description": "Minimum data rows allowed (excludes header)." },
+								"csv_max_rows": { "type": "integer", "minimum": 0, "description": "Maximum data rows allowed (excludes header)." },
+								"csv_min_cols": { "type": "integer", "minimum": 0, "description": "Minimum column count allowed." },
+								"csv_max_cols": { "type": "integer", "minimum": 0, "description": "Maximum column count allowed." }
+							},
+							"additionalProperties": true,
+							"nullable": true
+						}
+					}
+				}
+			}
+		}
+	},
+	"merge_csv_files": {
+		"intro": "Merge multiple CSV files with identical headers: verify existence and header consistency, concatenate them vertically, remove duplicates, optionally limit the number of data rows, and save the merged result. Returns the new filename and output dimensions.",
+		"examples": [
+		{
+			"csv_files": ["file1.csv", "file2.csv"],
+			"line_num": 100
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "merge_csv_files",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"csv_files": {
+							"type": "array",
+							"description": "List of CSV filenames to merge (must exist in the predefined directory).",
+							"items": { "type": "string" },
+							"minItems": 1
+						},
+						"line_num": {
+							"type": "integer",
+							"description": "(Optional) Limit the number of data rows (excluding header). Defaults to include all.",
+							"minimum": 1
+						}
+					},
+					"required": ["csv_files"]
+				}
+			}
+		}
+	},
+	"ratio_generator": {
+		"intro": "Generate reagent volume tables (mL) based on a fixed base volume (default 50 mL) or load an existing percentage table. Supports stepwise enumeration or random sampling, and allows appending fixed-volume reagent columns. Ensure the total reagent volume does not exceed 30 mL (to be validated manually).",
+		"examples": [
+		{
+			"steps": [
+			{ "action": "add_reagent", "reagent": "HCl", "value": 5 },
+			{
+				"action": "ratio",
+				"reagents": ["Co", "Ni", "Fe"],
+				"step": 5,
+				"min": 5,
+				"max": 35,
+				"sampling": "full",
+				"sample_n": 100,
+				"total_volume": 20
+			},
+			{ "action": "add_reagent", "reagent": "Water", "value": 5 }
+			]
+		},
+		{
+			"steps": [
+			{ "action": "ratio", "percent_csv": "ratios_percent.csv", "total_volume": 20 },
+			{ "action": "add_reagent", "reagent": "NaOH", "value": 1 }
+			]
+		},
+		{
+			"steps": [
+			{ "action": "add_reagent", "reagent": "Water", "value": 10 }
+			],
+			"rows": 96
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "ratio_generator",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"steps": {
+							"type": "array",
+							"description": "Sequential list of actions; each step is either 'ratio' or 'add_reagent'. Repetition allowed.",
+							"items": {
+								"type": "object",
+								"properties": {
+									"action": {
+										"type": "string",
+										"enum": ["ratio", "add_reagent"],
+										"description": "'ratio' generates/loads a percentage table; 'add_reagent' appends a fixed-volume column."
+									},
+									"reagents": {
+										"type": "array",
+										"items": { "type": "string" },
+										"description": "Required only for 'ratio' when generating new combinations."
+									},
+									"step": { "type": "integer", "description": "Percentage increment (for 'ratio' generation only)." },
+									"min": { "type": "integer", "description": "Minimum percentage per reagent (for 'ratio' generation only)." },
+									"max": { "type": "integer", "description": "Maximum percentage per reagent (for 'ratio' generation only)." },
+									"sampling": {
+										"type": "string",
+										"enum": ["full", "random"],
+										"description": "'full' enumerates all combinations; 'random' selects a subset (for 'ratio' only)."
+									},
+									"sample_n": { "type": "integer", "description": "If sampling='random', how many combinations to generate." },
+									"total_volume": { "type": "number", "description": "Base volume (mL) used to convert percentage to mL." },
+									"percent_csv": { "type": "string", "description": "Load an existing percentage CSV instead of generating new ratios ('ratio' only)." },
+									"reagent": { "type": "string", "description": "Reagent name to append ('add_reagent' only)." },
+									"value": { "type": "number", "description": "Fixed reagent volume in mL ('add_reagent' only)." }
+								},
+								"required": ["action"],
+								"allOf": [
+								{
+									"if": { "properties": { "action": { "const": "ratio" } } },
+									"then": {
+										"oneOf": [
+										{ "required": ["percent_csv", "total_volume"] },
+										{ "required": ["reagents", "step", "min", "max", "total_volume"] }
+										]
+									}
+								},
+								{
+									"if": { "properties": { "action": { "const": "add_reagent" } } },
+									"then": { "required": ["reagent", "value"] }
+								}
+								]
+							}
+						},
+						"rows": {
+							"type": "integer",
+							"minimum": 1,
+							"description": "Specifies the number of output rows when all steps are 'add_reagent'; not needed if any 'ratio' step exists."
+						}
+					},
+					"required": ["steps"]
+				}
+			}
+		}
+	},
+	"synthesis_expert": {
+		"intro": "Provide literature-based synthesis guidance: act like consulting a real human synthesis expert. The user must clearly describe the target compound, objectives/constraints, equipment capabilities, controllable conditions, existing methods, and uncertainties. The more context, the more accurate the guidance.",
+		"examples": [
+		{
+			"question": "I want to synthesize MOF-5 with high crystallinity using my available solvothermal reactor and automated liquid handling system. My equipment includes a programmable furnace (up to 500°C), a glovebox for inert gas work, and a UV photoreactor. I have zinc nitrate, terephthalic acid, DMF, and ethanol. I can control reaction temperature from 20–200°C and reaction time precisely. I found a general solvothermal method in literature but I am unsure about the washing and activation steps. Please provide step-by-step, literature-backed synthesis guidance adapted to my setup."
+		},
+		{
+			"question": "Continue advising on the MOF-5 synthesis optimization we discussed earlier. Please refine the activation step.",
+			"session_id": "existing-session-id"
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "synthesis_expert",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"question": {
+							"type": "string",
+							"description": "A complete synthesis request containing the target compound, goals/constraints, equipment and capabilities, available reagents, environmental control, prior attempts and results, and specific questions."
+						},
+						"session_id": {
+							"type": "string",
+							"description": "(Optional) Resume an existing RAGFlow session; omit to create a new session. The response always returns the active session_id."
+						}
+					},
+					"required": ["question"]
+				}
+			}
+		}
+	},
+	"shell_exec": {
+		"intro": "Execute a Bash command in the Agent's working directory using `bash -lc`, and return its output. Optional timeout, stdin, and environment variables supported.",
+		"examples": [],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "shell_exec",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"command": { "type": "string", "description": "The Bash command to execute (interpreted by `bash -lc`)." },
+						"timeout_s": { "type": "integer", "description": "Optional timeout in seconds (default 120).", "nullable": true },
+						"stdin": { "type": "string", "description": "Optional standard input.", "nullable": true },
+						"env": {
+							"type": "object",
+							"description": "Optional additional environment variables.",
+							"additionalProperties": { "type": "string" },
+							"nullable": true
+						}
+					},
+					"required": ["command"]
+				}
+			}
+		}
+	},
+	"synthesis_robot": {
+		"intro": "Execute synthesis steps through predefined robotic workstations: solution-preparation / centrifuge-purification / ultrasonic-treatment / oven-station / electrochemistry-station. Each step must include step_id, workstation_id, matching parameters, and batch_time_s. Parameter fields must exactly match the corresponding workstation definition. Workstations may be repeated or omitted.",
+		"examples": [],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "synthesis_robot",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"steps": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"step_id": { "type": "integer" },
+									"workstation_id": {
+										"type": "string",
+										"enum": [
+										"solution-preparation",
+										"centrifuge-purification",
+										"ultrasonic-treatment",
+										"oven-station",
+										"electrochemistry-station"
+										]
+									},
+									"batch_time_s": { "type": "integer" },
+									"parameters": { "type": "object" }
+								},
+								"required": ["step_id", "workstation_id", "parameters", "batch_time_s"],
+								"allOf": [
+								{
+									"if": { "properties": { "workstation_id": { "const": "solution-preparation" } } },
+									"then": {
+										"properties": {
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"ratio_table": { "type": "string" },
+													"tube_cap_state": { "type": "boolean" },
+													"mixing_time_min": { "type": "integer" }
+												},
+												"required": ["ratio_table", "mixing_time_min", "tube_cap_state"]
+											}
+										}
+									}
+								},
+								{
+									"if": { "properties": { "workstation_id": { "const": "centrifuge-purification" } } },
+									"then": {
+										"properties": {
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"speed_rpm": { "type": "integer" },
+													"duration_min": { "type": "integer" },
+													"wash_times": { "type": "integer" },
+													"retain_phase": { "type": "string", "enum": ["supernatant", "precipitate"] }
+												},
+												"required": ["speed_rpm", "duration_min", "retain_phase", "wash_times"]
+											}
+										}
+									}
+								},
+								{
+									"if": { "properties": { "workstation_id": { "const": "ultrasonic-treatment" } } },
+									"then": {
+										"properties": {
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"duration_min": { "type": "integer" },
+													"power": { "type": "string", "enum": ["low", "medium", "high"] }
+												},
+												"required": ["duration_min", "power"]
+											}
+										}
+									}
+								},
+								{
+									"if": { "properties": { "workstation_id": { "const": "oven-station" } } },
+									"then": {
+										"properties": {
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"duration_min": { "type": "integer" },
+													"temperature_C": { "type": "integer" }
+												},
+												"required": ["duration_min", "temperature_C"]
+											}
+										}
+									}
+								},
+								{
+									"if": { "properties": { "workstation_id": { "const": "electrochemistry-station" } } },
+									"then": {
+										"properties": {
+											"parameters": {
+												"type": "object",
+												"properties": {
+													"test_types": {
+														"type": "array",
+														"items": { "type": "string", "enum": ["CV", "LSV", "EIS"] }
+													}
+												},
+												"required": ["test_types"]
+											}
+										}
+									}
+								}
+								]
+							}
+						}
+					},
+					"required": ["steps"]
+				}
+			}
+		}
+	},
+		"ml_training_agent": {
+		"intro": "Merge the percentage ratio CSV and performance CSV (with 'Index'/'Performance' columns) by Index, normalize data, and perform model training and prediction. Requires the user to upload 'theoretical_xlsx' (with sheets: 'metals' and 'params') beforehand. Output file: predict_percent_{uuid}.csv. The 'iteration' parameter starts at 0 and increments per round.",
+		"examples": [
+		{
+			"ratio_percent_csv": "ratios_percent_20241013.csv",
+			"performance_csv": "performance_20241013.csv",
+			"theoretical_xlsx": "theoretical.xlsx",
+			"iteration": 0
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "ml_training_agent",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"ratio_percent_csv": {
+							"type": "string",
+							"description": "Filename of the existing percentage ratio CSV (with header)."
+						},
+						"performance_csv": {
+							"type": "string",
+							"description": "Filename of the performance CSV containing 'Index' and 'Performance' columns."
+						},
+						"theoretical_xlsx": {
+							"type": "string",
+							"description": "Excel workbook containing sheets named 'metals' and 'params'. Must be uploaded and accessible before invocation."
+						},
+						"iteration": {
+							"type": "integer",
+							"description": "Iteration counter for the current training/experiment round; starts at 0 and increments by 1."
+						}
+					},
+					"required": ["ratio_percent_csv", "performance_csv", "theoretical_xlsx", "iteration"]
+				}
+			}
+		}
+	},
+	"protocol_converter": {
+		"intro": "Convert manual experimental steps into automated robotic workflow steps. Uses RAG to retrieve workstation capabilities and generates structured workflow steps compatible with synthesis_robot agent. Supports session_id for continuing and refining conversions across multiple requests.",
+		"examples": [
+		{
+			"manual_steps": "Prepare metal nitrate solutions and combine them, add alkaline solution in one portion, and stir vigorously for 30 minutes to complete precipitation and age at 60 °C for 24 h, centrifuge at 6000 rpm for 3 min and collect the precipitate, wash with deionized water and repeat washing–centrifugation three times, then prepare catalyst ink and perform CV/LSV tests."
+		},
+		{
+			"manual_steps": "Modify step 3 to use 90°C instead of 80°C",
+			"session_id": "existing-session-id"
+		}
+		],
+		"interface": {
+			"type": "function",
+			"function": {
+				"name": "protocol_converter",
+				"parameters": {
+					"type": "object",
+					"properties": {
+						"manual_steps": {
+							"type": "string",
+							"description": "Manual experimental procedure description to be converted into automated workflow steps. Should include all relevant details: reagents, volumes, temperatures, times, operations, etc."
+						},
+						"session_id": {
+							"type": "string",
+							"description": "(Optional) Resume an existing conversion session; omit to create a new session. The response always returns the active session_id for continuing the conversation."
+						}
+					},
+					"required": ["manual_steps"]
+				}
+			}
+		}
+	}
+}

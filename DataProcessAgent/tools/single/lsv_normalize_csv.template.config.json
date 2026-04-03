@@ -1,0 +1,43 @@
+{
+	"code_name": "lsv_normalize_csv",
+	"tool_type": "single",
+	"comment": "### ⚖️ LSV 数据归一化工具 (Normalize)\n\n该工具是电化学数据处理的第一步，负责将**原始仪器数据**转换为**标准的科学计量单位**。\n\n#### 1. 电流密度归一化 ($j$)\n实验中测得的是绝对电流 $I$ (A/mA)，但为了对比不同尺寸电极的催化活性，我们必须除以**几何活性面积 (Geometric Area)** 或 **ECSA**：\n\n$$ j (mA/cm^2) = \\\\frac{I (mA)}{Area (cm^2)} $$\n\n#### 2. 电位校准 ($E_{RHE}$)\n仪器记录的是相对于参比电极（如 Ag/AgCl, SCE）的电位。为了与热力学理论值对比，通常需要转换为 **可逆氢电极 (RHE)** 标度：\n\n$$ E_{RHE} = E_{Ref} + E^0_{Ref} + 0.059 \\\\times pH $$\n\n- **$E^0_{Ref}$**: 参比电极的标准电位（如 Ag/AgCl 在饱和 KCl 中约为 0.197 V）。\n- **$pH$**: 电解液的 pH 值（0.059 是 25°C 下的 Nernst 斜率）。\n\n> **💡 操作提示**：\n> - 请在 `potential_offset` 参数中填入计算好的 $E^0_{Ref} + 0.059 \\\\times pH$ 值。\n> - 如果你的原始电流单位是 A（安培），请确保 `current_in_mA` 设为 `false`，工具会自动乘以 1000 转换为 mA。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV 数据 CSV 文件，一般为 `extract_csv` 工具输出的 `{basename}.csv`。"
+	},
+	{
+		"name": "potential_offset",
+		"type": "float",
+		"comment": "电位偏移量 ΔE，单位 **V**。输出电位 = 原始电位 + ΔE。"
+	},
+	{
+		"name": "area_cm2",
+		"type": "float",
+		"comment": "电极面积，单位 **cm²**。电流密度 `j = I(mA) / area_cm2`。"
+	},
+	{
+		"name": "use_abs_current",
+		"type": "bool",
+		"comment": "是否对电流取绝对值后再归一化：`true` 表示使用 |I|。"
+	},
+	{
+		"name": "current_in_mA",
+		"type": "bool",
+		"comment": "若为 `true`，则 CSV 第二列视为 **mA**；否则视为 **A** 并自动乘以 1000 转为 mA。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 的编码，默认 `utf-8`。如果遇到乱码可填写如 `gbk` 等编码名。"
+	}
+	],
+	"output_file_label": {
+		"comment": "归一化后的 LSV 数据文件标签，对应 `{basename}_lsvnorm.csv`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_lsvnorm.csv"
+	}
+}

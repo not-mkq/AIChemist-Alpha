@@ -1,0 +1,25 @@
+{
+  "17.5-找到最优点": {
+    "code_name": "csv_stat",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "y_col": {
+        "value": "过电位@10mA/cm2",
+        "comment": "列名"
+      },
+      "stat_type": {
+        "value": "min",
+        "comment": "方法"
+      },
+      "x_col": {
+        "value": "Item",
+        "comment": "X列名"
+      }
+    },
+    "result_col": "result",
+    "tool_type": "single",
+    "comment": "### 📊 CSV 统计工具 (Statistics)\n\n计算 CSV 文件中指定列的统计值（最大值、最小值、平均值、中位数）。\n\n#### ⚙️ 功能特性\n\n1.  **支持过滤**：支持 `Column@Filter == Value` 语法，仅统计满足条件的数据行。\n  - 示例：`Current(mA)@Cycle == 3` (仅统计第3圈的电流)\n2.  **坐标返回**：\n  - `max`/`min`：返回极值点对应的 X 坐标 (如峰值电位)。\n  - `mean`/`median`：返回 X 列的平均值/中位数。\n3.  **结果存储**：结果使用 `return_json` 返回，框架会自动根据 `result_col` 拆分存储为 `\\<result_col>.x`\n    和 `\\<result_col>.y`。\n\n#### 📝 参数说明\n\n- `y_col`: 要统计的目标列。支持 `Col@Filter==Val` 过滤语法。\n- `stat_type`: 统计类型 (`max`, `min`, `mean`, `median`)。\n- `x_col`: 可选 X 轴列名，用于返回关联的 X 值。"
+  }
+}

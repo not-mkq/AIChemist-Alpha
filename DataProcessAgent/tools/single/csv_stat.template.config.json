@@ -1,0 +1,41 @@
+{
+  "code_name": "csv_stat",
+  "tool_type": "single",
+  "comment": "### 📊 CSV 统计工具 (Statistics)\n\n计算 CSV 文件中指定列的统计值（最大值、最小值、平均值、中位数）。\n\n#### ⚙️ 功能特性\n\n1.  **支持过滤**：支持 `Column@Filter == Value` 语法，仅统计满足条件的数据行。\n    - 示例：`Current(mA)@Cycle == 3` (仅统计第3圈的电流)\n2.  **坐标返回**：\n    - `max`/`min`：返回极值点对应的 X 坐标 (如峰值电位)。\n    - `mean`/`median`：返回 X 列的平均值/中位数。\n3.  **结果存储**：结果使用 `return_json` 返回，框架会自动根据 `result_col` 拆分存储为 `<result_col>.x` 和 `<result_col>.y`。\n\n#### 📝 参数说明\n- `y_col`: 要统计的目标列。支持 `Col@Filter==Val` 过滤语法。\n- `stat_type`: 统计类型 (`max`, `min`, `mean`, `median`)。\n- `x_col`: 可选 X 轴列名，用于返回关联的 X 值。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "输入的 CSV 文件"
+    },
+    {
+      "name": "y_col",
+      "type": "str",
+      "comment": "要统计的目标列。支持 `Col@Filter==Val` 过滤语法，如 `Current@Cycle==3`。"
+    },
+    {
+      "name": "stat_type",
+      "type": "str_enum",
+      "choices": [
+        "max",
+        "min",
+        "mean",
+        "median"
+      ],
+      "comment": "统计类型：max (最大值), min (最小值), mean (平均值), median (中位数)。"
+    },
+    {
+      "name": "x_col",
+      "type": "optional_str",
+      "comment": "关联的 X 轴列名。用于在 max/min 时返回对应的 X 值，或在 mean/median 时计算 X 的统计值。"
+    },
+    {
+      "name": "encoding",
+      "type": "optional_str",
+      "comment": "文件编码，默认 utf-8"
+    }
+  ],
+  "result_col": {
+    "comment": "结果列前缀。例如填 `Peak`，将生成 `Peak.x`, `Peak.y`, `Peak.stat_type` 写入数据库。"
+  }
+}

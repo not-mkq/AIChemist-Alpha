@@ -1,0 +1,17 @@
+{
+  "2.3-CV圈数检测": {
+    "code_name": "cv_cycle_detect",
+    "input_label_map": {
+      "source_csv": "CV-NORM"
+    },
+    "run_params": {
+      "potential_col": "Potential (V vs. RHE)",
+      "cycle_col": "Cycle"
+    },
+    "output_file_label": "CV-NORM-CYCLE",
+    "output_pattern": "{stem}_cycle.csv",
+    "result_col": "CV_cycles",
+    "tool_type": "single",
+    "comment": "CV 曲线圈数自动检测工具：\n\n1.  识别电位翻转点，自动划分 Cycle 序号。\n2.  输出包含 Cycle 列的新 CSV 文件。"
+  }
+}

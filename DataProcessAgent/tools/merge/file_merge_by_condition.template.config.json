@@ -1,0 +1,59 @@
+{
+  "code_name": "file_merge_by_condition",
+  "tool_type": "merge",
+  "comment": "### 📂 条件文件合并工具\n\n该工具用于根据自定义的 Python 表达式筛选并合并多个文件。它通过分析文件名（遵循 merge_runtime 规范）提取 `project`, `batch`, `item` 等上下文信息，并结合用户指定的 Input Columns (`val`) 进行判断。\n\n#### 🎯 核心功能\n1. **条件筛选**：编写 Python 表达式（如 `val[0] > 0.5` 或 `'experiment' in item`）决定是否合并某个文件。\n2. **动态 Header**：在每个合并的文件内容前插入自定义 Header，支持模板变量（如 `File: {filename}, Score: {val[0]}`）。\n3. **灵活合并**：支持自定义分隔符。\n\n#### 📝 可用变量\n- `val`: 列表，对应 Input Columns (`col0`~`col4`) 的值。例如 `val[0]` 对应 `col0`。\n- `filename`: 原始文件名。\n- `project`: 项目名称。\n- `batch`: 批次名称。\n- `item`: 项目项名称（Batch 级合并时可能为空）。\n- `i`: 当前文件的索引（0-based）。",
+  "input_cols": {
+    "col0": { "comment": "变量 val[0]" },
+    "col1": { "comment": "变量 val[1]" },
+    "col2": { "comment": "变量 val[2]" },
+    "col3": { "comment": "变量 val[3]" },
+    "col4": { "comment": "变量 val[4]" }
+  },
+  "params": [
+    {
+      "name": "source_files",
+      "type": "file_label",
+      "comment": "输入文件列表（通常为 File Label）。"
+    },
+    {
+      "name": "title",
+      "type": "optional_str",
+      "comment": "汇总文件总标题（仅在文件开头写入一次）。支持 {project}, {batch} 变量。"
+    },
+    {
+      "name": "condition",
+      "type": "str",
+      "default": "True",
+      "comment": "Python 筛选表达式。可用变量: val (列表), filename, project, batch, item, i。例如: val[0] > 0.5"
+    },
+    {
+      "name": "file_header",
+      "type": "optional_str",
+      "comment": "每个文件内容前的插入头。支持模板变量 {filename}, {val[0]} 等。例如: '### Source: {filename} (Score: {val[0]})'"
+    },
+    {
+      "name": "separator",
+      "type": "str",
+      "default": "\n",
+      "comment": "文件之间的分隔符 (默认为换行符)。"
+    },
+    {
+      "name": "output_name",
+      "type": "str",
+      "default": "merged_output.txt",
+      "comment": "输出文件名。"
+    },
+    {
+      "name": "encoding",
+      "type": "str",
+      "default": "utf-8",
+      "comment": "文件编码。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "合并后的文件。"
+  },
+  "output_pattern": {
+    "comment": "{output_name}"
+  }
+}

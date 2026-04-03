@@ -1,0 +1,8 @@
+{
+  "X4-Batch XPS全流程": {
+    "code_name": "map",
+    "tool": "X3-XPS全流程",
+    "tool_type": "meta",
+    "comment": "# Map 模式 Meta Tool\n\n对某个范围内的所有项目执行指定的工具。\n\n支持的 scope: item->batch, batch->project, item->project"
+  }
+}

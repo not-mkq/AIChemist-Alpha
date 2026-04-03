@@ -1,0 +1,28 @@
+{
+	"code_name": "extract_csv",
+	"tool_type": "single",
+	"comment": "### 📂 原始数据提取工具 (Extract)\n\n这是所有数据处理的**入口**。它的作用是将电化学工作站（如 CHI, Autolab, Biologic）生成的各种格式杂乱的原始文本文件（`.txt`, `.csv`），清洗为标准的**纯数据 CSV**。\n\n#### 🛠️ 功能特性\n1.  **智能识别表头**：自动跳过文件头部的仪器参数、日期、备注等元数据，直接定位到数值区域。\n2.  **统一格式**：无论原始分隔符是逗号、分号还是制表符，输出文件统一转换为标准 CSV 格式。\n3.  **去噪**：剔除空行和非数值行。\n\n#### 📝 为什么需要这一步？\n电化学工作站导出的文件通常包含大量元数据（Header），直接导入绘图软件（如 Origin）或进行 Python 处理往往会报错。本工具相当于一个**通用适配器**，确保后续的归一化、IR 补偿等工具能接收到干净、统一的数据流。",
+	"params": [
+	{
+		"name": "source_txt",
+		"type": "file_label",
+		"comment": "原始数据文件（txt/csv），例如仪器导出的 LSV/CA/CP 等原始文本。"
+	},
+	{
+		"name": "start_line",
+		"type": "optional_int",
+		"comment": "手动指定数据起始行（1-based）。为空时则自动从上往下寻找“第一个像数据的行”。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "文件编码，默认 `utf-8`。如遇到乱码，可手动填入 `gbk` 等编码名称。"
+	}
+	],
+	"output_file_label": {
+		"comment": "生成的标准 CSV 文件标签。"
+	},
+	"output_pattern": {
+		"comment": "输出文件名模板。示例：{stem}.csv"
+	}
+}

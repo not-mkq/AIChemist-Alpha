@@ -1,0 +1,26 @@
+{
+  "0-XLS转CSV": {
+    "code_name": "excel_to_csv",
+    "input_label_map": {
+      "source_excel": [
+        "XPS0h",
+        "XPS12h",
+        "XPS24h"
+      ]
+    },
+    "run_params": {
+      "sheet_keyword": {
+        "value": "Binding Energy (E)",
+        "comment": "keywords"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-CSV",
+      "XPS12h-CSV",
+      "XPS24h-CSV"
+    ],
+    "output_pattern": "{stem}.csv",
+    "tool_type": "single",
+    "comment": "### 📄 Excel 转 CSV 工具 (Converter)\n\n将 Excel 文件（.xls, .xlsx）中的特定工作表（Sheet）转换为标准的 CSV 格式，并进行基础数据清洗。\n\n#### ⚙️ 功能特性\n\n1.  **指定工作表**：仅提取用户指定的 Sheet，避免无关数据的干扰。\n2.  **自动去空**：自动识别并删除文件中的**全空行**，确保数据紧凑。\n3.  **格式兼容**：支持旧版 `.xls` 和新版 `.xlsx` 格式。\n\n#### 📝 参数说明\n\n- `source_excel`: 输入的 Excel 文件。\n- `sheet_name`: 要转换的工作表名称（必填，区分大小写）。\n- `encoding`: 输出 CSV 的编码，通常建议使用 `utf-8`。"
+  }
+}

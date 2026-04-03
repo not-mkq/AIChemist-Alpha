@@ -1,0 +1,14 @@
+{
+  "4-Calc_Overpotential_at_10mA": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": {
+        "value": "{Onset_Potential(V)@10mA/cm2} - {Equilibrium_Potential(V)}",
+        "comment": "Formula"
+      },
+      "value_type": "float"
+    },
+    "result_col": "Overpotential@10mA/cm2",
+    "tool_type": "single"
+  }
+}

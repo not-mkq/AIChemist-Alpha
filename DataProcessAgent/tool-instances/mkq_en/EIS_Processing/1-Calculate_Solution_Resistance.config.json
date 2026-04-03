@@ -1,0 +1,23 @@
+{
+  "1-Calculate_Solution_Resistance": {
+    "code_name": "ir_from_eis_csv",
+    "input_label_map": {
+      "source_eis": "EIS1-CSV"
+    },
+    "run_params": {
+      "ir_method": {
+        "value": "mean_high_freq",
+        "comment": "Estimation Method"
+      },
+      "z_imag_max_abs": {
+        "value": 5.0,
+        "comment": "Max Allowed |Z_imag| (Ω)"
+      }
+    },
+    "output_file_label": "IR-QUALITY",
+    "output_pattern": "{stem}_ir_quality.json",
+    "result_col": "Solution_Resistance(Ohm)",
+    "tool_type": "single",
+    "comment": "### 🍵 EIS Solution Resistance Extraction ($R_s$)\n\nPrerequisite for IR compensation. Extracts system ohmic resistance by analyzing the real-axis intercept in the high-frequency region (left side of Nyquist plot).\n\n#### 💡 Physical Background\nAt high frequency limits, impedance is mainly electrolyte conductivity, electrode intrinsic resistance, and contact resistance. We define this real part as solution resistance $R_s$.\n\n#### ⚙️ Algorithm Guide (`ir_method`)\n1. **High Freq Mean (`mean_high_freq`)**\n   - **Logic**: Average of top $N$ highest frequency points.\n   - **Use**: Clean data, flat high-freq region.\n   - **Drawback**: Inductance (cable effect) might push Nyquist to 4th quadrant ($Z'' < 0$), causing falsely high $Z'$.\n\n2. **Min Modulus (`mean_low_Z`)**\n   - **Logic**: Find point with min modulus $|Z|$ (closest to origin).\n   - **Use**: **Recommended for data with high-freq inductance**.\n   - **Params**: Set `z_imag_max_abs` threshold (e.g. $5\\\\Omega$) to avoid picking low-freq points.\n\n> **💡 Tip**: Default is `mean_high_freq`. If results are too large or inductance is present, switch to `mean_low_Z`."
+  }
+}

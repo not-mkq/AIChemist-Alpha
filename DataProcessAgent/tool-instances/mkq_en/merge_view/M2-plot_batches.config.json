@@ -1,0 +1,46 @@
+{
+  "M2-plot_batches": {
+    "code_name": "json_merge_plot_points",
+    "input_label_map": {
+      "source_jsons": "RESULT-JSON"
+    },
+    "run_params": {
+      "fig_width": {
+        "value": 15.0,
+        "comment": "W"
+      },
+      "fig_height": {
+        "value": 6.0,
+        "comment": "H"
+      },
+      "title": {
+        "value": "Results of batches",
+        "comment": "title"
+      },
+      "xlabel": {
+        "value": "Item",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "Potential",
+        "comment": "ylabel"
+      },
+      "plot_grid": true,
+      "show_legend": true,
+      "show_xticks": false,
+      "show_yticks": true,
+      "column_by": "batch",
+      "share_x": false,
+      "share_y": true,
+      "facet_wspace": 0.0,
+      "facet_title_template": "Batch: {val}",
+      "facet_title_loc": "inside top left",
+      "y_axis_from_zero": false,
+      "legend_sort": "High*,Mid*,*0,*1,*2,*3,*4,*5,*6,*7,*8"
+    },
+    "output_file_label": "PRJ-RESULT",
+    "output_pattern": "prj.png",
+    "tool_type": "merge",
+    "comment": "标点渲染器 (Merge版)：在 Batch 或 Project 级别读取包含坐标和样式信息的 JSON 文件，并将其汇总绘制在图表上。"
+  }
+}

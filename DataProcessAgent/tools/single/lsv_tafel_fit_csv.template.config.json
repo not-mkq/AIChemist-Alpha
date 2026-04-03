@@ -1,0 +1,43 @@
+{
+	"code_name": "lsv_tafel_fit_csv",
+	"tool_type": "single",
+	"comment": "### 📉 Tafel 斜率拟合工具 (Tafel Slope)\n\nTafel 斜率 ($b$) 是评价电催化反应**动力学快慢**的核心参数，反映了电流密度随过电位增加的速率。\n\n#### 💡 物理原理\n根据 Tafel 方程：\n$$ \\\\eta = a + b \\\\times \\\\log_{10}(j) $$\n\n- **$b$ (Tafel Slope)**: 斜率越小，说明过电位稍微增加就能带来电流的大幅提升，催化剂动力学性能越好。\n- **决速步 (RDS) 指示**：不同的 $b$ 值（如 30, 40, 120 mV/dec）通常对应不同的反应决速步骤（如 Volmer, Heyrovsky, Tafel 步骤）。\n\n#### 🛠️ 操作指南\n1.  **区间选择 (`tafel_range`)**: Tafel 线性区通常位于**低过电位、低电流密度**区域（传质控制尚未主导）。建议选择 $1 \\\\sim 10 mA/cm^2$ 或更小的区间。\n2.  **电位源**: 强烈建议选择 `ir` (IR补偿后)，否则欧姆电阻会导致 Tafel 斜率虚高。\n\n> **输出说明**:\n> - 工具会生成详细的 JSON 报告，包含拟合优度 $R^2$、截距 $a$ 等信息。\n> - 主返回值为斜率 $b$ (mV/dec)。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV CSV，可为补偿前或补偿后的版本，电流密度单位为 A/cm²。"
+	},
+	{
+		"name": "potential_source",
+		"type": "str_enum",
+		"choices": ["raw", "ir"],
+		"comment": "选择 Tafel 拟合使用的电位列来源：raw 使用 potential_V，ir 使用 potential_ir_V（必须存在，否则报错）。"
+	},
+	{
+		"name": "tafel_range",
+		"type": "optional_str",
+		"comment": "用于 Tafel 拟合的电流密度范围，**输入单位为 mA/cm²**，例如 \"1-10\" 表示 1~10 mA/cm²；留空则使用所有正电流点。"
+	},
+	{
+		"name": "use_abs_current",
+		"type": "optional_bool",
+		"comment": "是否对电流取绝对值后再使用 log10。适合阴极电流为负的情况，默认 true。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 编码，默认 `utf-8`。"
+	}
+	],
+	"result_col": {
+		"name": "tafel_slope_mV_per_dec",
+		"comment": "Tafel 斜率，单位 mV/dec，是本工具的主返回值。"
+	},
+	"output_file_label": {
+		"comment": "Tafel 拟合 JSON 报告文件标签，对应 `{basename}_tafel_report.json`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_tafel_report.json"
+	}
+}

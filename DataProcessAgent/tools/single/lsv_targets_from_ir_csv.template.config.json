@@ -1,0 +1,36 @@
+{
+	"code_name": "lsv_targets_from_ir_csv",
+	"tool_type": "single",
+	"comment": "从已做 IR 补偿的 LSV 曲线 CSV（三列：电位、电流、电位_IR）中提取目标电流密度下的 **IR 补偿电位**。\n\n- 输入：通常为 `lsv_ir_compensate_csv` 输出的 `{basename}_ir.csv`，至少包含三列，例如 `potential_V,current_density_mAcm2,potential_ir_V`\n- 参数：`target_current` 形如 \"10\" 或 \"5,10\"；`use_abs_current` 控制是否按 |j| 匹配\n- 输出：`{stem}_targets.csv`，包含 `target_current_mAcm2,potential_ir_V`；result_col 中保存一个 JSON 对象，字段名类似 `potential_ir_10mAcm2`。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV IR 补偿 CSV 文件，一般为 `lsv_ir_compensate_csv` 输出的 `{basename}_ir.csv`。"
+	},
+	{
+		"name": "target_current",
+		"type": "str",
+		"comment": "目标电流密度列表(mA/cm2)，逗号分隔，例如 \"10\" 或 \"5,10\"。单位：mA/cm²。"
+	},
+	{
+		"name": "use_abs_current",
+		"type": "bool",
+		"comment": "是否按 |j| 匹配目标电流（适用于阴极/阳极统一处理），默认 true。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 的编码，默认 `utf-8`。如遇到乱码，可手动填写 `gbk` 等。"
+	}
+	],
+	"output_file_label": {
+		"comment": "目标电流对应的 IR 补偿电位 targets CSV 文件标签，对应 `{stem}_targets.csv`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_targets_ir.csv"
+	},
+	"result_col": {
+		"comment": "lsv_targets_from_ir_csv"
+	}
+}

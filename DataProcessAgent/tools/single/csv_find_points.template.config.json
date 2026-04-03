@@ -1,0 +1,129 @@
+{
+  "code_name": "csv_find_points",
+  "tool_type": "single",
+  "comment": "从 CSV 中提取特征点（最大值、峰值等）并生成包含坐标和样式信息的 JSON。支持通配符列匹配和基于 Python 表达式的动态样式。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "输入 CSV 文件。"
+    },
+    {
+      "name": "x_col",
+      "type": "str",
+      "comment": "X 轴列名（不支持通配符）。"
+    },
+    {
+      "name": "y_col",
+      "type": "str",
+      "comment": "Y 轴列名。支持通配符 (*) 和过滤器 (@Col==Val)。"
+    },
+    {
+      "name": "find_type",
+      "type": "str_enum",
+      "choices": ["max", "min", "peak", "valley", "val_x", "val_y"],
+      "comment": "查找类型：max(最大), min(最小), peak(峰值), valley(谷值), val_x(指定X), val_y(指定Y)。"
+    },
+    {
+      "name": "find_param",
+      "type": "optional_str",
+      "comment": "查找参数。如 val_x 的目标值，或 peak 的窗口大小 (默认 1)。"
+    },
+    {
+      "name": "custom_labels",
+      "type": "optional_str",
+      "comment": "自定义标签列表（逗号分隔）。按顺序分配给每列找到的特征点（每列独立计数）。"
+    },
+    {
+      "name": "legend_label",
+      "type": "optional_str",
+      "comment": "Legend 文本模板。支持 {x}, {y}, {col}, {match}, {custom} 等变量。"
+    },
+    {
+      "name": "label_text",
+      "type": "optional_str",
+      "comment": "标签文本模板。支持 {x}, {y}, {custom}, {match} 等变量。默认 '{custom}: {y:.2f}'。"
+    },
+    {
+      "name": "label_color",
+      "type": "optional_str",
+      "comment": "标签颜色。支持 Python 表达式 (以 = 开头)，如 \"= 'red' if y > 0 else 'blue'\"。"
+    },
+    {
+      "name": "font_family",
+      "type": "optional_str",
+      "comment": "字体名称。"
+    },
+    {
+      "name": "font_size",
+      "type": "optional_str",
+      "comment": "字体大小。"
+    },
+    {
+      "name": "label_anchor",
+      "type": "optional_str",
+      "comment": "标签方位 (e.g. north, south east)。"
+    },
+    {
+      "name": "label_offset",
+      "type": "optional_str",
+      "comment": "标签偏移 (e.g. '10,10')。"
+    },
+    {
+      "name": "bbox_style",
+      "type": "optional_str",
+      "comment": "边框样式 (e.g. round, square)。"
+    },
+    {
+      "name": "bbox_facecolor",
+      "type": "optional_str",
+      "comment": "边框背景色。"
+    },
+    {
+      "name": "bbox_edgecolor",
+      "type": "optional_str",
+      "comment": "边框线条色。"
+    },
+    {
+      "name": "bbox_linewidth",
+      "type": "optional_str",
+      "comment": "边框线条粗细。"
+    },
+    {
+      "name": "bbox_alpha",
+      "type": "optional_str",
+      "comment": "边框透明度。"
+    },
+    {
+      "name": "marker_style",
+      "type": "optional_str",
+      "comment": "标记点形状 (e.g. o, x, ^)。"
+    },
+    {
+      "name": "marker_color",
+      "type": "optional_str",
+      "comment": "标记点颜色。"
+    },
+    {
+      "name": "marker_size",
+      "type": "optional_str",
+      "comment": "标记点大小。"
+    },
+    {
+      "name": "arrow_style",
+      "type": "optional_str",
+      "comment": "箭头样式 (e.g. ->)。"
+    },
+    {
+      "name": "arrow_color",
+      "type": "optional_str",
+      "comment": "箭头颜色。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "提取出的特征点 JSON 文件。"
+  },
+  "output_pattern": {
+    "comment": "输出文件名模式，例如 {stem}_points.json"
+  }
+}

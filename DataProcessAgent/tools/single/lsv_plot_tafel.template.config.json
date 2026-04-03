@@ -1,0 +1,103 @@
+{
+	"code_name": "lsv_plot_tafel",
+	"tool_type": "single",
+	"comment": "根据 LSV / Tafel 区间 CSV 数据绘制 Tafel 图，并同时绘制拟合直线。\n\n- 输入 CSV 中的电流密度单位为 **A/cm²**\n- 工具内部自动换算为 **mA/cm²**，用于 log(j) 和 tafel_range 过滤\n- x 轴为 log(j)（j in mA/cm²），y 轴为电位\n- 可选择使用 IR 补偿前/后的电位列\n- 内部自动进行线性拟合，图例中显示斜率 (mV/dec) 和 R²\n- 可选传入 Rs，仅用于标题显示 `(Rs=xx Ω)`，不参与计算\n- 可选 `tafel_range`（如 `1-10`），按 |j| (mA/cm²) 区间裁剪数据后再拟合 / 绘图\n- 画布尺寸和 dpi 对应 `plt.subplots(figsize=(fig_width, fig_height), dpi=dpi)`。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "Tafel 数据 CSV 文件，一般为前置 Tafel 拟合 / 区间裁剪工具输出。要求包含电位列（potential_V 或 potential_ir_V）和电流密度列（单位 A/cm²）。"
+	},
+	{
+		"name": "use_ir_potential",
+		"type": "bool",
+		"comment": "是否使用 IR 补偿后的电位列（potential_ir_V / potential_ir）。true 为使用 IR 电位，false 为使用原始电位。"
+	},
+	{
+		"name": "r_solution_ohm",
+		"type": "optional_from_result",
+		"comment": "（可选）溶液电阻 R_solution，单位 Ω，仅用于在标题中显示 `(Rs=xx Ω)`，不参与拟合计算。可通过 from_result 连接 `ir_from_eis_csv` 或其他工具的结果列。"
+	},
+	{
+		"name": "tafel_range",
+		"type": "optional_str",
+		"comment": "（可选）按 |j| 范围裁剪数据后再拟合 / 绘图，例如 `1-10` 表示仅使用 |j| 在 1~10 mA/cm² 之间的数据点。注意：此区间的单位为 **mA/cm²**，工具内部会将 CSV 中的 A/cm² 换算为 mA/cm² 后进行比较。"
+	},
+	{
+		"name": "xlabel",
+		"type": "optional_str",
+		"comment": "横轴标签，默认 `log(j) [j in mA/cm²]`。"
+	},
+	{
+		"name": "ylabel",
+		"type": "optional_str",
+		"comment": "纵轴标签，默认 `Potential (V)`。"
+	},
+	{
+		"name": "title",
+		"type": "optional_str",
+		"comment": "图标题，默认 `Tafel plot`。若使用 IR 电位并提供 Rs，会显示为 `Tafel plot (Rs=xx Ω)`。"
+	},
+	{
+		"name": "font",
+		"type": "optional_str",
+		"comment": "字体族，默认 `Arial`。"
+	},
+	{
+		"name": "fontsize",
+		"type": "optional_int",
+		"comment": "字体大小，默认 12。"
+	},
+	{
+		"name": "line_color",
+		"type": "optional_str",
+		"comment": "数据点边框颜色，例如 `blue`、`#1f77b4`。"
+	},
+	{
+		"name": "line_width",
+		"type": "optional_float",
+		"comment": "拟合线线宽，默认 2.0。"
+	},
+	{
+		"name": "marker",
+		"type": "optional_str",
+		"comment": "数据点标记样式，例如 `o`、`s` 等。默认 `o`。"
+	},
+	{
+		"name": "marker_size",
+		"type": "optional_float",
+		"comment": "数据点标记尺寸，默认 4.0。"
+	},
+	{
+		"name": "plot_grid",
+		"type": "optional_bool",
+		"comment": "是否绘制网格，默认 true。"
+	},
+	{
+		"name": "fig_width",
+		"type": "optional_float",
+		"comment": "画布宽度（英寸），对应 `figsize=(fig_width, fig_height)` 中的 `width`，默认 5.0。"
+	},
+	{
+		"name": "fig_height",
+		"type": "optional_float",
+		"comment": "画布高度（英寸），对应 `figsize=(fig_width, fig_height)` 中的 `height`，默认 4.0。"
+	},
+	{
+		"name": "dpi",
+		"type": "optional_int",
+		"comment": "图像分辨率 dpi，默认 150。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 编码，默认 `utf-8`。"
+	}
+	],
+	"output_file_label": {
+		"comment": "Tafel 拟合图 PNG 文件标签。使用 IR 电位时命名为 `{parent}_{stem}_Tafel_fit_IR.png`，否则为 `{parent}_{stem}_Tafel_fit.png`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_Tafel.png"
+	}
+}

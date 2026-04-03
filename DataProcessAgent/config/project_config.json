@@ -1,0 +1,5 @@
+{
+  "profile": "mkq_en",
+  "max_workers": 16,
+  "parallel_map": true
+}

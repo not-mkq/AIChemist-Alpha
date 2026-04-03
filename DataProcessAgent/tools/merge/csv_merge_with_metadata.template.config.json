@@ -1,0 +1,44 @@
+{
+  "code_name": "csv_merge_with_metadata",
+  "tool_type": "merge",
+  "comment": "### 🔗 CSV 多文件合并工具 (Merge版)\n\n该工具用于在 Batch 或 Project 级别合并子级文件。它除了支持自动颜色渐变外，还能直接从数据库结果表中提取数值并作为新列注入合并后的 CSV 中。\n\n#### 📊 结果列注入 (Input Column)\n通过 `input_cols` 配置，你可以选择子级（如 Item）已有的结果列（如起始电位、峰值电流等），工具会将这些数值自动对齐并作为新列写入合并文件中。",
+  "input_cols": {
+    "extra_col_data": { "comment": "要注入合并文件的结果列数据" }
+  },
+  "params": [
+    {
+      "name": "source_csvs",
+      "type": "file_label",
+      "comment": "输入 CSV 标签。工具会自动收集所有子级的匹配文件。"
+    },
+    {
+      "name": "metadata_list",
+      "type": "str",
+      "comment": "逗号分隔的标签或颜色列表（用于渐变）。"
+    },
+    {
+      "name": "filter_query",
+      "type": "optional_str",
+      "comment": "行筛选表达式（Pandas query）。"
+    },
+    {
+      "name": "new_col_name",
+      "type": "optional_str",
+      "comment": "主元数据列名（默认为 Metadata）。"
+    },
+    {
+      "name": "extra_col_name", 
+      "type": "optional_str", 
+      "comment": "注入结果列在合并 CSV 中的列名。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "合并后的 CSV 标签。"
+  },
+  "output_pattern": {
+    "comment": "merged_data.csv"
+  },
+  "result_col": {
+    "comment": "运行状态列。"
+  }
+}

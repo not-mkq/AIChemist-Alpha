@@ -1,0 +1,56 @@
+{
+  "X3-Vertical_Merge_Plotting": {
+    "code_name": "json_plot_points",
+    "input_label_map": {
+      "source_json": "XPS0h-JSON,XPS12h-JSON,XPS24h-JSON"
+    },
+    "run_params": {
+      "plot_grid": true,
+      "fig_width": {
+        "value": 6.0,
+        "comment": "Fig Width"
+      },
+      "fig_height": {
+        "value": 5.0,
+        "comment": "Fig Height"
+      },
+      "show_legend": {
+        "value": true,
+        "comment": "Show Legend"
+      },
+      "show_xticks": true,
+      "show_yticks": true,
+      "x_scale": "linear",
+      "y_scale": "linear",
+      "row_by": "attr",
+      "share_x": true,
+      "share_y": false,
+      "facet_wspace": 0.0,
+      "facet_hspace": 0.0,
+      "legend_loc": {
+        "value": "outside right",
+        "comment": "Legend Loc"
+      },
+      "legend_sort": {
+        "value": "Raw*,Fit*,Main*,Sub*",
+        "comment": "Legend Sort"
+      },
+      "xlabel": {
+        "comment": "xlabel"
+      },
+      "legend_labels": {
+        "comment": "Legend Labels"
+      },
+      "title": {
+        "comment": "title"
+      },
+      "ylabel": {
+        "comment": "ylabel"
+      }
+    },
+    "output_file_label": "XPS-PNG",
+    "output_pattern": "{label_name}.png",
+    "tool_type": "single",
+    "comment": "Point Renderer: Reads JSON with coordinates/styles (single or multiple files) and plots them. Often used with csv_find_points."
+  }
+}

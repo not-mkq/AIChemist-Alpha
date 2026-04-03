@@ -1,0 +1,39 @@
+{
+	"code_name": "csv_filter_rows",
+	"tool_type": "single",
+	"comment": "### ✂️ 数据区域截取工具 (Data Trimming)\n\n精准截取电化学曲线中的目标区间，剔除干扰点或非线性区域。\n\n#### 💡 典型应用场景：\n1.  **Tafel 区间提取**：\n    - 逻辑：`` `current_density` > 0.1 and `current_density` < 1 `` (单位 $mA/cm^2$)。\n2.  **CV 对称性修正**：截取扫描循环中的特定圈数或方向。\n3.  **极化曲线去噪**：剔除起始阶段由于电双层充电产生的非稳态电流。\n\n#### 🛠️ 操作指南\n- **简单模式**：指定一列及其 `min` / `max` 范围。\n- **高级模式**：使用 Python 风格表达式，支持复杂逻辑（`and`, `or`, `not`）。\n- **列名保护**：如果列名含空格或特殊字符，请使用反引号，如 `` `Potential (V)` ``。",
+	"params": [
+		{
+			"name": "input_file",
+			"type": "file_label",
+			"comment": "输入 CSV 文件。"
+		},
+		{
+			"name": "column",
+			"type": "optional_str",
+			"comment": "（模式1）用于筛选的列名。"
+		},
+		{
+			"name": "min_val",
+			"type": "optional_float",
+			"comment": "（模式1）该列的最小值。"
+		},
+		{
+			"name": "max_val",
+			"type": "optional_float",
+			"comment": "（模式1）该列的最大值。"
+		},
+		{
+			"name": "expression",
+			"type": "str",	
+			"comment": "逻辑表达式。示例：`Current (mA) > 0 and Potential (V) < 0.5`。列名含特殊字符可用反引号：`` `Pot (V)` > 0 ``。"
+		}
+	],
+	"output_file_label": {
+		"comment": "筛选后的数据文件 (CSV)"
+	},
+	"output_pattern": {
+		"comment": "输出文件名模板。示例：{stem}_filtered.csv"
+	}
+}
+		

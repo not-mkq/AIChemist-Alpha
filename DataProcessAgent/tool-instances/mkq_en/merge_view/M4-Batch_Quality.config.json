@@ -1,0 +1,31 @@
+{
+  "M4-Batch_Quality": {
+    "code_name": "ai_report_from_text",
+    "input_label_map": {
+      "source_txt": "QUALITY_RPT"
+    },
+    "run_params": {
+      "prompt": {
+        "value": "You are given a data quality report for experimental data organized by batches and items.\n\nProvide a very brief batch-level summary of data quality.\nOnly include key issues and critical problems.\nLimit the response to 5–8 bullet points.\n\nRespond in English only.\nIf no items are shown, all data meet the quality requirement.",
+        "comment": "Prompt"
+      },
+      "api_url": {
+        "value": "https://api.openai.com/v1/chat/completions",
+        "comment": "url"
+      },
+      "api_key": {
+        "value": "***REDACTED**",
+        "comment": "key"
+      },
+      "model": {
+        "value": "gpt-4o",
+        "comment": "model"
+      },
+      "output_suffix": "_rpt.md"
+    },
+    "output_file_label": "QUALITY_RPT_FINAL",
+    "output_pattern": "{stem}_airpt.md",
+    "tool_type": "single",
+    "comment": "### ✍️ AI 数据文本总结 (Textual AI)\n\n将分散的实验数据、拟合参数或报错日志汇总，生成结构化的研究简报。\n\n#### 🧪 典型工作流：\n\n1.  **数据聚合**：先运行 `lsv_tafel_fit_csv` 等工具生成 JSON 报告。\n2.  **文本生成**：使用本工具读取 JSON 内容，让 AI 提取关键指标（如 $b < 60 mV/dec$）。\n3.  **决策辅助**：让 AI 判断该催化剂是否值得进行下一步的长效测试。\n\n> **⚙️ 参数说明**：\n> \n> - `source_txt` 支持任意纯文本格式（`.json`, `.txt`, `.log`, `.md`）。\n> - 输出文件自动添加 Markdown 后缀，方便直接渲染阅读。\n>"
+  }
+}

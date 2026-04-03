@@ -1,0 +1,47 @@
+{
+  "1-ECSA_Plotting": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "ECSA-MERGED-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Potential/V",
+        "comment": "X-Axis"
+      },
+      "y0_col": {
+        "value": "Current/A",
+        "comment": "Y-Axis"
+      },
+      "xlabel": {
+        "value": "Current/A",
+        "comment": "x label"
+      },
+      "ylabel": {
+        "value": "Potential/V",
+        "comment": "y label"
+      },
+      "title_template": {
+        "value": "ECSA of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "Font"
+      },
+      "y0_style": "blue,2,-",
+      "split_by_col": {
+        "value": "扫速(mV/s)",
+        "comment": "Split By Column"
+      },
+      "split_by_legend_template": {
+        "value": "扫速: {val} (mV/s)",
+        "comment": "Legend"
+      }
+    },
+    "output_file_label": "ECSA-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by specifying column names.\n\n【Features】\n\n1. Comparison: Plot up to 5 curves (y0 to y4).\n2. Auto-Marking: Automatically find points on curves at specified X positions.\n3. Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

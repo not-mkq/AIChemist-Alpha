@@ -1,0 +1,8 @@
+{
+  "1-Batch_Convert_XLS": {
+    "code_name": "map",
+    "tool": "0-XLS_to_CSV",
+    "tool_type": "meta",
+    "comment": "# Map Mode Meta Tool\n\nExecutes the specified tool for all items within a scope.\n\nSupported scopes: item->batch, batch->project, item->project"
+  }
+}

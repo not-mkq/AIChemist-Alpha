@@ -1,0 +1,162 @@
+{
+  "X1.2-XPS24h提取数据系列": {
+    "code_name": "csv_extract_series",
+    "input_label_map": {
+      "source_csv": "XPS24h-CLEAN"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X轴"
+      },
+      "y_col": {
+        "value": [
+          "*_A*,!Residuals,!BE@BG!=0",
+          "*_B*,!Residuals,!BE@BG!=0",
+          "*_C*,!Residuals,!BE@BG!=0",
+          "*_D*,!Residuals,!Raw_Data,!BE@BG!=0",
+          "*_E*,!Residuals,!BE@BG!=0",
+          "BG@BG!=0",
+          "Fit_Total@BG!=0",
+          "Raw_Data@BG!=0"
+        ],
+        "comment": [
+          "Y轴A系列",
+          "Y轴B系列",
+          "Y轴C系列",
+          "Y轴D系列",
+          "Y轴E系列",
+          "背景",
+          "总拟合",
+          "原始数据"
+        ]
+      },
+      "plot_type": {
+        "value": "line",
+        "comment": "绘图风格"
+      },
+      "color": {
+        "value": [
+          "#F29395",
+          "#9388C4",
+          "#3CA4F0",
+          "orange",
+          "yellow",
+          "black",
+          "red",
+          "black"
+        ],
+        "comment": [
+          "绘图A颜色",
+          "绘图B颜色",
+          "绘图C颜色",
+          "绘图D颜色",
+          "绘图E颜色",
+          "背景颜色",
+          "总拟合线颜色",
+          "原始数据颜色"
+        ]
+      },
+      "linewidth": {
+        "value": [
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1.5",
+          "1",
+          "2",
+          "1"
+        ],
+        "comment": [
+          "绘图A线宽",
+          "绘图B线宽",
+          "绘图C线宽",
+          "绘图D线宽",
+          "绘图E线宽",
+          "背景线宽",
+          "拟合线宽",
+          "原始数据线宽"
+        ]
+      },
+      "linestyle": {
+        "value": [
+          "-",
+          "-",
+          "-",
+          "-",
+          "-",
+          ":",
+          "-",
+          "-."
+        ],
+        "comment": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          "背景数据线形",
+          "拟合数据线形",
+          "原始数据线形"
+        ]
+      },
+      "zorder": {
+        "value": "5",
+        "comment": "绘图层级"
+      },
+      "fill_baseline": {
+        "value": "!!(BG)",
+        "comment": "填充基线"
+      },
+      "fill_alpha": {
+        "value": [
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          "= '0.1' if 'Sat' in {match} else '0.4'",
+          null,
+          null,
+          null
+        ],
+        "comment": [
+          "填充透明度",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "fill_gradient_dir": {
+        "value": "up",
+        "comment": "渐变方向"
+      }
+    },
+    "output_file_label": [
+      "XPS24h-A",
+      "XPS24h-B",
+      "XPS24h-C",
+      "XPS24h-D",
+      "XPS24h-E",
+      "XPS24h-BG",
+      "XPS24h-FIT",
+      "XPS24h-RAW"
+    ],
+    "output_pattern": [
+      "{stem}_A.json",
+      "{stem}_B.json",
+      "{stem}_C.json",
+      "{stem}_D.json",
+      "{stem}_E.json",
+      "{stem}_BG.json",
+      "{stem}_FIT.json",
+      "{stem}_RAW.json"
+    ],
+    "tool_type": "single",
+    "comment": "### 🚀 高级曲线提取器 (Series Extractor)\n\n将 CSV 数据转化为带样式的 JSON 序列。支持动态计算、逻辑判断和自动标注。\n\n#### 💡 核心语法：\n\n1.  **字符串模板** (直接写): 使用 `{}` 引用变量。 示例: `Label: {col} (Area={area:.1f})`\n2.  **Python 表达式** (以 `=` 开头): 执行逻辑判断。示例: `Color: = 'red' if area > 100 else\n    'blue'`\n\n#### 🧪 可用变量清单：\n\n- `col`: 当前 Y 轴列名。\n- `match`: 通配符 (*) 捕获到的内容。\n- `index`: 当前处理的序列索引 (0, 1, 2...)。\n- `area`: 曲线与 Y=0 之间的积分面积 (绝对值)。\n- `max_y`, `min_y`, `mean_y`: 纵轴的最值和平均值。\n- `len`: 数据点数量。\n- `file`, `stem`: 来源文件名和主文件名。\n- `x`, `y`: (仅限标注 mark_text) 标注点处的实际坐标。\n\n#### 🛠️ 典型用法：\n\n- **动态填充**: `fill_alpha` 设为 `= 0.8 if 'Sat' in match else 0.6`。\n- **条件隐藏**: `fill_alpha` 设为 `0` 可彻底禁用该线的填充区域。\n- **自动 ID**: `series_id_template` 设为 `{col}` 以便其他曲线引用。"
+  }
+}

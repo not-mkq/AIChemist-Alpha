@@ -1,0 +1,28 @@
+{
+	"code_name": "lsv_ir_compensate_csv",
+	"tool_type": "single",
+	"comment": "### ⚡️ IR 降补偿工具 (iR-Correction)\n\n在电化学测试中，工作电极与参比电极之间存在**未补偿的溶液电阻 ($R_u$)**。当大电流通过时，会产生欧姆压降 ($iR_{drop}$)，导致测得的电位偏离真实电位。\n\n#### 💡 物理原理\n真实的电极电位 $E_{real}$ 与仪器施加/测量的电位 $E_{meas}$ 存在如下关系：\n\n$$ E_{real} = E_{meas} - I \\\\times R_u $$\n\n- **$I$**: 绝对电流 (A)。注意公式中使用安培，而通常图表使用 mA，本工具会自动处理单位换算。\n- **$R_u$**: 溶液电阻 ($\\\\Omega$)，通常通过 **EIS (交流阻抗)** 测试的高频截距点获得。\n\n#### 📉 为什么要做 IR 补偿？\n- **未补偿**：在高电流密度下，过电位会被高估（显得催化剂性能更差）。\n- **100% 补偿**：虽然理论上正确，但可能导致恒电位仪振荡（不稳）。通常在数据处理阶段进行 **100% 后处理补偿** 是最安全且准确的做法。\n\n> **操作建议**：\n> - `r_solution_ohm` 参数推荐使用 `from_result` 绑定，直接读取 EIS 分析工具计算出的 $R_s$ 值，实现全自动化处理。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV 归一化 CSV 文件，一般为 `lsv_normalize_csv` 输出的 `{basename}_lsvnorm.csv`。"
+	},
+	{
+		"name": "r_solution_ohm",
+		"type": "from_result",
+		"comment": "溶液电阻 R_solution，单位 Ω。可在实例配置中通过 from_result 连接 `ir_from_eis_csv` 生成的结果列。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 的编码，默认 `utf-8`。如遇到乱码，可手动填写 `gbk` 等编码名称。"
+	}
+	],
+	"output_file_label": {
+		"comment": "IR 补偿后的 LSV 数据文件标签，对应 `{basename}_ir.csv`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_ir.csv"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "3-Batch提取名称": {
+    "code_name": "map",
+    "tool": "2-提取元素名称",
+    "tool_type": "meta",
+    "comment": "# Map 模式 Meta Tool\n\n对某个范围内的所有项目执行指定的工具。\n\n支持的 scope: item->batch, batch->project, item->project"
+  }
+}

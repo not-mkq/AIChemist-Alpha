@@ -1,0 +1,59 @@
+{
+  "M0.6-find_best_point": {
+    "code_name": "csv_find_points",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Item",
+        "comment": "X Axis"
+      },
+      "y_col": {
+        "value": "Potential*",
+        "comment": "Y Axis"
+      },
+      "find_type": {
+        "value": "min",
+        "comment": "Filter"
+      },
+      "label_text": {
+        "value": "Best",
+        "comment": "label_text"
+      },
+      "label_anchor": "north",
+      "label_offset": {
+        "value": "0,10",
+        "comment": "label offset"
+      },
+      "marker_style": {
+        "value": "o",
+        "comment": "marker style"
+      },
+      "marker_color": {
+        "value": "red",
+        "comment": "marker color"
+      },
+      "marker_size": {
+        "value": "5",
+        "comment": "marker size"
+      },
+      "arrow_style": {
+        "value": "->",
+        "comment": "arrow"
+      },
+      "arrow_color": {
+        "value": "black",
+        "comment": "arrow color"
+      },
+      "legend_label": {
+        "value": "Best: {y:.3f}V @ Batch: {% {Batch} match \"*-*\" as aaa in aaa %}",
+        "comment": "legend_label"
+      }
+    },
+    "output_file_label": "RESULT-POINT",
+    "output_pattern": "{stem}_best.json",
+    "tool_type": "single",
+    "comment": "从 CSV 中提取特征点（最大值、峰值等）并生成包含坐标和样式信息的 JSON。支持通配符列匹配和基于 Python 表达式的动态样式。"
+  }
+}

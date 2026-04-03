@@ -1,0 +1,21 @@
+{
+  "2.6-CV_Color_by_Cycle": {
+    "code_name": "csv_column_to_color",
+    "input_label_map": {
+      "source_csv": "CV-NORM-CYCLE"
+    },
+    "run_params": {
+      "ref_col": "Cycle",
+      "colors": {
+        "value": "0.9,blue",
+        "comment": "Color Range"
+      },
+      "new_col_name": "Color",
+      "mode": "discrete"
+    },
+    "output_file_label": "CV-RAINBOW",
+    "output_pattern": "{stem}_rainbow.csv",
+    "tool_type": "single",
+    "comment": "CSV Color Mapping Tool: Interpolates colors based on reference column values.\n\n【Mapping Modes】\n\n- numeric: Linearly maps value range [min, max] to color map.\n- discrete: Maps unique sorted values equidistantly. If count matches color count, maps 1-to-1.\n- auto: Automatic. Uses numeric if column is all numbers, otherwise discrete.\n\n【Color Reference】 red, blue, green, yellow, black, white, orange, purple, pink, grey, navy, gold...\n\nDecimals can be used for grayscale.\n"
+  }
+}

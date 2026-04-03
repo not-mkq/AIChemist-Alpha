@@ -1,0 +1,13 @@
+{
+  "0-Extract_EIS1_CSV_from_TXT": {
+    "code_name": "extract_csv",
+    "input_label_map": {
+      "source_txt": "EIS-1"
+    },
+    "run_params": {},
+    "output_file_label": "EIS1-CSV",
+    "output_pattern": "{stem}.csv",
+    "tool_type": "single",
+    "comment": "### 📂 Raw Impedance Data Extraction (EIS-1)\n\nCleans raw EIS text from electrochemical workstations into standard CSV.\n\n#### 🛠️ Extraction Conventions\n- **Column Order**: Automatically reordered to `Freq/Hz`, `Z'/ohm`, `Z''/ohm`.\n- **Standardization**: Ensures correct sign for imaginary impedance (tools automatically handle absolute values from instruments).\n\n> **💡 Tip**:\n> - Generated label is `EIS1-CSV`, the unique source for subsequent Nyquist plots and $R_s$ extraction."
+  }
+}

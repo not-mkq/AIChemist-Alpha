@@ -1,0 +1,41 @@
+{
+  "4-清洗数据": {
+    "code_name": "csv_column_header_cleanup",
+    "input_label_map": {
+      "source_csv": [
+        "XPS0h-CSV",
+        "XPS12h-CSV",
+        "XPS24h-CSV"
+      ]
+    },
+    "run_params": {
+      "match_mode": "regex",
+      "float_threshold": 20,
+      "col0_match": "^Binding Energy \\(E\\)$",
+      "col0_out": "BE",
+      "col1_match": "^[a-zA-Z]+(\\d[a-z]\\d?)\\s([A-D])$",
+      "col1_out": "Main_{group2} ({group1})",
+      "col2_match": "^Not\\sSpecified.*?\\s([A-D])$",
+      "col2_out": "Sat_{group1}",
+      "col3_match": "^Backgnd\\.$",
+      "col3_out": "BG",
+      "col4_match": "^Envelope$",
+      "col4_out": "Fit_Total",
+      "col5_match": "^Elements=$",
+      "col5_out": "Raw_Data",
+      "col6_match": "^Residuals$",
+      "col6_out": "Residuals",
+      "col7_match": "^Sat.*$",
+      "col7_out": "Sat_A"
+    },
+    "output_file_label": [
+      "XPS0h-CLEAN",
+      "XPS12h-CLEAN",
+      "XPS24h-CLEAN"
+    ],
+    "output_pattern": "{stem}_clean.csv",
+    "result_col": "xxx",
+    "tool_type": "single",
+    "comment": "### 🧹 智能列级数据清洗与提取工具\n\n该工具专门用于处理仪器导出的非标准格式文件。通过“数据量探测 + 表头重命名”逻辑，自动提取并对齐纯净的数值数据。\n\n#### 🎯 工作流\n\n1.  **数据列探测**：计算每一列中浮点数的数量。只有当浮点数个数 $\\\\ge$ `float_threshold` 时，该列才被视为有效数据列。\n2.  **表头逆序定位**：从有效数据列的底部向上搜索，匹配用户定义的重命名规则。匹配成功的第一个规则将决定该列的新名称。\n3.  **纯净提取**：提取该列内所有可识别的数值，丢弃所有文本、备注和单位。\n\n#### ⚙️ 匹配模式\n\n- **Wildcard (通配符)**：`\\\\\\\\*` 匹配任意内容，用 `{matched}` 引用。\n- **Regex (正则)**：使用括号 `()` 捕获，用 `{group1}` 引用。"
+  }
+}

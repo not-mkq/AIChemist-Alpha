@@ -1,0 +1,30 @@
+{
+  "M8-AI_PRJ_RPT": {
+    "code_name": "ai_report_from_image",
+    "input_label_map": {
+      "source_image": "PRJ-RESULT"
+    },
+    "run_params": {
+      "prompt": {
+        "value": "You are given a figure showing potential values for multiple batches.\nLower potential indicates better performance.\n\nDescribe only what is explicitly shown in the figure, including:\n- The distribution of potential values within each batch\n- The best (minimum) potential in each batch\n- Performance trends across batches based on the fact that lower is better\n\nDo not infer causes, mechanisms, or optimization strategies.\nDo not add background or interpretation beyond the figure.\n\nRespond in English only.\nLimit the response to at most 3 sentences.",
+        "comment": "Prompt"
+      },
+      "api_url": {
+        "value": "https://api.openai.com/v1/chat/completions",
+        "comment": "url"
+      },
+      "api_key": {
+        "value": "***REDACTED**",
+        "comment": "key"
+      },
+      "model": {
+        "value": "gpt-4o",
+        "comment": "model"
+      }
+    },
+    "output_file_label": "PRJ-RPT",
+    "output_pattern": "{stem}.md",
+    "result_col": "mkq",
+    "tool_type": "single"
+  }
+}

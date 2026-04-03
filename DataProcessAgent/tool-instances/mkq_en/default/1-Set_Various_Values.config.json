@@ -1,0 +1,12 @@
+{
+  "1-Set_Various_Values": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "1-Set_Active_Area_Potential_Offset",
+      "1.2-Set_Equilibrium_Potential",
+      "1.3-Manual_Set_Solution_Resistance"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}

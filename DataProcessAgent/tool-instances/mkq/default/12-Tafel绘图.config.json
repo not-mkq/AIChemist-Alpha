@@ -1,0 +1,14 @@
+{
+  "12-Tafel绘图": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "6-求取OverPotential",
+      "7-截取Tafel绘图数据",
+      "8-处理Tafel绘图数据",
+      "9-Tafel拟合",
+      "10-Tafel绘图"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

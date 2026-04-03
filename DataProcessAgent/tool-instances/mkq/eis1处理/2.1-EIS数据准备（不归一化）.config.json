@@ -1,0 +1,77 @@
+{
+  "2.1-EIS数据准备（不归一化）": {
+    "code_name": "csv_apply_expression",
+    "input_label_map": {
+      "source_csv": [
+        "EIS1-CSV",
+        "EIS1-TMP1",
+        "EIS1-TMP2",
+        "EIS1-TMP3",
+        "EIS1-TMP4",
+        "EIS1-TMP5"
+      ]
+    },
+    "run_params": {
+      "col_bind_1": {
+        "value": [
+          "Z'/ohm@Z1",
+          "Z\"/ohm@Z2",
+          "Z/ohm@Z0",
+          "|Z| (Ω)@Z0",
+          "Freq/Hz@f",
+          "Phase/deg@P"
+        ],
+        "comment": [
+          "面积比电阻实部(Real Impedance)",
+          "面积比电阻虚部(Imaginary Impedance)",
+          "面积比阻抗模量(Impedance Magnitude)",
+          "比阻抗模量(归一化后)",
+          "激励信号频率",
+          "相角"
+        ]
+      },
+      "column": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "new_col_name": [
+        "Z' (Ω)",
+        "-Z'' (Ω)",
+        "|Z| (Ω)",
+        "lg(|Z| / Ω)",
+        "lg(f / Hz)",
+        "-Phase/deg"
+      ],
+      "expression": [
+        "Z1",
+        "-Z2",
+        "Z0",
+        "lg(Z0)",
+        "lg(f)",
+        "-P"
+      ]
+    },
+    "output_file_label": [
+      "EIS1-TMP1",
+      "EIS1-TMP2",
+      "EIS1-TMP3",
+      "EIS1-TMP4",
+      "EIS1-TMP5",
+      "EIS1-NORM-CSV"
+    ],
+    "output_pattern": [
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_.csv",
+      "{stem}_areaNorm.csv"
+    ],
+    "tool_type": "single",
+    "comment": "### 🧮 通用数据列运算工具 (Expression)\n\n对 CSV 中的每一行数据应用自定义数学公式。这是实现非标准电化学变换的\"瑞士军刀\".\n\n#### 🧪 电化学公式模板：\n\n1.  **手动 IR 补偿**：利用测得的溶液电阻 $R_s$ 修正电位列。\n- 表达式：`i - j * {r_solution} / 1000`\n- 绑定：`current_density@j` (列绑定)\n- 引用：`{r_solution}` (引用之前步骤算出的电阻值)\n2.  **过电位曲线转换 (E -> η)**：直接生成以 mV 为单位的过电位轴。\n- 表达式：`(i - {equilibrium_potential}) * 1000`\n3.  **坐标对数化**：生成用于 Tafel 分析的 $\\\\log|j|$ 轴。\n- 表达式：`lg(abs(i))`\n\n> **📝 语法说明**：\n> \n> - `i`：当前处理列的数值。\n> - `{result_name}`：引用之前步骤计算出的标量结果。\n> - **列绑定**：格式 `<列名>@\\\\\\<var>`（如 `potential_V@E`），之后可在表达式中使用 `E`。\n> - **列写回**：指定 `column` 则覆盖；留空则追加新列。\n>"
+  }
+}

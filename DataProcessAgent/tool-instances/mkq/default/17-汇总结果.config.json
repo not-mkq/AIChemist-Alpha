@@ -1,0 +1,24 @@
+{
+  "17-汇总结果": {
+    "code_name": "result_aggregator",
+    "input_cols": {
+      "col0_data": {
+        "value": "项目",
+        "comment": "第一列"
+      },
+      "col1_data": "过电位@10mA/cm2",
+      "col2_data": "起始电位(V)@10mA/cm2",
+      "col3_data": "LSV图片得分"
+    },
+    "run_params": {
+      "col0_name": "Item",
+      "col1_name": "过电位@10mA/cm2",
+      "col2_name": "起始电位(V)@10mA/cm2",
+      "col3_name": "LSV图片得分"
+    },
+    "output_file_label": "RESULT",
+    "output_pattern": "result.csv",
+    "tool_type": "merge",
+    "comment": "汇总结果列工具：将指定的结果列（Item/Batch级别）收集并对齐，输出为一个汇总 CSV。"
+  }
+}

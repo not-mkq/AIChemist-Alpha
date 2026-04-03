@@ -1,0 +1,35 @@
+{
+	"code_name": "lsv_onset_potential_csv",
+	"tool_type": "single",
+	"comment": "### 🚦 起始电位计算工具 (Onset Potential)\n\n起始电位（Onset Potential）标志着电催化反应**开始显著发生**的电位点。\n\n#### 📐 判定标准\n本工具采用最通用的**电流密度阈值法**：当电流密度 $|j|$ 首次超过设定值（如 $1mA/cm^2$ 或 $10mA/cm^2$）时对应的电位。\n\n- **$E_{onset} @ 1mA/cm^2$**: 几何起始电位，通常用于判断反应是否发生。\n- **$E_{onset} @ 10mA/cm^2$**: 工业基准值（如光解水制氢的标准），常用于比较催化剂的实际应用潜力。\n\n> **⚠️ 注意**：\n> - 建议勾选 `use_ir_compensated`，使用 IR 补偿后的电位，以获得真实的本征活性。\n> - 阴极反应（如 HER, ORR）电流为负，工具默认会对电流取绝对值进行判断。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "输入的 LSV 数据 CSV 文件, 一般为 `lsv_normalize_csv` 或 `lsv_ir_compensate_csv` 的输出。"
+	},
+	{
+		"name": "onset_current_mAcm2",
+		"type": "float",
+		"comment": "onset 阈值电流密度 (mA/cm²)。"
+	},
+	{
+		"name": "use_ir_compensated",
+		"type": "optional_bool",
+		"comment": "是否使用 IR 补偿后的电位列 `potential_ir_V`。若为 true 且该列表头不存在, 工具会报错。"
+	},
+	{
+		"name": "use_abs_current",
+		"type": "optional_bool",
+		"comment": "是否对电流取绝对值后再与阈值比较, 默认 true。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 的编码, 默认 `utf-8`。"
+	}
+	],
+	"result_col": {
+		"comment": "onset_potential_v onset 电位 (V)。"
+	}
+}

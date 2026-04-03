@@ -1,0 +1,25 @@
+{
+  "M1-draw_result": {
+    "code_name": "json_plot_points",
+    "input_label_map": {
+      "source_json": "RESULT-JSON"
+    },
+    "run_params": {
+      "xlabel": {
+        "value": "Item",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "Potential",
+        "comment": "ylabel"
+      },
+      "plot_grid": true,
+      "show_legend": true,
+      "y_axis_from_zero": false
+    },
+    "output_file_label": "RESULT-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "标点渲染器：读取包含坐标和样式信息的 JSON 文件（支持单个或多个文件），并将其绘制在图表上。常与 csv_find_points 配合使用。"
+  }
+}

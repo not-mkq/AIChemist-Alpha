@@ -1,0 +1,15 @@
+{
+  "1.2-Set_Equilibrium_Potential": {
+    "code_name": "primitive_pass_value",
+    "run_params": {
+      "value": {
+        "value": "1.230",
+        "comment": "Equilibrium Potential(V)"
+      },
+      "value_type": "float"
+    },
+    "result_col": "Equilibrium_Potential(V)",
+    "tool_type": "single",
+    "comment": "A practical summary. To evaluate **Overpotential ($\\eta$)**, we must know the **Reversible Potential**.\n\nCommon Reversible Potentials (V vs. RHE, 25°C):\n\n|Abbr|Full Name|Type|Half Reaction|E0|\n|---|---|---|---|---|\n|**HER**|Hydrogen Evolution|Red.|$2H^+ + 2e^- \\rightarrow H_2$|**0 V**|\n|**HOR**|Hydrogen Oxidation|Ox.|$H_2 \\rightarrow 2H^+ + 2e^-$|**0 V**|\n|**OER**|Oxygen Evolution|Ox.|$2H_2O \\rightarrow O_2 + 4H^+ + 4e^-$|**1.23 V**|\n|**ORR**|Oxygen Reduction|Red.|$O_2 + 4H^+ + 4e^- \\rightarrow 2H_2O$|**1.23 V**|\n\n### How to read?\n1. HER/HOR is baseline (0 V).\n2. OER/ORR is 1.23 V theoretically, but requires overpotential.\n3. Small molecule oxidation (UOR etc.) has lower theoretical potential.\n\n### Overpotential Formula\n- Oxidation: $\\eta = E_{measured(RHE)} - E^0_{table}$\n- Reduction: $\\eta = |E_{measured(RHE)} - E^0_{table}|$"
+  }
+}

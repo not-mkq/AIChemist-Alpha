@@ -1,0 +1,46 @@
+{
+  "X0-Extract_Extremes": {
+    "code_name": "csv_find_points",
+    "input_label_map": {
+      "source_csv": "XPS0h-CLEAN"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X-Axis"
+      },
+      "y_col": {
+        "value": "Sat_*,Main_*",
+        "comment": "Y-Axis Match"
+      },
+      "find_type": {
+        "value": "peak",
+        "comment": "Find Type"
+      },
+      "find_param": {
+        "value": "20",
+        "comment": "Find Param (Threshold)"
+      },
+      "label_text": {
+        "value": "{label_name}{match}",
+        "comment": "Label"
+      },
+      "label_anchor": {
+        "value": "north",
+        "comment": "Label Anchor"
+      },
+      "marker_style": {
+        "value": "none",
+        "comment": "Marker Style"
+      },
+      "arrow_style": {
+        "value": "->",
+        "comment": "Arrow Style"
+      }
+    },
+    "output_file_label": "XPS0h_Peak",
+    "output_pattern": "{stem}_peak.json",
+    "tool_type": "single",
+    "comment": "Extracts feature points (max, peak) from CSV to JSON. Supports wildcard column matching and Python expressions for dynamic styling."
+  }
+}

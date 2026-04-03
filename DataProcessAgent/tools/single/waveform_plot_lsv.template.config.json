@@ -1,0 +1,63 @@
+{
+	"code_name": "waveform_plot_lsv",
+	"tool_type": "single",
+	"comment": "根据第一步生成的 LSV 质量报告 JSON + 原始（或归一化后）CSV，绘制波形诊断图：\n- 整体 I–V 曲线\n- 用高亮颜色标出 local_issues 覆盖的局部区段\n- 在图内角落展示质量摘要（quality / 噪声 / 跳变 / flags）\n\n假设质量报告 JSON 结构类似：\n{\n  \"source_csv\": \"LSV-1.csv\",\n  \"potential_col\": \"Potential/V\",\n  \"current_col\": \"Current/A\",\n  ...,\n  \"local_issues\": [\n    {\"start_index\": 120, \"end_index\": 150, \"reason\": \"高频噪声\", \"type\": \"noise\"},\n    {\"index\": 300, \"reason\": \"电流跳变\", \"type\": \"jump\"}\n  ]\n}\n\n该工具只负责画图，不调用任何 Vision / 模型推理。",
+	"params": [
+	{
+		"name": "source_csv",
+		"type": "file_label",
+		"comment": "LSV 数据 CSV 文件（列名中至少包含电位列和电流列）。"
+	},
+	{
+		"name": "quality_report",
+		"type": "file_label",
+		"comment": "第一步生成的质量报告 JSON 文件路径。"
+	},
+	{
+		"name": "use_quality_cols",
+		"type": "optional_bool",
+		"comment": "是否优先使用质量报告中的 potential_col / current_col 作为列名，默认 true。"
+	},
+	{
+		"name": "potential_col",
+		"type": "optional_str",
+		"comment": "电位列名。默认：quality_report 中的 potential_col；如果没有，则尝试 'Potential/V'。"
+	},
+	{
+		"name": "current_col",
+		"type": "optional_str",
+		"comment": "电流（或电流密度）列名。默认：quality_report 中的 current_col；如果没有，则尝试 'Current/A'。"
+	},
+	{
+		"name": "fig_width",
+		"type": "optional_float",
+		"comment": "图像宽度（英寸），默认 8.0。"
+	},
+	{
+		"name": "fig_height",
+		"type": "optional_float",
+		"comment": "图像高度（英寸），默认 4.5。"
+	},
+	{
+		"name": "dpi",
+		"type": "optional_int",
+		"comment": "图像 DPI，默认 150。"
+	},
+	{
+		"name": "highlight_alpha",
+		"type": "optional_float",
+		"comment": "局部问题区段的背景填充透明度，范围 0–1，默认 0.15。设为 0 可关闭背景填充。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "CSV / JSON 文件编码，默认 'utf-8'。"
+	}
+	],
+	"output_file_label": {
+		"comment": "波形诊断 PNG 图像文件标签。输出文件名约定为：`{stem}_waveform.png`，其中 stem 来自 source_csv 的文件名。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_waveform.png"
+	}
+}

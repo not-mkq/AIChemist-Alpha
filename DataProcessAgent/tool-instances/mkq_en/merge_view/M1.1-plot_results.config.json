@@ -1,0 +1,13 @@
+{
+  "M1.1-plot_results": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "M0-extract_result",
+      "M0.6-find_best_point",
+      "M0.5-merge_json",
+      "M1-draw_result"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence 模式 Meta Tool\n\n按顺序执行一系列工具。\n\n工具会按照 `tool_sequence` 中定义的顺序依次执行。"
+  }
+}

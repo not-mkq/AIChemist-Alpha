@@ -1,0 +1,25 @@
+{
+  "agent": {
+    "id": "protocol_converter",
+    "name": "protocol_converter",
+    "description": "Convert manual experimental steps to automated workflow steps for robotic synthesis workstations",
+    "version": "1.0"
+  },
+  "local_embedding": {
+    "base_url": "http://10.7.0.5:3000/api",
+    "api_key": "sk-***",
+    "model": "qwen3-embedding:8b"
+  },
+  "remote_chat": {
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "sk-***",
+    "model": "openai/gpt-4.1"
+  },
+  "db_path": "chroma_db",
+  "collection_name": "aichemist",
+  "docs_dir": "./notes",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5012
+  }
+}

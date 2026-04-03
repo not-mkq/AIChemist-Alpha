@@ -1,0 +1,41 @@
+{
+  "code_name": "result_aggregator",
+  "tool_type": "merge",
+  "comment": "汇总结果列工具：将指定的结果列（Item/Batch级别）收集并对齐，输出为一个汇总 CSV。",
+  "input_cols": {
+    "col0_data": { "comment": "基准数据列（必填）" },
+    "col1_data": { "comment": "可选数据列 1" },
+    "col2_data": { "comment": "可选数据列 2" },
+    "col3_data": { "comment": "可选数据列 3" },
+    "col4_data": { "comment": "可选数据列 4" },
+    "col5_data": { "comment": "可选数据列 5" },
+    "col6_data": { "comment": "可选数据列 6" },
+    "col7_data": { "comment": "可选数据列 7" },
+    "col8_data": { "comment": "可选数据列 8" },
+    "col9_data": { "comment": "可选数据列 9" }
+  },
+  "params": [
+    { "name": "col0_name", "type": "optional_str", "comment": "列 0 的表头名" },
+    { "name": "col1_name", "type": "optional_str", "comment": "列 1 的表头名" },
+    { "name": "col2_name", "type": "optional_str", "comment": "列 2 的表头名" },
+    { "name": "col3_name", "type": "optional_str", "comment": "列 3 的表头名" },
+    { "name": "col4_name", "type": "optional_str", "comment": "列 4 的表头名" },
+    { "name": "col5_name", "type": "optional_str", "comment": "列 5 的表头名" },
+    { "name": "col6_name", "type": "optional_str", "comment": "列 6 的表头名" },
+    { "name": "col7_name", "type": "optional_str", "comment": "列 7 的表头名" },
+    { "name": "col8_name", "type": "optional_str", "comment": "列 8 的表头名" },
+    { "name": "col9_name", "type": "optional_str", "comment": "列 9 的表头名" },
+
+    {
+      "name": "output_filename",
+      "type": "optional_str",
+      "comment": "输出 CSV 的文件名（默认 aggregated_results.csv）"
+    }
+  ],
+  "output_file_label": {
+    "comment": "生成的汇总 CSV 文件标签"
+  },
+  "output_pattern": {
+    "comment": "aggregated_results.csv"
+  }
+}

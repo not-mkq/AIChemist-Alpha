@@ -1,0 +1,42 @@
+{
+	"code_name": "ir_from_eis_csv",
+	"tool_type": "single",
+	"comment": "### 🍵 EIS 欧姆电阻提取工具 (Ohmic Resistance)\n\n从交流阻抗 (EIS) 数据中精准识别**溶液电阻 ($R_s$)**，为后续的 IR 补偿提供核心参数。\n\n#### 💡 物理原理\n在 Nyquist 图中，曲线与实轴 ($Z_{real}$) 在高频区的第一个交点，通常代表了电解液、电极材料及接触电阻的总和，即 **未补偿溶液电阻 ($R_u$)**。\n\n#### 🛠️ 算法说明：\n1.  **高频平均法 (`mean_high_freq`)**：对数据按**频率数值 (Hz)** 从高到低排序（非行号顺序），选取前 $N$ 个点计算平均 $Z_{real}$。\n2.  **最小模长法 (`mean_low_Z`)**：选取阻抗模长 $|Z|$ 最小的 $N$ 个点。\n    - *去噪逻辑*：工具会先应用 `z_imag_max_abs` 阈值，剔除虚部绝对值过大的点（通常是低频电容弧或高频感抗噪声），再进行排序取值。\n\n> **专家建议**：\n> - 提取出的 `r_solution_ohm` 应作为项目的核心全局变量，通过 `from_result` 自动传递给所有需要 IR 补偿的 LSV 曲线。",
+	"params": [
+	{
+		"name": "source_eis",
+		"type": "file_label",
+		"comment": "EIS 数据文件（CSV），约定列顺序为：`freq_Hz, Z_real_ohm, Z_imag_ohm`。"
+	},
+	{
+		"name": "ir_method",
+		"type": "str_enum",
+		"choices": ["mean_high_freq", "mean_low_Z"],
+		"comment": "- `mean_high_freq`：按频率从高到低选前 N 个点，取 Z_real 平均；\n- `mean_low_Z`：按 |Z| 从小到大选前 N 个点，取 Z_real 平均，可配合 `z_imag_max_abs` 过滤高电容区。"
+	},
+	{
+		"name": "points",
+		"type": "optional_int",
+		"comment": "拟合/平均所用的点数 N。为空时使用默认值（代码中默认为 5）。"
+	},
+	{
+		"name": "z_imag_max_abs",
+		"type": "float",
+		"comment": "在 `mean_low_Z` 方法中允许的 |Z_imag| 最大值（Ω）。用于过滤掉高电容区域的点，常用范围在 0.1–10 Ω。"
+	},
+	{
+		"name": "encoding",
+		"type": "optional_str",
+		"comment": "输入 CSV 的编码，默认 `utf-8`；如果出现乱码，可手动指定如 `gbk` 等编码。"
+	}
+	],
+	"output_file_label": {
+		"comment": "IR 补偿质量报告文件标签，对应 `{basename}_ir_quality.json`。"
+	},
+	"output_pattern": {
+		"comment": "{stem}_ir_quality.json"
+	},
+	"result_col": {
+		"comment": "写入溶液电阻 `r_solution_ohm`（单位 Ω），为一个浮点数结果。"
+	}
+}

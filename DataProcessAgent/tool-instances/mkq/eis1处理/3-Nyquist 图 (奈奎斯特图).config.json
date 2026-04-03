@@ -1,0 +1,49 @@
+{
+  "3-Nyquist 图 (奈奎斯特图)": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "EIS1-NORM-CSV"
+    },
+    "run_params": {
+      "x_col": {
+        "value": "Z' (Ω·cm²)",
+        "comment": "x轴"
+      },
+      "y0_col": {
+        "value": "-Z'' (Ω·cm²)",
+        "comment": "y轴"
+      },
+      "fig_width": 6.0,
+      "fig_height": 4.5,
+      "xlabel": {
+        "value": "$Z' \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "$-Z'' \\text{ / } \\Omega \\cdot \\text{cm}^2$",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "Nyquist Plot of {batch}-{item}",
+        "comment": "title"
+      },
+      "font_name": {
+        "value": "Source Han Sans CN",
+        "comment": "字体"
+      },
+      "y0_style": {
+        "value": "blue,2.0,-",
+        "comment": "样式"
+      },
+      "label_template": "？",
+      "x_log": false,
+      "y_log": false,
+      "equal_aspect": true,
+      "plot_grid": true
+    },
+    "output_file_label": "EIS1-Nyquist",
+    "output_pattern": "{stem}_Nyquist.png",
+    "tool_type": "single",
+    "comment": "### 📈 EIS Nyquist 图分析 (归一化版)\n\nNyquist 图是电化学阻抗分析的标准展示方式，通过 $-Z''$ 对 $Z'$ 作图。\n\n#### 🧪 专家级图谱解读\n\n1.  **实轴起始点**：对应溶液电阻 $R_s$。\n2.  **半圆直径**：在中频区，半圆的宽度通常对应电荷转移电阻 $R_{ct}$，是评价催化动力学的核心指标。\n3.  **低频区域**：曲线的斜率反映了离子的扩散能力（如 Warburg 阻抗）。\n\n#### ⚙️ 制图规范 (Academic Standard)\n\n- **等轴比例 (`equal_aspect=true`)**：**这是 EIS 绘图的灵魂**。本实例强制要求 $X$ 轴和 $Y$\n  轴的单位刻度物理长度一致。只有这样，Nyquist 图中的半圆才是“圆”的，方便研究者通过视觉直接判断阻抗特征。\n- **单位说明**：坐标轴已根据面积归一化，单位为 $\\\\Omega \\\\cdot cm^2$，方便在不同载量或面积的样本间进行横向对比。"
+  }
+}

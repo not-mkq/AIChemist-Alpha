@@ -1,0 +1,44 @@
+{
+  "X2-数据绘图": {
+    "code_name": "json_plot_points",
+    "input_label_map": {
+      "source_json": [
+        "XPS0h-JSON",
+        "XPS12h-JSON",
+        "XPS24h-JSON"
+      ]
+    },
+    "run_params": {
+      "plot_grid": true,
+      "fig_width": {
+        "value": 6.0,
+        "comment": "图片宽度"
+      },
+      "fig_height": {
+        "value": 4.0,
+        "comment": "图片高度"
+      },
+      "xlabel": {
+        "comment": "xlabel"
+      },
+      "title": {
+        "comment": "title"
+      },
+      "ylabel": {
+        "comment": "ylabel"
+      }
+    },
+    "output_file_label": [
+      "XPS0h-PNG3",
+      "XPS12h-PNG3",
+      "XPS24h-PNG3"
+    ],
+    "output_pattern": [
+      "{stem}.png",
+      "{stem}.png",
+      "{stem}.png"
+    ],
+    "tool_type": "single",
+    "comment": "标点渲染器：读取包含坐标和样式信息的 JSON 文件（支持单个或多个文件），并将其绘制在图表上。常与 csv_find_points 配合使用。"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "my_fit_instance": {
+    "code_name": "csv_curve_fit",
+    "input_label_map": {
+      "input_file": "RAW_DATA"
+    },
+    "run_params": {
+      "x_column": "v",
+      "y_column": "i",
+      "formula": "a * x + b",
+      "output_y_column": "fitted_i"
+    },
+    "result_col": "fit",
+    "tool_type": "single"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "agent": {
+    "id": "synthesis_expert",
+    "name": "synthesis_expert",
+    "description": "A literature-reading expert agent based on RAGFlow, providing general synthesis methods for compounds",
+    "version": "1.0"
+  },
+  "ragflow": {
+    "api_key": "ragflow-***",
+    "base_url": "http://10.7.0.5",
+    "assistant_name": "MKQ",
+    "stream": true,
+    "request_timeout_seconds": 600000,
+    "include_references": false,
+    "notes": {
+      "stream": "Boolean, whether to stream RagFlow answers; set false to avoid chunked encoding issues",
+      "request_timeout_seconds": "HTTP timeout for RagFlow requests; increase if large payloads",
+      "include_references": "Boolean, whether to include reference chunks in the JSON response"
+    }
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5001
+  }
+}

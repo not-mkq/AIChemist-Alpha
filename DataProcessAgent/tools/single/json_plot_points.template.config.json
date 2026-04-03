@@ -1,0 +1,164 @@
+{
+  "code_name": "json_plot_points",
+  "tool_type": "single",
+  "comment": "标点渲染器：读取包含坐标和样式信息的 JSON 文件（支持单个或多个文件），并将其绘制在图表上。常与 csv_find_points 配合使用。",
+  "params": [
+    {
+      "name": "source_json",
+      "type": "file_label",
+      "comment": "包含标点数据的 JSON 文件。支持多个标签（逗号分隔），工具会自动合并显示。"
+    },
+    {
+      "name": "fig_width",
+      "type": "optional_float",
+      "comment": "画布宽度（英寸）。"
+    },
+    {
+      "name": "fig_height",
+      "type": "optional_float",
+      "comment": "画布高度（英寸）。"
+    },
+    {
+      "name": "dpi",
+      "type": "optional_int",
+      "comment": "图片清晰度。"
+    },
+    {
+      "name": "title",
+      "type": "optional_str",
+      "comment": "图表总标题。"
+    },
+    {
+      "name": "xlabel",
+      "type": "optional_str",
+      "comment": "X 轴标签。"
+    },
+    {
+      "name": "ylabel",
+      "type": "optional_str",
+      "comment": "Y 轴标签。"
+    },
+    {
+      "name": "font_name",
+      "type": "optional_str",
+      "comment": "全局字体（如 Arial, Source Han Sans CN）。"
+    },
+    {
+      "name": "plot_grid",
+      "type": "optional_bool",
+      "comment": "是否显示网格。"
+    },
+    {
+      "name": "show_legend",
+      "type": "optional_bool",
+      "default": true,
+      "comment": "是否显示图例。"
+    },
+    {
+      "name": "show_xticks",
+      "type": "optional_bool",
+      "default": true,
+      "comment": "是否显示 X 轴刻度。"
+    },
+    {
+      "name": "show_yticks",
+      "type": "optional_bool",
+      "default": true,
+      "comment": "是否显示 Y 轴刻度。"
+    },
+    {
+      "name": "x_scale",
+      "type": "optional_str_enum",
+      "choices": ["linear", "log"],
+      "default": "linear",
+      "comment": "X 轴类型 (linear/log)。"
+    },
+    {
+      "name": "y_scale",
+      "type": "optional_str_enum",
+      "choices": ["linear", "log"],
+      "default": "linear",
+      "comment": "Y 轴类型 (linear/log)。"
+    },
+    {
+      "name": "y_axis_from_zero",
+      "type": "optional_bool",
+      "comment": "是否强制 Y 轴从 0 开始。若为 False，则自动缩放以适应数据范围。"
+    },
+    {
+      "name": "column_by",
+      "type": "optional_str",
+      "comment": "分面列分组字段 (如 'group')。"
+    },
+    {
+      "name": "row_by",
+      "type": "optional_str",
+      "comment": "分面行分组字段。"
+    },
+    {
+      "name": "share_x",
+      "type": "optional_bool",
+      "default": true,
+      "comment": "共享 X 轴 (分面时对齐)。"
+    },
+    {
+      "name": "share_y",
+      "type": "optional_bool",
+      "default": true,
+      "comment": "共享 Y 轴 (分面时对齐)。"
+    },
+    {
+      "name": "facet_wspace",
+      "type": "optional_float",
+      "default": 0.0,
+      "comment": "子图列间距 (0.0 为紧贴)。"
+    },
+    {
+      "name": "facet_hspace",
+      "type": "optional_float",
+      "default": 0.0,
+      "comment": "子图行间距 (0.0 为紧贴)。"
+    },
+    {
+      "name": "facet_title_template",
+      "type": "optional_str",
+      "comment": "子图标题模板 (可用 {row}, {col}, {val})。留空则隐藏标题。"
+    },
+    {
+      "name": "facet_title_loc",
+      "type": "optional_str_enum",
+      "choices": ["top", "inside top left", "inside top right", "hidden"],
+      "default": "top",
+      "comment": "子图标题位置。"
+    },
+    {
+      "name": "legend_loc",
+      "type": "optional_str_enum",
+      "choices": ["best", "upper right", "upper left", "lower right", "lower left", "outside right", "outside top", "hidden"],
+      "default": "best",
+      "comment": "图例位置 (全局统一)。"
+    },
+    {
+      "name": "legend_labels",
+      "type": "optional_str",
+      "comment": "自定义图例标签列表 (逗号分隔)。"
+    },
+    {
+      "name": "legend_sort",
+      "type": "optional_str",
+      "comment": "图例排序模式 (例如 'Main*, Sat*, *')。组内按名称排序。"
+    },
+    {
+      "name": "legend_ncol",
+      "type": "optional_int",
+      "default": 1,
+      "comment": "图例列数。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "生成的标点渲染图 (PNG)。"
+  },
+  "output_pattern": {
+    "comment": "输出文件名模式，例如 {stem}_points_render.png"
+  }
+}

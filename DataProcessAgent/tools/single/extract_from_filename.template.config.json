@@ -1,0 +1,29 @@
+{
+  "code_name": "extract_from_filename",
+  "tool_type": "single",
+  "comment": "### 🔍 文件名信息提取工具\n\n该工具利用正则表达式从文件名中提取关键信息，并自动存入数据库结果表中。\n\n#### 💡 正则语法建议\n1.  **多字段提取**：使用命名分组 `(?P<name>pattern)`。例如：`Sample_(?P<id>\\d+)_Scan_(?P<rate>\\d+)`。这会在数据库中自动生成 `result_col.id` 和 `result_col.rate` 两列。\n2.  **单字段提取**：使用普通括号 `(\\d+)`。工具会提取第一个括号内的内容。\n3.  **简单匹配**：如果不带括号，工具会提取整个匹配到的文本。\n\n#### 🧪 示例\n- 文件名：`2024-05-01_OER_Test_01.csv`\n- 正则：`Test_(?P<no>\\d+)`\n- 结果：`no = 01`",
+  "params": [
+    {
+      "name": "source_file",
+      "type": "file_label",
+      "comment": "目标文件标签。"
+    },
+    {
+      "name": "regex_pattern",
+      "type": "str",
+      "comment": "用于解析文件名的匹配模式。Regex 模式下为正则表达式；Wildcard 模式下为通配符（* 匹配的内容会被提取）。"
+    },
+    {
+      "name": "mode",
+      "type": "str_enum",
+      "choices": [
+        "regex",
+        "wildcard"
+      ],
+      "comment": "匹配模式。默认为 regex。"
+    }
+  ],
+  "result_col": {
+    "comment": "结果列名（若使用命名分组，则作为列名前缀）。"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "18-Summary_Results_Plotting": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": "RESULT"
+    },
+    "run_params": {
+      "x_col": "Item",
+      "y0_col": "Potential(V)@10mA/cm2 @ LSV_Image_Score >= 80",
+      "y1_col": "Potential(V)@10mA/cm2 @ LSV_Image_Score < 80",
+      "xlabel": "Item",
+      "ylabel": "Potential@10mA/cm2",
+      "title_template": "Results of {batch}",
+      "font_name": "Source Han Sans CN",
+      "y0_style": "blue,2,none,bar,0@Data_Quality_Normal",
+      "y1_style": "red,2,none,bar,0@Data_Quality_Abnormal",
+      "y_axis_from_zero": false,
+      "marker_style": "o,green,5@Best: {result.y:.2f} V @ Item {result.x:.0f}",
+      "marker_x_values": "{result.x}",
+      "marker_y_values": "{result.y}",
+      "label_anchor": "north",
+      "legend_loc": "upper left",
+      "label_template": "Best: {result.x:.0f}"
+    },
+    "output_file_label": "RESULT-PNG",
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "Generic Plotting Tool: Quickly draw beautiful multi-curve comparison plots by\nspecifying column names.\n\n【Features】\n\n1.  Comparison: Plot up to 5 curves (y0 to y4).\n2.  Auto-Marking: Automatically find points on curves at specified X positions.\n3.  Dynamic Labels: Display values at marked points with custom formatting.\n\n【Common Uses】\n\n- Plot LSV polarization curves and mark potential at 10mA/cm².\n- Compare curves at different scan rates.\n- Mark current values at specific voltages."
+  }
+}

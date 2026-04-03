@@ -1,0 +1,147 @@
+{
+  "6-XPS绘图": {
+    "code_name": "csv_generic_plot",
+    "input_label_map": {
+      "source_csv": [
+        "XPS0h-CLEAN",
+        "XPS12h-CLEAN",
+        "XPS24h-CLEAN"
+      ]
+    },
+    "run_params": {
+      "x_col": {
+        "value": "BE",
+        "comment": "X轴"
+      },
+      "y0_col": {
+        "value": "Raw_Data@BG!=0",
+        "comment": "实验谱"
+      },
+      "y1_col": {
+        "value": "BG@BG!=0",
+        "comment": "背景"
+      },
+      "y3_col": {
+        "value": "Fit_Total@BG!=0",
+        "comment": "包络线"
+      },
+      "y0_style": {
+        "value": "black,1,--@Raw Data",
+        "comment": "实验数据绘制风格"
+      },
+      "y4_col": {
+        "value": "Main_A (*)@BG!=0",
+        "comment": "Main_A"
+      },
+      "y5_col": {
+        "value": "Main_B (*)@BG!=0",
+        "comment": "Main_B"
+      },
+      "y6_col": {
+        "value": "Main_C (*)@BG!=0",
+        "comment": "Main_C"
+      },
+      "y7_col": {
+        "value": "Main_D (*)@BG!=0",
+        "comment": "Main_D"
+      },
+      "y8_col": {
+        "value": "Main_E (*)@BG!=0",
+        "comment": "Main_E"
+      },
+      "y9_col": {
+        "value": "Sat_A@BG!=0",
+        "comment": "Sat_A"
+      },
+      "y10_col": {
+        "value": "Sat_B@BG!=0",
+        "comment": "Sat_B"
+      },
+      "y11_col": {
+        "value": "Sat_C@BG!=0",
+        "comment": "Sat_C"
+      },
+      "y12_col": {
+        "value": "Sat_D@BG!=0",
+        "comment": "Sat_D"
+      },
+      "y13_col": {
+        "value": "Sat_E@BG!=0",
+        "comment": "Sat_E"
+      },
+      "xlabel": {
+        "value": "Binding Energy (eV)",
+        "comment": "xlabel"
+      },
+      "ylabel": {
+        "value": "Intensity (a.u.)",
+        "comment": "ylabel"
+      },
+      "title_template": {
+        "value": "XPS Fig of {label_name}",
+        "comment": "Title"
+      },
+      "font_name": "Source Han Sans CN",
+      "y4_style": {
+        "value": "orange,2,-,fill!!!!(BG)@{label_name}{match}_A",
+        "comment": "Main_A_Style"
+      },
+      "y5_style": {
+        "value": "cyan,2,-,fill!!!!!(BG)@{label_name}{match}_B",
+        "comment": "Main_B_Style"
+      },
+      "y6_style": {
+        "value": "green,2,-,fill!!!!!(BG)@{label_name}{match}_C",
+        "comment": "Main_C_Style"
+      },
+      "y7_style": {
+        "value": "yellow,2,-,fill!!!!!(BG)@{label_name}{match}_D",
+        "comment": "Main_D_Style"
+      },
+      "y8_style": {
+        "value": "gray,2,-,fill!!!!!(BG)@{label_name}{match}_E",
+        "comment": "Main_E_Style"
+      },
+      "y9_style": {
+        "value": "orange,2,-,fill!(BG)@{label_name}{match} Sat_A",
+        "comment": "Sat_A_Style"
+      },
+      "y10_style": {
+        "value": "cyan,2,-,fill!(BG)@{label_name}{match} Sat_B",
+        "comment": "Sat_B_Style"
+      },
+      "y11_style": {
+        "value": "green,2,-,fill!(BG)@{label_name}{match} Sat_C",
+        "comment": "Sat_C_Style"
+      },
+      "y12_style": {
+        "value": "yellow,2,-,fill!(BG)@{label_name}{match} Sat_D",
+        "comment": "Sat_D_Style"
+      },
+      "y13_style": {
+        "value": "gray,2,-,fill!(BG)@{label_name}{match} Sat_E",
+        "comment": "Sat_E_Style"
+      },
+      "y1_style": {
+        "value": "black,0.5,:@BG",
+        "comment": "BG_Style"
+      },
+      "y3_style": {
+        "value": "red,3,-@Envelope",
+        "comment": "Fit_Total_Style"
+      },
+      "legend_loc": "upper right",
+      "plot_grid": false,
+      "fig_width": 6.0,
+      "fig_height": 6.0
+    },
+    "output_file_label": [
+      "XPS0h-PNG",
+      "XPS12h-PNG",
+      "XPS24h-PNG"
+    ],
+    "output_pattern": "{stem}.png",
+    "tool_type": "single",
+    "comment": "通用绘图工具：只需指定列名，即可快速绘制精美的多曲线对比图。\n\n【主要功能】\n\n1.  支持对比：可以同时画出最多 5 条曲线（y0 到 y4）。\n2.  自动标点：指定 X 轴位置，工具会自动在曲线上找到对应的点并画圈。\n3.  动态标签：可以在标点处显示数值，且支持自定义文字格式。\n\n【常见用途】\n\n- 绘制 LSV 极化曲线并在 10mA/cm² 处标注电位。\n- 对比不同扫描速率下的曲线。\n- 在图中标注特定电压下的电流值。"
+  }
+}

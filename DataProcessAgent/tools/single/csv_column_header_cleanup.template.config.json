@@ -1,0 +1,57 @@
+{
+  "code_name": "csv_column_header_cleanup",
+  "tool_type": "single",
+  "comment": "### 🧹 智能列级数据清洗与提取工具\n\n该工具专门用于处理仪器导出的非标准格式文件。通过“数据量探测 + 表头重命名”逻辑，自动提取并对齐纯净的数值数据。\n\n#### 🎯 工作流\n1.  **数据列探测**：计算每一列中浮点数的数量。只有当浮点数个数 $\\ge$ `float_threshold` 时，该列才被视为有效数据列。\n2.  **表头逆序定位**：从有效数据列的底部向上搜索，匹配用户定义的重命名规则。匹配成功的第一个规则将决定该列的新名称。\n3.  **纯净提取**：提取该列内所有可识别的数值，丢弃所有文本、备注和单位。\n\n#### ⚙️ 匹配模式\n- **Wildcard (通配符)**：`*` 匹配任意内容，用 `{matched}` 引用。\n- **Regex (正则)**：使用括号 `()` 捕获，用 `{group1}` 引用。",
+  "params": [
+    {
+      "name": "source_csv",
+      "type": "file_label",
+      "comment": "输入 CSV 文件标签。"
+    },
+    {
+      "name": "match_mode",
+      "type": "str_enum",
+      "choices": ["wildcard", "regex"],
+      "comment": "匹配模式选择。"
+    },
+    {
+      "name": "float_threshold",
+      "type": "int",
+      "comment": "数据列判定阈值。一列中浮点数个数不少于此值时，才被视为数据列进行处理。默认 10。"
+    },
+    { "name": "col0_match", "type": "optional_str", "comment": "规则 0：匹配内容" },
+    { "name": "col0_out", "type": "optional_str", "comment": "规则 0：输出名模板" },
+    { "name": "col1_match", "type": "optional_str", "comment": "规则 1" },
+    { "name": "col1_out", "type": "optional_str", "comment": "规则 1" },
+    { "name": "col2_match", "type": "optional_str", "comment": "规则 2" },
+    { "name": "col2_out", "type": "optional_str", "comment": "规则 2" },
+    { "name": "col3_match", "type": "optional_str", "comment": "规则 3" },
+    { "name": "col3_out", "type": "optional_str", "comment": "规则 3" },
+    { "name": "col4_match", "type": "optional_str", "comment": "规则 4" },
+    { "name": "col4_out", "type": "optional_str", "comment": "规则 4" },
+    { "name": "col5_match", "type": "optional_str", "comment": "规则 5" },
+    { "name": "col5_out", "type": "optional_str", "comment": "规则 5" },
+    { "name": "col6_match", "type": "optional_str", "comment": "规则 6" },
+    { "name": "col6_out", "type": "optional_str", "comment": "规则 6" },
+    { "name": "col7_match", "type": "optional_str", "comment": "规则 7" },
+    { "name": "col7_out", "type": "optional_str", "comment": "规则 7" },
+    { "name": "col8_match", "type": "optional_str", "comment": "规则 8" },
+    { "name": "col8_out", "type": "optional_str", "comment": "规则 8" },
+    { "name": "col9_match", "type": "optional_str", "comment": "规则 9" },
+    { "name": "col9_out", "type": "optional_str", "comment": "规则 9" },
+    {
+      "name": "encoding",
+      "type": "optional_str",
+      "comment": "文件编码，默认 utf-8。"
+    }
+  ],
+  "output_file_label": {
+    "comment": "清洗后的结构化数据文件标签。"
+  },
+  "output_pattern": {
+    "comment": "{stem}_structured.csv"
+  },
+  "result_col": {
+    "comment": "清洗操作结果。"
+  }
+}

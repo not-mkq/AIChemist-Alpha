@@ -1,0 +1,16 @@
+{
+  "15-EIS_CV_LSV": {
+    "code_name": "sequence",
+    "tool_sequence": [
+      "0.1-Set_Current_Project_Name",
+      "1-Set_Various_Values",
+      "13.1-Optional_EIS_Plotting",
+      "1.35-Adopt_Solution_Resistance",
+      "14.1-Optional_CV_Plotting",
+      "2.2-LSV_Normalization_No_R_Comp",
+      "11.1-LSV_Plotting_No_R_Comp"
+    ],
+    "tool_type": "meta",
+    "comment": "# Sequence Mode Meta Tool\n\nExecutes a series of tools in order.\n\nTools are executed sequentially as defined in `tool_sequence`."
+  }
+}
