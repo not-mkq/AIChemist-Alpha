@@ -121,6 +121,3 @@ python main.py
 # 启动配置页面
 python config_page/main.py
 ```
-�页面
-python config_page/main.py
-```
