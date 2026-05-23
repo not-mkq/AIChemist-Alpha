@@ -1,11 +1,15 @@
-# DataProcess Backend
+# DataProcessAgent
 
 **[中文版](README_zh.md)** | English
 
-A data processing backend for electrochemical data analysis (LSV, CV, EIS, ECSA, XPS).
+A general-purpose data processing software designed to streamline complex workflows. Users can break down the data processing workflow into several sub-steps (e.g., data extraction, cleaning, plotting, and calculation) and combine them visually in the UI to form a complete pipeline. 
+
+Each sub-step is implemented as a standalone Python script. The UI automatically parses these scripts and renders their parameters as user-friendly input fields, making it easy to configure without modifying code. It is currently tailored with built-in tools for electrochemical data analysis (LSV, CV, EIS, ECSA, XPS).
 
 ## Features
 
+- **Visual Workflow Composition**: Combine Python-based sub-steps (extract, clean, plot, calculate) into complete data pipelines via a user-friendly UI.
+- **Auto-Generated UI for Scripts**: Python script parameters are automatically converted into input fields in the frontend.
 - **FastAPI Backend**: High-performance async web server
 - **Electrochemical Data Processing**: Tools for LSV, CV, EIS, ECSA, and XPS data analysis
 - **AI Reporting**: GPT-4o integration for automated quality analysis and reporting
